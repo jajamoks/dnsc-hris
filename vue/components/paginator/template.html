@@ -1,0 +1,5 @@
+<div>
+    <slot name="paginator-button">
+        <button :class="{disabled: loadMoreData}" v-if="paginator.next_page_url" @click="loadMoreData = true" class="btn btn-block btn-default">{{ buttonTitle }}</button>
+    </slot>
+</div>

@@ -1,0 +1,13 @@
+<show-birthdays-modal :show.sync="showModal" :title.sync="'Birthdays today'" :effect="'zoom'">
+    <div slot="modal-body">
+        <div class="modal-body">
+            <pre>{{ employees | json }}</pre>
+            <p>Rosemale-John Testing part</p>
+        </div>
+    </div>
+    <div slot="modal-footer">
+        <div class="modal-footer">
+            <button @click="showModal = false" class="btn btn-default"><i class="fa fa-remove"></i>&nbsp;Close</button>
+        </div>
+    </div>
+</show-birthdays-modal>
