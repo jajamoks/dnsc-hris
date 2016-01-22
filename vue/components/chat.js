@@ -23,7 +23,7 @@ Vue.component('chat-component', {
     events: {
         threadsUpdated: function() {
             this.getMessageThreads();
-            this.getThread(this.messageGroup);
+            // this.getThread(this.messageGroup);
         },
 
         threadUpdated: function() {

@@ -4,5 +4,8 @@ Homestead.yaml
 Homestead.json
 .env
 /public/bower_components
+/public/css
+/public/js
+/public/fonts
 /storage/framework
 /storage/logs
