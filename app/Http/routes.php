@@ -8,16 +8,6 @@ Route::group(['middleware' => 'web'], function () {
 
 Route::group(['middleware' => ['web', 'auth']], function () {
 
-    Route::get('/socket', function () {
-        return view('socket');
-    });
-
-    Route::post('/sample', function () {
-        $redis = \LRedis::connection();
-        $redis->publish('message', auth()->user());
-        return redirect()->back();
-    });
-
     Route::get('lang/{locale}', 'SettingsController@changeLanguage');
 
     Route::get('/', 'DashboardController@index');

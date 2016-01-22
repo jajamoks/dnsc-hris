@@ -94,9 +94,15 @@
             </div>
         </hris-main>
 
+        <script type="text/javascript">
+            const USER_ID = '{{ auth()->user() }}';
+        </script>
+
         <script type="text/javascript" src="/js/main.min.js"></script>
 
         <script type="text/javascript" src="/bower_components/vue-strap/dist/vue-strap.min.js"></script>
+
+        <script type="text/javascript" src="/dist/js/socket.io.min.js"></script>
 
         <script type="text/javascript" src="/js/app.min.js"></script>
 
@@ -105,11 +111,6 @@
         <script type="text/javascript" src="/js/all.min.js"></script>
 
         <script>
-
-            // socket.on('message', function (response) {
-            //     console.log(response. + ' is sending you a message.');
-            // });
-
             // (function(i, s, o, g, r, a, m) {
             //     i['GoogleAnalyticsObject'] = r;
             //     i[r] = i[r] || function() {

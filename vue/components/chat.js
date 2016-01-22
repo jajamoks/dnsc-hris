@@ -1,7 +1,9 @@
 Vue.component('chat-component', {
 
     ready: function() {
+
         this.getMessageThreads();
+
     },
 
     data: function() {
@@ -21,11 +23,20 @@ Vue.component('chat-component', {
     events: {
         threadsUpdated: function() {
             this.getMessageThreads();
+            this.getThread(this.messageGroup);
         },
 
         threadUpdated: function() {
             this.messageGroup = null;
             this.getThread(this.messageGroup);
+        },
+
+        newMessage: function(message) {
+            console.log(message.sender_id + '===' + USER_ID);
+            if (this.messageGroup.id === message.message_group_id) {
+                message.is_sender = false;
+                this.messages.push(message);
+            }
         }
     },
 

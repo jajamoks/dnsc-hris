@@ -2,7 +2,9 @@ Vue.component('hris-main', {
 
     ready: function() {
 
-        // this.listenToPusher();
+        this.messageListener();
+
+        this.notificationListener();
 
     },
 
@@ -24,37 +26,35 @@ Vue.component('hris-main', {
             this.$broadcast('positionsUpdated');
         },
 
-        niftyNoty: function(type, icon, message, container = 'floating', focus = true) {
-            $.niftyNoty({
-                type: type,
-                icon: 'fa fa-' + icon,
-                message: message,
-                container: container,
-                timer: 3000,
-                focus: focus
-            });
-        }
-
     },
 
     methods: {
 
-        // listenToPusher: function() {
+        messageListener: function() {
+            var self = this;
 
-        //     var self = this;
+            socket.on('message', function(data) {
 
-        //     var pusher = new Pusher('84cb96c4004fd7ebf124', {
-        //         encrypted: true
-        //     });
+                self.$broadcast('newMessage', JSON.parse(data));
 
-        //     var channel = pusher.subscribe('user-' + USER_ID);
+            });
+        },
 
-        //     channel.bind('DNSCHumanResource\\Events\\NotificationCreated', function(notification) {
-        //         console.log(notification);
-        //         self.$emit('notificationsUpdated');
-        //     });
+        notificationListener: function() {
+            var self = this;
 
-        // }
+            socket.on('notification:user:' + USER_ID, function(data) {
+                var data = JSON.parse(data);
+                console.log(data);
+                $.niftyNoty({
+                    type: 'dark',
+                    icon: 'fa fa-bullhorn',
+                    message: data.message,
+                    container: 'floating',
+                    timer: 5000
+                });
+            })
+        }
 
     }
 

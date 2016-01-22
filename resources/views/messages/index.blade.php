@@ -54,7 +54,7 @@
 								<div class="media-right">
 									<h5 class="list-group-item-heading text-bold">@{{ thread.group_name | limitBy 55 }}</h5>
 									<p class="list-group-item-text">@{{ thread.messages[0].message }}</p>
-									<small>@{{ thread.messages[0].created_at | date 'MMMM D YYYY hh:mm:ss' }}</small>
+									<small>@{{ thread.messages[0].created_at | date 'relative' }}</small>
 								</div>
 							</a>
 						</div>
@@ -121,7 +121,7 @@
 
 											<p class="speech-time">
 
-											<i class="fa" :class="message.is_sender ? null : message.is_read ? 'fa-check' : 'fa-clock-o'"></i>&nbsp;@{{ message.created_at | date 'MMMM D, YYYY hh:mm:ss' }}
+											<i class="fa" :class="message.is_sender ? null : message.is_read ? 'fa-check' : 'fa-clock-o'"></i>&nbsp;@{{ message.created_at | date 'relative' }}
 											</p>
 										</div>
 									</div>

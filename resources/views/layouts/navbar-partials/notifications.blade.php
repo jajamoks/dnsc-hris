@@ -21,7 +21,7 @@
                             </div>
                             <div class="media-body">
                                 <div class="text" v-text="notification.message"></div>
-                                <small class="text-muted">@{{ notification.created_at }}</small>
+                                <small class="text-muted">@{{ notification.created_at | date 'relative' }}</small>
                             </div>
                         </a>
                     </li>

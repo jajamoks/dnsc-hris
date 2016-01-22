@@ -18,6 +18,8 @@ window.laddaButton = Ladda.bind('button[type=submit]');
 
 // Load the rest of the files needed in my vue application
 
+window.socket = io.connect('http://localhost:8890');
+
 require('./core/components');
 require('./core/filters');
 require('./core/directives');

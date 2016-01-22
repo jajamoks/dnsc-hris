@@ -7,7 +7,7 @@
     <!--Message dropdown menu-->
     <div class="dropdown-menu dropdown-menu-md with-arrow animated flipInX">
         <div class="pad-all bord-btm">
-            <p class="text-lg text-muted text-thin mar-no">You have @{{ messages.length }} unread @{{ messages.length | pluralize 'message' }}</p>
+            <p class="text-lg text-muted text-thin mar-no">You have @{{ messages.length | pluralize 'unread message' }}</p>
         </div>
         <div class="nano scrollable">
             <div class="nano-content">
@@ -20,7 +20,7 @@
                             </div>
                             <div class="media-body">
                                 <div>@{{ message.message | limitBy 40 }}</div>
-                                <small class="text-muted">@{{ message.created_at }}</small>
+                                <small class="text-muted">@{{ message.created_at | date 'relative' }}</small>
                             </div>
                         </a>
                     </li>

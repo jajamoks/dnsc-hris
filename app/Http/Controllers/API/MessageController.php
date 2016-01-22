@@ -8,6 +8,7 @@ use DNSCHumanResource\Http\Controllers\Controller;
 use DNSCHumanResource\Models\Message;
 use DNSCHumanResource\Models\MessageGroup;
 use Illuminate\Http\Request;
+use LRedis;
 
 class MessageController extends Controller
 {
@@ -31,21 +32,24 @@ class MessageController extends Controller
     {
         $message = auth()->user()->messages()->create($request->all());
         $message->recipients()->sync($message->message_group->users->keyBy('id')->keys()->all());
-        return Message::with('sender.employee')->where('id', $message->id)->first();
+
+        $message = Message::with('sender.employee')->where('id', $message->id)->first();
+
+        LRedis::connection()->publish('message', $message);
+        return $message;
     }
 
     public function unread(Request $request)
     {
-        if ($request->wantsJson()) {
-            return auth()->user()->received_messages()->with('sender.employee')->unread()->get()->keyBy('sender_id')->values();
-        }
+        return auth()->user()->received_messages()->with('sender.employee')->unread()->get()->keyBy('sender_id')->values();
     }
 
     public function show(Request $request, $messageGroupID)
     {
         if ($request->wantsJson()) {
             $messageGroup = MessageGroup::findOrFail($messageGroupID);
-            $messages     = $messageGroup->messages()->with('sender.employee')->get();
+
+            $messages = $messageGroup->messages()->with('sender.employee')->get();
             return $messages;
         }
     }
