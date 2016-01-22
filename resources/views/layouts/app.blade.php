@@ -95,7 +95,7 @@
         </hris-main>
 
         <script type="text/javascript">
-            const USER_ID = '{{ auth()->user() }}';
+            const USER = '{{ auth()->user() }}';
         </script>
 
         <script type="text/javascript" src="/js/main.min.js"></script>

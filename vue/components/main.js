@@ -43,7 +43,7 @@ Vue.component('hris-main', {
         notificationListener: function() {
             var self = this;
 
-            socket.on('notification:user:' + USER_ID, function(data) {
+            socket.on('notification:user:' + USER.ID, function(data) {
                 var data = JSON.parse(data);
                 console.log(data);
                 $.niftyNoty({

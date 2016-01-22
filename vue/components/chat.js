@@ -32,7 +32,7 @@ Vue.component('chat-component', {
         },
 
         newMessage: function(message) {
-            console.log(message.sender_id + '===' + USER_ID);
+            console.log(message.sender_id + '===');
             if (this.messageGroup.id === message.message_group_id) {
                 message.is_sender = false;
                 this.messages.push(message);
@@ -136,7 +136,7 @@ Vue.component('chat-component', {
                             message: ''
                         };
                         this.messages.push(data);
-                        this.$emit('threadsUpdated');
+                        // this.$emit('threadsUpdated');
                     });
             }
         },

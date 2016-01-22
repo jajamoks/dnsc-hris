@@ -20,6 +20,8 @@ window.laddaButton = Ladda.bind('button[type=submit]');
 
 window.socket = io.connect('http://localhost:8890');
 
+window.AUTH_USER = USER;
+
 require('./core/components');
 require('./core/filters');
 require('./core/directives');
