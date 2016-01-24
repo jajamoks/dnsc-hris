@@ -4,7 +4,6 @@ namespace DNSCHumanResource\Listeners;
 
 use DNSCHumanResource\Events\NotificationCreated as Event;
 use DNSCHumanResource\Models\Notification;
-use LRedis;
 
 class NotificationCreated
 {
@@ -29,8 +28,6 @@ class NotificationCreated
         try {
             $notification     = Notification::with('sent_to_user', 'sent_by_user')->findOrFail($event->notification->id);
             $cellphone_number = $notification->sent_to_user->employee->cellphone_number;
-
-            LRedis::publish('notification', json_encode($notification)); // send to socket, real time noty
 
             if (!empty($cellphone_number)) {
                 itexmo($cellphone_number, $notification->subject . ': ' . $notification->message);

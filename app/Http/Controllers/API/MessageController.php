@@ -8,7 +8,6 @@ use DNSCHumanResource\Http\Controllers\Controller;
 use DNSCHumanResource\Models\Message;
 use DNSCHumanResource\Models\MessageGroup;
 use Illuminate\Http\Request;
-use LRedis;
 
 class MessageController extends Controller
 {
@@ -35,7 +34,7 @@ class MessageController extends Controller
 
         $message = Message::with('sender.employee')->where('id', $message->id)->first();
 
-        LRedis::publish('message', json_encode($message));
+        redis_publish('message', $message);
         return $message;
     }
 

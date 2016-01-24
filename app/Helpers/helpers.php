@@ -213,3 +213,12 @@ if (!function_exists('check_if_null')) {
 
     }
 }
+
+if (!function_exists('redis_publish')) {
+
+    function redis_publish($channel, $data)
+    {
+        return \LRedis::publish($channel, json_encode($data));
+    }
+
+}

@@ -43,19 +43,19 @@ Vue.component('hris-main', {
         notificationListener: function() {
             var self = this;
 
-            socket.on('notification', function(data) {
+            socket.on('notification:' + USER_ID, function(notification) {
+                var notification = notification.data.notification;
 
-                if (data.sent_to == USER_ID) {
-                    $.niftyNoty({
-                        type: 'dark',
-                        icon: 'fa fa-' + data.icon,
-                        message: data.message,
-                        container: 'floating',
-                        timer: 5000
-                    });
-                    document.getElementById('notif-alert').play();
-                    self.$broadcast('newNotification', data);
-                }
+                $.niftyNoty({
+                    type: 'dark',
+                    icon: 'fa fa-' + notification.icon,
+                    title: notification.subject,
+                    message: notification.message,
+                    container: 'floating',
+                    timer: 5000
+                });
+                document.getElementById('notif-alert').play();
+                self.$broadcast('newNotification', notification);
 
             })
         }

@@ -1,6 +1,6 @@
-require('./config');
+var config = require('./vue/config');
 
-var io = require('socket.io')(8890);
+var io = require('socket.io')(config.server.port);
 
 console.log('Connected to server...');
 
@@ -16,6 +16,6 @@ redis.psubscribe('*', function(err, count) {
 });
 
 redis.on('pmessage', function(subscribed, channel, message) {
-    console.log('+ Message received!');
+    console.log('+ Message received on channel: ' + channel);
     io.emit(channel, JSON.parse(message));
 });

@@ -37,6 +37,7 @@ Vue.component('chat-component', {
                     message.is_sender = false;
                     document.getElementById('notif-alert').play();
                     this.messages.push(message);
+                    this.$emit('threadsUpdated');
                 }
             }
         }
@@ -133,12 +134,11 @@ Vue.component('chat-component', {
                         'message': this.newMessage.message
                     })
                     .success(function(data) {
+                        this.messages.push(data);
                         this.newMessage = {
                             message_group_id: '',
                             message: ''
                         };
-                        this.messages.push(data);
-                        // this.$emit('threadsUpdated');
                     });
             }
         },

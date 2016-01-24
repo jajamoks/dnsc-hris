@@ -30,7 +30,7 @@ class NotificationCreated extends Event implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return ['notification'];
+        return ['notification:' . $this->notification->sent_to];
     }
 
 }
