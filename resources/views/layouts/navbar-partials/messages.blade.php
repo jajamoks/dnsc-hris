@@ -19,6 +19,7 @@
                                 <img :src="message.sender.photo" alt="Profile Picture" class="img-circle img-sm">
                             </div>
                             <div class="media-body">
+                                <div class="text-bold">@{{ message.sender.display_name }}</div>
                                 <div>@{{ message.message | limitBy 40 }}</div>
                                 <small class="text-muted">@{{ message.created_at | date 'relative' }}</small>
                             </div>

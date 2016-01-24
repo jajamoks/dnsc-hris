@@ -28,6 +28,7 @@
 					<option value="active" {{ $user->isStatus('active') ? 'selected' : null }}>Active</option>
 					<option value="retired" {{ $user->isStatus('retired') ? 'selected' : null }}>Retired</option>
 					<option value="resigned" {{ $user->isStatus('resigned') ? 'selected' : null }}>Resigned</option>
+					<option value="resigned" {{ $user->isStatus('inactive') ? 'selected' : null }}>Inactive</option>
 				</select>
 			</div>
 		</div>

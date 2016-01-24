@@ -51,7 +51,7 @@ class WriteTravelOrderForm extends FormWriter
                 $sheet->setCellValue('C26', $travel->date_from);
                 $sheet->setCellValue('F26', $travel->date_to);
                 $sheet->setCellValue('D28', to_currency($travel->expenses));
-                $sheet->setCellValue('B34', $travel->certified_by ? strtoupper($travel->certified_by->full_name) : null);
+                $sheet->setCellValue('B34', $travel->finance_director ? strtoupper($travel->finance_director->full_name) : null);
                 $sheet->setCellValue('H34', $travel->recommending_approval ? strtoupper($travel->recommending_approval->full_name) : null);
                 $sheet->setCellValue('A41', strtoupper($travel->approved_by->full_name));
             }
@@ -83,10 +83,10 @@ class WriteTravelOrderForm extends FormWriter
                 'worksheet'   => $reader->sheet('Sheet1'),
             ]);
         }
-        if ($this->travel->certified_by && $this->travel->certified_by->user->signature) {
+        if ($this->travel->finance_director && $this->travel->finance_director->user->signature) {
             excel_attach_image([
-                'name'        => $this->travel->certified_by->full_name,
-                'path'        => $this->travel->certified_by->user->signature,
+                'name'        => $this->travel->finance_director->full_name,
+                'path'        => $this->travel->finance_director->user->signature,
                 'coordinates' => 'B32',
                 'worksheet'   => $reader->sheet('Sheet1'),
             ]);

@@ -20,12 +20,12 @@
 				<div class="timeline-header">
 					<div class="timeline-header-title bg-success">{{ trans('system.recent') }}</div>
 				</div>
-				<div class="nano" style="height:350px">
+				<div id="notification-list-nano" class="nano" style="height:350px">
 					<div class="nano-content pad-no">
 						<div v-for="notification in notifications | orderBy 'created_at' -1" class="timeline-entry">
 							<div class="timeline-stat">
 								<div class="timeline-icon bg-@{{ notification.color }}"><i class="fa fa-@{{ notification.icon }} fa-lg"></i></div>
-								<div class="timeline-time">@{{ notification.created_at }}</div>
+								<div class="timeline-time">@{{ notification.created_at | date 'relative' }}</div>
 							</div>
 							<div class="timeline-label">
 								<h4 class="text-info text-lg">@{{ notification.title }}</h4>
@@ -54,7 +54,7 @@
 			</div>
 		</div>
 		<div v-if="paginator.next_page_url" class="panel-footer">
-			<hris-paginator :content.sync="notifications" :paginator.sync="paginator"></hris-paginator>
+			<hris-paginator :content.sync="notifications" :paginator.sync="paginator" :load-more-data.sync="loadMore"></hris-paginator>
 		</div>
 	</div>
 </notification-list>

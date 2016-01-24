@@ -32,10 +32,12 @@ Vue.component('chat-component', {
         },
 
         newMessage: function(message) {
-            console.log(message.sender_id + '===');
-            if (this.messageGroup.id === message.message_group_id) {
-                message.is_sender = false;
-                this.messages.push(message);
+            if (message.sender_id != USER_ID) {
+                if (this.messageGroup.id === message.message_group_id) {
+                    message.is_sender = false;
+                    document.getElementById('notif-alert').play();
+                    this.messages.push(message);
+                }
             }
         }
     },
@@ -202,7 +204,7 @@ Vue.component('chat-component', {
                 });
             }
 
-        }
+        },
 
     },
 
@@ -210,6 +212,11 @@ Vue.component('chat-component', {
 
         'messages': function() {
             this.$nextTick(function() {
+                // var panel = document.getElementById('chat-body');
+                // var height = panel.offsetHeight;
+                // var client = panel.clientHeight;
+                // console.log(height + ' == ' + client);
+
                 $('.nano').nanoScroller();
             });
         },

@@ -172,6 +172,7 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         Bugsnag\BugsnagLaravel\BugsnagLaravelServiceProvider::class,
         DNSCHumanResource\Providers\HumanResourceServiceProvider::class,
+        Laravolt\Avatar\ServiceProvider::class,
 
     ],
 
@@ -226,6 +227,7 @@ return [
         'Bugsnag'       => Bugsnag\BugsnagLaravel\BugsnagFacade::class,
         'Gate'          => Illuminate\Support\Facades\Gate::class,
         'HumanResource' => DNSCHumanResource\HumanResource\DNSCHumanResource::class,
+        'Avatar'        => Laravolt\Avatar\Facade::class,
 
     ],
 

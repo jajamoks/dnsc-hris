@@ -21,6 +21,14 @@ window.Navbar = Vue.extend({
 
         notificationsUpdated: function() {
             this.getNotifications();
+        },
+
+        newMessage: function(message) {
+            this.getMessages();
+        },
+
+        newNotification: function(notification) {
+            this.notifications.push(notification);
         }
     },
 

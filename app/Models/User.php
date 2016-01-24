@@ -2,6 +2,7 @@
 
 namespace DNSCHumanResource\Models;
 
+use Avatar;
 use DNSCHumanResource\Traits\Notificationable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -165,12 +166,17 @@ class User extends Authenticatable
             && file_exists(public_path('uploads/' . $this->employee->photo))) {
             return '/imagecache/small/' . $this->employee->photo;
         }
-        return '/imagecache/small/default.png';
+
+        if ($this->employee) {
+            return Avatar::create(studly_case($this->employee->first_name) . ' ' . $this->employee->middle_name . ' ' . $this->employee->surname)->toBase64()->encoded;
+        }
+        // return '/imagecache/small/default.png';
+        return Avatar::create($this->username)->toBase64()->encoded;
     }
 
     public function getSignatureAttribute()
     {
-        $path = public_path('files/signatures/' . $this->signature_path);
+        $path = public_path('files/signatures/' . $this->username . '.png');
         if (file_exists($path) && is_file($path)) {
             return $path;
         }

@@ -19,7 +19,7 @@ class TravelOrderRejected extends Event
      */
     public function __construct(TravelOrder $travel)
     {
-        $this->Travel = $travel;
+        $this->travel = $travel;
     }
 
     /**

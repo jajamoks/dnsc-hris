@@ -50,7 +50,7 @@ class SidebarComposer
 
         if ($user->employee && $user->employee->canApproveTravelOrder()) {
             if ($user->isFinanceDirector()) {
-                $travelOrderCount = TravelOrder::approved()->count();
+                $travelOrderCount = TravelOrder::recommended()->count();
             } else {
                 $travelOrderCount = $user->employee->travel_order_recommending_approvals->merge($user->employee->travel_order_approved_by)->count();
             }

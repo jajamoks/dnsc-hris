@@ -9,7 +9,7 @@
         </div>
         <div class="list-group">
             <div id="new-employees" class="collapse in">
-                <div class="nano" style="height:350px">
+                <div id="new-employees-nano" class="nano" style="height:350px">
                     <div class="nano-content pad-no">
                         <a v-for="employee in employees" class="list-group-item list-item-md" href="/employee/@{{ employee.user.username }}">
                             <div class="media-left">
@@ -18,8 +18,7 @@
                             <div class="media-right">
                                 <h5 class="list-group-item-heading text-semibold">@{{ employee.full_name }}</h5>
                                 <p class="list-group-item-text">
-                                    Joined @{{ employee.created_at | date 'MMM D, YYYY' }} / Updated @{{ employee.updated_at | date 'MMM D, YYYY' }}
-                                    {{-- <span class="label label-default">{{ date('M d, Y', strtotime($employee->created_at)) }}</span> --}}
+                                    Joined @{{ employee.created_at | date 'relative' }} / Updated @{{ employee.updated_at | date 'relative' }}
                                 </p>
                             </div>
                         </a>
@@ -28,7 +27,7 @@
             </div>
         </div>
         <div v-if="paginator.next_page_url" class="panel-footer">
-            <recent-employee-paginator :content.sync="employees" :paginator.sync="paginator"></recent-employee-paginator>
+            <recent-employee-paginator :content.sync="employees" :paginator.sync="paginator" :load-more-data.sync="loadMore"></recent-employee-paginator>
         </div>
     </div>
 </hris-recent-employees>

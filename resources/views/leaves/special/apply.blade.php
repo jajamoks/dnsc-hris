@@ -8,7 +8,7 @@
 
 @section('stylesheet')
 <!--Bootstrap Datepicker [ OPTIONAL ]-->
-<link href="/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" rel="stylesheet">
+<link href="/dist/plugins/bootstrap-datepicker/bootstrap-datepicker.css" rel="stylesheet">
 @stop
 
 @section('content')

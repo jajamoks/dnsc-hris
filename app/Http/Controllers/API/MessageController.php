@@ -35,7 +35,7 @@ class MessageController extends Controller
 
         $message = Message::with('sender.employee')->where('id', $message->id)->first();
 
-        LRedis::connection()->publish('message', $message);
+        LRedis::publish('message', json_encode($message));
         return $message;
     }
 

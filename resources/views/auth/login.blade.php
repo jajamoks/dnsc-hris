@@ -13,7 +13,7 @@
                 <hr class="alt"/>
                 <div class="form-group">
                     <div class="input-group">
-                        <div class="input-group-addon"><i class="fa fa-credit-card"></i></div>
+                        <div class="input-group-addon"><i class="fa fa-user"></i></div>
                         <input type="text" name="username" class="form-control" placeholder="Employee ID" value="{{ old('username') }}" required>
                     </div>
                 </div>

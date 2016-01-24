@@ -3,7 +3,7 @@
 namespace DNSCHumanResource\Console\Commands;
 
 use Illuminate\Console\Command;
-use Redis;
+use LRedis;
 
 class RedisSubscribe extends Command
 {
@@ -38,8 +38,8 @@ class RedisSubscribe extends Command
      */
     public function handle()
     {
-        Redis::subscribe(['test-channel'], function ($message) {
-            $this->info('Successfully subscribed!');
+        LRedis::psubscribe(['*'], function ($message, $channel) {
+            echo $message;
         });
     }
 }

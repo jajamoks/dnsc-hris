@@ -12,6 +12,9 @@ class TravelOrderPolicy
     public function create(User $user, TravelOrder $travel)
     {
         $employee = $user->employee;
+        if ($user->isFinanceDirector() && getAdmin()) {
+            return true;
+        }
         if ($employee->approval_heirarchy && $employee->utility->can_file_travel_order && HumanResource::financeDirector()) {
             return true;
         }
@@ -21,11 +24,11 @@ class TravelOrderPolicy
     public function approve(User $user, TravelOrder $travel)
     {
         $employee = $user->employee;
-        if ($travel->isStatus('filed') && ($travel->recommending_approval->id === $employee->id)) {
+        if ($travel->isStatus('filed') && ($travel->recommending_approval_id === $employee->id)) {
             return true;
-        } elseif ($travel->isStatus('recommended') && ($travel->approved_by->id === $employee->id)) {
+        } elseif ($travel->isStatus('recommended') && ($travel->finance_director_id === $employee->id)) {
             return true;
-        } elseif ($travel->isStatus('approved') && $employee->user->isFinanceDirector()) {
+        } elseif ($travel->isStatus('approved') && $employee->user->isPresident()) {
             return true;
         }
         return false;

@@ -122,6 +122,13 @@ return [
             'database' => 0,
         ],
 
+        'wifi'    => [
+            'host'     => '192.168.8.100',
+            'password' => null,
+            'port'     => 6379,
+            'database' => 0,
+        ],
+
     ],
 
 ];

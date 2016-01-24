@@ -46,6 +46,15 @@ if (!function_exists('getFinanceDirector')) {
 
 }
 
+if (!function_exists('getPresident')) {
+
+    function getPresident()
+    {
+        return HumanResource::president();
+    }
+
+}
+
 if (!function_exists('nameFile')) {
 
     function nameFile($extension)

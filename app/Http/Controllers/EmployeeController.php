@@ -25,7 +25,6 @@ use DNSCHumanResource\Models\User;
 use DNSCHumanResource\Repositories\EmployeeRepository;
 use DNSCHumanResource\Repositories\TrainingRepository;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;
 
 class EmployeeController extends Controller
 {
@@ -79,7 +78,7 @@ class EmployeeController extends Controller
         $employee = $this->employeeRepository->forUser($user)->first();
         if ($employee) {
             write_form(new WritePersonalDataSheet($employee));
-            return response()->download('files/PersonalDataSheets/' . $employee->file);
+            // return response()->download('files/PersonalDataSheets/' . $employee->file);
         }
         flash()->error('Personal Data Sheet not found!');
         return redirect()->back();
@@ -245,9 +244,7 @@ class EmployeeController extends Controller
         // $this->dispatch(new WritePersonalDataSheet($this->employee));
 
         flash()->success('PDS Successfully updated!');
-        if (!auth()->user()->isAdmin()) {
-            return redirect()->to('/employee/' . $this->employee->user->username);
-        }
+
         return redirect()->to('/employee/' . $this->employee->user->username);
     }
 

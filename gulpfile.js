@@ -4,48 +4,7 @@ elixir.config.sourcemaps = false;
 
 elixir.config.assetsDir = 'public';
 
-/*
- |--------------------------------------------------------------------------
- | Elixir Asset Management
- |--------------------------------------------------------------------------
- |
- | Elixir provides a clean, fluent API for defining some basic Gulp tasks
- | for your Laravel application. By default, we are compiling the Sass
- | file for our application, as well as publishing vendor resources.
- |
- */
-
 elixir(function(mix) {
-
-    /*
-
-    mix.styles([
-        'plugins/css/jquery/jquery-ui.min.css',
-        'plugins/css/bootstrap/bootstrap.min.css',
-        'plugins/css/fontawesome/font-awesome.min.css',
-        'plugins/css/animate/animate.min.css',
-        'plugins/css/mcustomscrollbar/jquery.mCustomScrollbar.css',
-        'bower_components/sweetalert/dist/sweetalert.css',
-    ], 'public/css/plugins.css', 'public');
-
-    mix.less([
-        'style.less',
-        'theme.less'
-    ], 'public/css/app.css', 'public');
-
-    mix.scripts([
-            'plugins/js/jquery/jquery.min.js',
-            'plugins/js/jquery/jquery-ui.min.js',
-            'plugins/js/bootstrap/bootstrap.min.js',
-            'plugins/js/moment.min.js',
-            'plugins/js/mcustomscrollbar/jquery.mCustomScrollbar.min.js',
-            'bower_components/sweetalert/dist/sweetalert.min.js',
-        ], 'public/js/main.js', 'public')
-        .browserify([
-            'app.js'
-        ], 'public/js/app.js', 'vue');
-
-    */
     mix.styles([
             // 'dist/css/font.css',
             'bower_components/bootstrap/dist/css/bootstrap.css',

@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
 
     /*
     |--------------------------------------------------------------------------
@@ -13,8 +13,8 @@ return array(
     |
     | Supported: "gd", "imagick"
     |
-    */
+     */
 
-    'driver' => 'gd'
+    'driver' => 'gd',
 
-);
+];

@@ -20,7 +20,7 @@ class TravelOrder extends Model
         'date_to',
         'expenses',
         'status',
-        'certified_by_id',
+        'finance_director_id',
         'recommending_approval_id',
         'approved_by_id',
         'file',
@@ -48,14 +48,14 @@ class TravelOrder extends Model
         return $this->belongsTo(Employee::class, 'recommending_approval_id');
     }
 
+    public function finance_director()
+    {
+        return $this->belongsTo(Employee::class, 'finance_director_id');
+    }
+
     public function approved_by()
     {
         return $this->belongsTo(Employee::class, 'approved_by_id');
-    }
-
-    public function certified_by()
-    {
-        return $this->belongsTo(Employee::class, 'certified_by_id');
     }
 
     /**

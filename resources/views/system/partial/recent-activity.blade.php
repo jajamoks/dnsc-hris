@@ -12,7 +12,7 @@
         </div>
         <div id="recent-activities" class="collapse in">
             <div class="table-responsive">
-                <div class="nano" style="height:400px">
+                <div id="activity-logs-nano" class="nano" style="height:400px">
                     <div class="nano-content pad-no">
                         <table class="table table-striped table-hover">
                             <tbody>

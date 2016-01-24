@@ -18,9 +18,7 @@ window.laddaButton = Ladda.bind('button[type=submit]');
 
 // Load the rest of the files needed in my vue application
 
-window.socket = io.connect('http://localhost:8890');
-
-window.AUTH_USER = USER;
+require('./client'); // For client socket, used for real time activities
 
 require('./core/components');
 require('./core/filters');

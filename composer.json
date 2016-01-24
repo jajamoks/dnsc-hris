@@ -17,7 +17,8 @@
         "intervention/imagecache": "^2.3",
         "predis/predis": "^1.0",
         "google/recaptcha": "~1.1",
-        "bugsnag/bugsnag-laravel": "1.*"
+        "bugsnag/bugsnag-laravel": "1.*",
+        "laravolt/avatar": "^1.2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -48,7 +49,8 @@
         ],
         "post-install-cmd": [
             "php artisan clear-compiled",
-            "php artisan optimize"
+            "php artisan optimize",
+            "php artisan clean"
         ],
         "pre-update-cmd": [
             "php artisan clear-compiled"

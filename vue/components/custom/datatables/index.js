@@ -1,20 +1,22 @@
 window.DataTables = Vue.extend({
 
-    template: require('./template.html'),
+    // template: require('./template.html'),
 
     props: {
 
-        tableData: Array,
-        twoWay: true,
-        default: []
+        content: {
+            type: Array,
+            required: true,
+            default: [],
+            twoWay: true
+        }
 
     },
 
     watch: {
 
-        tableData: function() {
-            console.log(JSON.stringify(this.tableData));
-            // $('table').dataTable();
+        'content': function() {
+            $('table').dataTable();
         }
 
     }

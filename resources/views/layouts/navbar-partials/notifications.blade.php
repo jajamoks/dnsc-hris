@@ -7,7 +7,7 @@
     <!--Notification dropdown menu-->
     <div class="dropdown-menu dropdown-menu-md with-arrow animated flipInX">
         <div class="pad-all bord-btm">
-            <p class="text-lg text-muted text-thin mar-no">You have @{{ notifications.length }} @{{ notifications.length | pluralize 'notification' }}</p>
+            <p class="text-lg text-muted text-thin mar-no">You have @{{ notifications.length | pluralize 'notification' }}</p>
         </div>
         <div class="nano scrollable">
             <div class="nano-content">

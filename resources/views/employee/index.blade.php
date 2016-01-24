@@ -38,7 +38,7 @@
                 <thead>
                     <tr>
                         <th class="min-w-td nosort"></th>
-                        <th class="hidden">Employee ID</th>
+                        <th>Employee ID</th>
                         <th>{{ trans('system.name') }}</th>
                         <th>{{ trans('system.institute-department') }}</th>
                         <th>{{ trans('system.position') }}</th>
@@ -53,7 +53,7 @@
                         <td>
                             <img class="img-circle img-sm" :src="user.photo" />
                         </td>
-                        <td class="hidden">@{{ user.username }}</td>
+                        <td>@{{ user.username }}</td>
                         <td><a :href="'/employee/' + user.username"><span class="text-bold">@{{ user.display_name }}</span></a></td>
                         <td><a :href="user.department ? '/departments/' + user.department.code : null">@{{ user.department ? user.department.code : 'No department' }}</a></td>
                         <td>@{{ user.position_title }}</td>
@@ -96,6 +96,8 @@
             </table>
         </div>
     </div>
+
+    <users-table :content.sync="users"></users-table>
 
     @include('employee.modal.leave-credits')
 

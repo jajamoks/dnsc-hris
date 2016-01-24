@@ -35,7 +35,7 @@ Vue.component('hris-main', {
 
             socket.on('message', function(data) {
 
-                self.$broadcast('newMessage', JSON.parse(data));
+                self.$broadcast('newMessage', data);
 
             });
         },
@@ -43,16 +43,20 @@ Vue.component('hris-main', {
         notificationListener: function() {
             var self = this;
 
-            socket.on('notification:user:' + USER.ID, function(data) {
-                var data = JSON.parse(data);
-                console.log(data);
-                $.niftyNoty({
-                    type: 'dark',
-                    icon: 'fa fa-bullhorn',
-                    message: data.message,
-                    container: 'floating',
-                    timer: 5000
-                });
+            socket.on('notification', function(data) {
+
+                if (data.sent_to == USER_ID) {
+                    $.niftyNoty({
+                        type: 'dark',
+                        icon: 'fa fa-' + data.icon,
+                        message: data.message,
+                        container: 'floating',
+                        timer: 5000
+                    });
+                    document.getElementById('notif-alert').play();
+                    self.$broadcast('newNotification', data);
+                }
+
             })
         }
 

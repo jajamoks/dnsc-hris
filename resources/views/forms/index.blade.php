@@ -56,7 +56,7 @@
                                 <a href="/forms/@{{ form.id }}/download" class="btn btn-sm btn-default btn-icon btn-hover-info fa fa-download add-tooltip" data-original-title="{{ trans('system.download') }}"></a>
                                 <a target="_blank" href="/forms/@{{ form.id }}/preview" class="btn btn-sm btn-default btn-icon btn-hover-success fa fa-search add-tooltip" data-original-title="{{ trans('system.preview') }}"></a>
                                 @if (auth()->user()->isAdmin())
-                                    <a @click="deleteForm(form)" class="btn btn-sm btn-default btn-icon btn-hover-danger fa fa-remove add-tooltip" data-original-title="{{ trans('system.remove') }}"></a>
+                                    <a @click="deleteForm($index, form)" class="btn btn-sm btn-default btn-icon btn-hover-danger fa fa-remove add-tooltip" data-original-title="{{ trans('system.remove') }}"></a>
                                 @endif
                             </div>
                         </td>
@@ -65,6 +65,8 @@
             </table>
         </div>
     </div>
+
+    <forms-table :content.sync="forms"></forms-table>
 </hris-forms>
 @stop
 

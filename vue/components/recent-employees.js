@@ -11,6 +11,8 @@ Vue.component('hris-recent-employees', {
 
         return {
 
+            loadMore: false,
+
             employees: [],
 
             paginator: {},
@@ -41,8 +43,13 @@ Vue.component('hris-recent-employees', {
     watch: {
 
         'employees': function() {
+            var self = this;
             this.$nextTick(function() {
                 $('.nano').nanoScroller();
+
+                $("#new-employees-nano").bind("scrollend", function(e) {
+                    self.loadMore = true;
+                });
             });
         }
 

@@ -199,6 +199,11 @@ class Employee extends Model
         return $this->hasOne(EmployeePersonnelPerformance::class);
     }
 
+    public function personnel_leave_card()
+    {
+        return $this->hasMany(EmployeePersonnelLeaveCard::class);
+    }
+
     public function todos()
     {
         return $this->hasMany(Todo::class);
@@ -229,9 +234,14 @@ class Employee extends Model
         return $this->hasMany(TravelOrder::class, 'recommending_approval_id')->where('status', 'filed');
     }
 
+    public function travel_order_financed_by()
+    {
+        return $this->hasMany(TravelOrder::class, 'finance_director_id')->where('status', 'recommended');
+    }
+
     public function travel_order_approved_by()
     {
-        return $this->hasMany(TravelOrder::class, 'approved_by_id')->where('status', 'recommended');
+        return $this->hasMany(TravelOrder::class, 'approved_by_id')->where('status', 'approved');
     }
 
     public function canApproveRegularLeave()
@@ -246,7 +256,7 @@ class Employee extends Model
 
     public function canApproveTravelOrder()
     {
-        return !$this->travel_order_recommending_approvals->isEmpty() or !$this->travel_order_approved_by->isEmpty() or $this->user->isFinanceDirector();
+        return !$this->travel_order_recommending_approvals->isEmpty() or !$this->travel_order_approved_by->isEmpty() or !$this->travel_order_financed_by->isEmpty();
     }
 
     public function salaryGrade()

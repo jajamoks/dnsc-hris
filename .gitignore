@@ -7,5 +7,6 @@ Homestead.json
 /public/css
 /public/js
 /public/fonts
+/public/files
 /storage/framework
 /storage/logs

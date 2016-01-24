@@ -19,6 +19,14 @@ Vue.component('notification-list', {
         }
     },
 
+    events: {
+
+        newNotification: function(notification) {
+            this.notifications.push(notification);
+        }
+
+    },
+
     methods: {
 
         readNotification: function(notification) {
@@ -68,8 +76,13 @@ Vue.component('notification-list', {
     watch: {
 
         'notifications': function() {
+            var self = this;
             this.$nextTick(function() {
                 $('.nano').nanoScroller();
+
+                $("#notification-list-nano").bind("scrollend", function(e) {
+                    self.loadMore = true;
+                });
             })
         }
 

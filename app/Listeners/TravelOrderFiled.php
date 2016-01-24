@@ -42,6 +42,8 @@ class TravelOrderFiled extends FormWriter
     {
         if ($travel->recommending_approval) {
             return $travel->recommending_approval;
+        } elseif ($travel->finance_director) {
+            return $travel->finance_director;
         }
         return $travel->approved_by;
     }

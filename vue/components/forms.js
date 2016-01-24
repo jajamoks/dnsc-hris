@@ -31,9 +31,8 @@ Vue.component('hris-forms', {
                 });;
         },
 
-        deleteForm: function(form) {
+        deleteForm: function(index, form) {
             var self = this;
-
             if (form.restricted) {
                 $.niftyNoty({
                     type: 'dark',
@@ -54,7 +53,8 @@ Vue.component('hris-forms', {
                 }, function() {
                     self.$http.delete('/forms/' + form.id)
                         .success(function(data) {
-                            self.forms.$remove(form);
+                            // self.forms.$remove(form);
+                            self.forms.splice(index, 1);
                             swal("Deleted!", "Form successfully deleted!.", "success");
                         }).error(function() {
                             swal("Deleted!", "Form not deleted!. An error occured!.", "error");
@@ -65,14 +65,10 @@ Vue.component('hris-forms', {
 
     },
 
-    watch: {
+    components: {
 
-        'forms': function() {
-            this.$nextTick(function() {
-                $('table').DataTable();
-            });
-        }
+        'forms-table': DataTables
 
-    }
+    },
 
 });

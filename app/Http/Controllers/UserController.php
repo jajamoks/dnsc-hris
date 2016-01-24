@@ -104,7 +104,7 @@ class UserController extends Controller
 
         $signature = Image::make($request->signature);
 
-        $signature->fit(125, 68);
+        $signature->resize(125, 68);
 
         $signature->save($path);
 

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 17, 2016 at 01:30 PM
+-- Generation Time: Jan 23, 2016 at 07:31 AM
 -- Server version: 5.6.26
 -- PHP Version: 5.6.12
 
@@ -203,7 +203,7 @@ INSERT INTO `hris_employees` (`id`, `user_id`, `cs_id`, `first_name`, `middle_na
 (61, 204, NULL, 'Jay Roldan', 'Beatizola', 'Bañaria', '', '1975-09-12', 'Sasa, Davao City', 'male', 'single', 'Filipino', 1.50, 60.00, 'O', '2004098401', '1880-0079-2478', '16-050422214-1', '09-1716930-6', '09123810828', '212', '404-524-757', NULL, NULL, '2016-01-08 14:17:25', '2016-01-14 06:00:13'),
 (62, 48, NULL, 'Nelson', 'Salvador', 'Cerbo', '', '1957-10-12', 'Imelda, Zamboanga del Sur', 'male', 'married', 'Filipino', 5.00, 71.00, 'O', '57101202412', '1900-0004-6963', '16-000016257-1', '09-0487134-8', '', '048', '906-006-543', NULL, NULL, '2016-01-08 14:18:21', '2016-01-14 06:23:20'),
 (63, 131, NULL, 'Pondador Raymond', 'P', 'Saguran', '', '0000-00-00', '', 'male', 'single', 'Filipino', 0.00, 0.00, '', '', '', '', '', '', '', '', NULL, NULL, '2016-01-08 14:19:34', '2016-01-08 14:19:53'),
-(64, 1, NULL, 'Edgardo', 'M', 'Santos', '', '0000-00-00', '', 'male', 'single', 'Filipino', 0.00, 0.00, '', '', '', '', '', '', '', '', NULL, NULL, '2016-01-08 14:20:22', '2016-01-08 14:20:50'),
+(64, 1, NULL, 'Edgardo', 'M', 'Santos', '', '0000-00-00', '', 'male', 'single', 'Filipino', 0.00, 0.00, '', '', '', '', '', '', '001', '', NULL, NULL, '2016-01-08 14:20:22', '2016-01-23 06:28:30'),
 (65, 238, NULL, 'Jo Mark', 'M', 'Libre', '', '0000-00-00', '', 'male', 'single', 'Filipino', 0.00, 0.00, '', '', '', '', '', '', '', '', NULL, NULL, '2016-01-08 14:21:45', '2016-01-08 14:22:24'),
 (66, 194, NULL, 'Glenne', 'Berja', 'Lagura', '', '0000-00-00', '', 'male', 'single', 'Filipino', 0.00, 0.00, '', '', '', '', '', '', '', '', NULL, NULL, '2016-01-08 14:23:05', '2016-01-08 14:23:25'),
 (67, 113, NULL, 'Reir Erlinda', 'E', 'Cutad', '', '0000-00-00', '', 'male', 'single', 'Filipino', 0.00, 0.00, '', '', '', '', '', '', '', '', NULL, NULL, '2016-01-08 14:24:41', '2016-01-08 14:25:09'),
@@ -1809,6 +1809,29 @@ INSERT INTO `hris_employee_parents` (`id`, `employee_id`, `first_name`, `middle_
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `hris_employee_personnel_leave_card`
+--
+
+CREATE TABLE IF NOT EXISTS `hris_employee_personnel_leave_card` (
+  `id` int(10) unsigned NOT NULL,
+  `employee_id` int(10) unsigned NOT NULL,
+  `particulars` varchar(75) DEFAULT NULL,
+  `vl_earned` double DEFAULT NULL,
+  `vl_deduction_with_pay` double DEFAULT NULL,
+  `vl_balance` double DEFAULT NULL,
+  `vl_deduction_without_pay` double DEFAULT NULL,
+  `sl_earned` double DEFAULT NULL,
+  `sl_deduction_with_pay` double DEFAULT NULL,
+  `sl_balance` double DEFAULT NULL,
+  `sl_deduction_without_pay` double DEFAULT NULL,
+  `remarks` varchar(75) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `hris_employee_personnel_performances`
 --
 
@@ -2665,7 +2688,7 @@ CREATE TABLE IF NOT EXISTS `hris_jobs` (
   `reserved_at` int(10) unsigned DEFAULT NULL,
   `available_at` int(10) unsigned NOT NULL,
   `created_at` int(10) unsigned NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=146 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=147 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `hris_jobs`
@@ -2817,7 +2840,8 @@ INSERT INTO `hris_jobs` (`id`, `queue`, `payload`, `attempts`, `reserved`, `rese
 (142, 'default', '{"job":"Illuminate\\\\Broadcasting\\\\BroadcastEvent","data":{"event":"O:44:\\"DNSCHumanResource\\\\Events\\\\NotificationCreated\\":1:{s:12:\\"notification\\";O:45:\\"Illuminate\\\\Contracts\\\\Database\\\\ModelIdentifier\\":2:{s:5:\\"class\\";s:37:\\"DNSCHumanResource\\\\Models\\\\Notification\\";s:2:\\"id\\";i:162;}}"}}', 0, 0, NULL, 1452825982, 1452825982),
 (143, 'default', '{"job":"Illuminate\\\\Broadcasting\\\\BroadcastEvent","data":{"event":"O:44:\\"DNSCHumanResource\\\\Events\\\\NotificationCreated\\":1:{s:12:\\"notification\\";O:45:\\"Illuminate\\\\Contracts\\\\Database\\\\ModelIdentifier\\":2:{s:5:\\"class\\";s:37:\\"DNSCHumanResource\\\\Models\\\\Notification\\";s:2:\\"id\\";i:163;}}"}}', 0, 0, NULL, 1452827155, 1452827155),
 (144, 'default', '{"job":"Illuminate\\\\Broadcasting\\\\BroadcastEvent","data":{"event":"O:44:\\"DNSCHumanResource\\\\Events\\\\NotificationCreated\\":1:{s:12:\\"notification\\";O:45:\\"Illuminate\\\\Contracts\\\\Database\\\\ModelIdentifier\\":2:{s:5:\\"class\\";s:37:\\"DNSCHumanResource\\\\Models\\\\Notification\\";s:2:\\"id\\";i:164;}}"}}', 0, 0, NULL, 1452828160, 1452828160),
-(145, 'default', '{"job":"Illuminate\\\\Broadcasting\\\\BroadcastEvent","data":{"event":"O:44:\\"DNSCHumanResource\\\\Events\\\\NotificationCreated\\":1:{s:12:\\"notification\\";O:45:\\"Illuminate\\\\Contracts\\\\Database\\\\ModelIdentifier\\":2:{s:5:\\"class\\";s:37:\\"DNSCHumanResource\\\\Models\\\\Notification\\";s:2:\\"id\\";i:165;}}"}}', 0, 0, NULL, 1452828819, 1452828819);
+(145, 'default', '{"job":"Illuminate\\\\Broadcasting\\\\BroadcastEvent","data":{"event":"O:44:\\"DNSCHumanResource\\\\Events\\\\NotificationCreated\\":1:{s:12:\\"notification\\";O:45:\\"Illuminate\\\\Contracts\\\\Database\\\\ModelIdentifier\\":2:{s:5:\\"class\\";s:37:\\"DNSCHumanResource\\\\Models\\\\Notification\\";s:2:\\"id\\";i:165;}}"}}', 0, 0, NULL, 1452828819, 1452828819),
+(146, 'default', '{"job":"Illuminate\\\\Broadcasting\\\\BroadcastEvent","data":{"event":"O:44:\\"DNSCHumanResource\\\\Events\\\\NotificationCreated\\":1:{s:12:\\"notification\\";O:45:\\"Illuminate\\\\Contracts\\\\Database\\\\ModelIdentifier\\":2:{s:5:\\"class\\";s:37:\\"DNSCHumanResource\\\\Models\\\\Notification\\";s:2:\\"id\\";i:166;}}"}}', 0, 0, NULL, 1453530488, 1453530488);
 
 -- --------------------------------------------------------
 
@@ -2997,7 +3021,7 @@ CREATE TABLE IF NOT EXISTS `hris_notifications` (
   `color` varchar(25) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB AUTO_INCREMENT=166 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=167 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `hris_notifications`
@@ -3168,7 +3192,8 @@ INSERT INTO `hris_notifications` (`id`, `sent_to`, `sent_by`, `object_id`, `obje
 (162, 237, 149, '111', 'DNSCHumanResource\\Models\\Employee', 'Personal Data Sheet', 'Jeffrey  Rafil filled up his/her Personal data sheet.', 1, 'user', 'purple', '2016-01-15 02:46:22', '2016-01-15 02:51:25'),
 (163, 237, 31, '42', 'DNSCHumanResource\\Models\\Employee', 'Personal Data Sheet', 'Dionisio Salag Namuag updated his/her Personal data sheet.', 1, 'user', 'purple', '2016-01-15 03:05:55', '2016-01-15 03:30:12'),
 (164, 237, 28, '41', 'DNSCHumanResource\\Models\\Employee', 'Personal Data Sheet', 'Cesar Amado Petiluna updated his/her Personal data sheet.', 1, 'user', 'purple', '2016-01-15 03:22:39', '2016-01-15 03:30:12'),
-(165, 237, 149, '111', 'DNSCHumanResource\\Models\\Employee', 'Personal Data Sheet', 'Jeffrey Baes Rafil updated his/her Personal data sheet.', 1, 'user', 'purple', '2016-01-15 03:33:39', '2016-01-15 03:33:59');
+(165, 237, 149, '111', 'DNSCHumanResource\\Models\\Employee', 'Personal Data Sheet', 'Jeffrey Baes Rafil updated his/her Personal data sheet.', 1, 'user', 'purple', '2016-01-15 03:33:39', '2016-01-15 03:33:59'),
+(166, 237, 1, '64', 'DNSCHumanResource\\Models\\Employee', 'Personal Data Sheet', 'Edgardo M Santos updated his/her Personal data sheet.', 1, 'user', 'purple', '2016-01-23 06:28:08', '2016-01-23 06:29:09');
 
 -- --------------------------------------------------------
 
@@ -3295,7 +3320,8 @@ CREATE TABLE IF NOT EXISTS `hris_sessions` (
 --
 
 INSERT INTO `hris_sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('75dd4f25d7dae5f866816708a088fc50aa99c6bb', 237, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.111 Safari/537.36', 'ZXlKcGRpSTZJaXN5Wm5KbE5HbFJhVXRtTTNKMmNEazNlRVJOVVZFOVBTSXNJblpoYkhWbElqb2lXazVNTVdsUVNVcGtUME5sY0d4U1dVdGxSMlV4UjFWVVQxYzBlVEV6TW1VeE1YcDVOVEZQWVZkMWVsUmFSR3RRT0RWSFlWSnpkazVLUjJOMGMwMWhWMU16WTJ4NFdVVktTR3RUVDNZMlFsZENOMG96UldsT00yUm5WMUYwWVRoelpqSkpiV1J2ZGxWWGQyOUNZMnQzWkV4Y0wyaDJRMmRVUzBSdk9VcDNZV0V3WW5JeVYyaHNlVXR2VVZaR1Mxd3ZhMk51U0dSbVdqSnVYQzlIWXpCemJWQkVLMVZDVkZGY0wwdExPR2Q1VUZrd1Ixa3hOR3BoVldWcWJsd3ZjM1p6TW5adk5IUlZlVlIzYlZnMVZteHBRVGhMTlRaM2NHRkNUVXRVWEM5c1FWUnNjMGMyYmpORVluSm9VVWhLWEM5a1EyOTVOMVZQYTBVNVVVMVpXVnd2T0dvM1QzVndkMnBIWjFoaVVYbHdhblk0UjNKWlptaHVhMlZLV0dwWmFWTmxUemhpUzNWVVF6UmNMemMxVlZBNFZtaDRiMGxOWkZSTldGWkJNR2d6VkhCblMzTjBZV2QzT0RKVVdGd3Zja0ZLU1daQk0zZHFTMDk0WmpWaFVFVldPVWhDUTFselFraGFZVEl4VVhKNVZYUTNaVVpCWkRoSk0wTklaa2xzZVU1UFQyZzFiMkoyWTFwbGIzSk5aRWR3TlVGSmVIVlpXR0VyVURKRFIxTm5jV0ZNV1VrM1RTdEpiV1J6VGxWQlJWZzVielpxWms1UGJHOHlOa2g0TlVoS05qbDJhVTlsWlhod2VGbFFSRkJySzJSdU9UUTRNRU5sV2paeFVsRllZMnBTWnpnMmJrMDRhbmRuVEdrMWIwa3dSV1pzSzFGUVRWQllVRGhoVWtabFRWRmFWbGMyZUVOcFMyMHpJaXdpYldGaklqb2lOekprWVdJeU5EWTVOakZtWmpNM1pHWXlaVFkzTnpFME1EVmlOR1F3WVRZek5UUXhZalJsWlRNeU1HUTVNbUkxTWpWaFlUSXdNekV4TldVMllqZGpNU0o5', 1453033676);
+('4083f01fd5d3aa5d48798fda84e273f54348c945', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.111 Safari/537.36', 'ZXlKcGRpSTZJakpQWEM5WVlXdE9aVlJyUmxOYVdWd3ZUSEkzZEU1b1VUMDlJaXdpZG1Gc2RXVWlPaUpJZVdWWGNHSjJPR2hPWXpOd1ZYQTVjRlk0YUdkcE1rNDFaa05oVVVWU2RESnZNbEUyVlZFMlFYaHFVa2hrU3paMVIwb3JXbVJxVlhKTlUyRmpSRVpjTDJSWVMxcDVZemdyZVVZNFdUVmpTVEJTVFdZMk5EQkxVVlZQUTBsT1VsWnBOakE1U0hoSU9GaHBVSG81VG1ObFUwWk5aWGMyVUV4blNrRk9lR3BOYUhNelMwWkpRVUpFY21GRlYwMVJVR1ZUTUdsak9EZ3hNVFpHWVhrMllrWk5VWFkyYUdsdFZHSXdXamxrYVRSYU0weHVVRUkxYXpabVFUbEtTVzFWWTI5cWNXaEtTazUwVEZGRFQwVkRWa3BUYmtObVZGbFdNMHhVV1NzcldEUTRVV05RWmpSb1MwMDBibWN5TmxKamFHOWNMek4zWm5ob2NtNUdVMk54UlRGVUsyVjFUa2gzTVZRMWVHVldjVko2VGpaMFdFOUhaR1ZhWWxCRGRVc3JVR1ZoTUZkV1NHUXhialJ5ZUdwSGJGRkxTalozWlhwdVQyUmxkRE01UjBOS1ZXaHpkazQ0YW1ObGVIVnFaR3ByWWtoelRHRk5PVzlVUjF3dlpsbDNZVFpSUzF3dmNVeDRlVmRJZDBkbWFIbEVabGRuTjJaaFVFVnFjVUUxVFdOMlJTdDNZVzFwTTNCdGREWmlUalV3UzFscllXMXJka0phV0ZKcGJFVklXVFJFU0ZGeVJGQTFVbVZKUlZnMVExUjZaelo2Tld0elowWlVkR2MzT0hCblRXUkdXbWxMWkRWbGFHRjFjazR3YUhaV1dsVndPV1JUZFVWaGQxWjZabWR5TkVSeFQzbEdUbU5HU1RGdGRHRlpjWEV4TW1GdVpGSnBNRUpCVW1kdWJqUkljMXd2TTJkaFVHWTViVFp1SzFkaVFucENaV3RrUVROYVprMTZOelZqVDNVNVZqaHZjRWhLTVc1eWN6UlVYQzkzVTF3dmFVNU9hVE5qWEM5Qk5tbEpjbHd2VGxFeVZubHhhVE1pTENKdFlXTWlPaUl4TWpSbVlXTTJaRGswTW1GaFpEYzBaRGN6TjJWaE5URmxOekZoTm1ReVlqRmpZemc1TW1JelpESmpNVGxqT0RNd1pURTFPRGMxWVROak5HWmhZVE5tSW4wPQ==', 1453530521),
+('57e1f15e3fb009f66bf621074689d7d4f681faf5', 237, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.111 Safari/537.36', 'ZXlKcGRpSTZJbXRZYTNVd00ybGFPRWxrYUhoaWFUTXJPV1F6WmtFOVBTSXNJblpoYkhWbElqb2lORVZLY3pSR1Nsd3ZjMXBQYjI1eVZUaHdhblozU1RSSVpqRjBja052YUVSQ2RFcERUbGhjTDBkeWRFbGNMMHB5TW1aWVdTdEhUVEpyWTNSa1NGQkNiRzVWTlU5SmFVbHNjVTFWYkdWUFZpdEpVMmwyTVZkSWQzSjZhblZrTW1sNlZsd3ZkRzk1YmtFMVRHNHJTVkpvY0ZGSmVXVjJURmRJVERKQ1FteE9jVU5JTlZnMk5EQlhUVGxQVWs1bGEwUlBkbkI1TjJRMGVHcDNhREl3T0hwM01VSlRjekl6V1VwY0wxbHpkRTlvZURSNVoyVm5iSEJEUXpsV1owbHFNMUZSU1ZkNVQxSlRhREZyWkhaVGVHRXlkblo2Tkd3MmNVdDVTR056VW5CVWJUWlBkSFZoU1ZKU2MzWTNkRkJHWTFCRlluSnVPVFJKT1hSblNtVnFWalI1TTFoQk0xd3ZXR2hNVFhWNGEza3pUbU41Vm1OeVpVSXdUbnBaU2s1R2FEQnZaRVUzUjNGMVUyVXlWR1ZhZERRM01HRlFTSHA2T0ZoaWQyVnFSMEZxV0RaTE1EbDVjR3RwVTJkR1UxUm1kV3hXVm1oUlVGbDVhekJXWTFSTGQzY3JjR3hUTWtZM1VrcFVhRXBjTDFWTk0waFlYQzlpWlRGbFlsUXdkMUpWT1RCclUwOHhaM1pPYWxwMlJWcFNVMVp4Y0ZaRWJuUlBSRkoxVmpob1JYRXdXR3BHUkdsamVHaE1XRkZHU3pnNVVUVnpRVTV2WjJkMk1XcGxaM0ZyV2s1WGF5dHJVRU0yVlVSR1VVOVNVelZVYTFKTFNWTnljVzU2VmtwYU5taFJRbms1VWpkaE16RkZaVzl2WjJaTFJrbzRRMFJrUkRRMGNVNVhaVGhYY1VSTlprZDJVRnBoV1RCMlIwdzNXRTVDUVhoVU0zVmpRbXh1WldGbWRUQnBTMnhtTWtVclZYcHJWemR5U1hSaGRucEJkVGhLVDBFOUlpd2liV0ZqSWpvaU5UQmlaVGMxT1RKalpXTTBNV0U1WW1VNVlUZGpabUU0TkRBM1lXWXlNell6WVdOak1EUmtaREppTTJGak4yRXdaamt3WldOa09XVTFOVEUxWlRrMk55Sjk=', 1453530650);
 
 -- --------------------------------------------------------
 
@@ -3911,7 +3937,7 @@ CREATE TABLE IF NOT EXISTS `hris_travel_orders` (
   `date_to` date NOT NULL,
   `expenses` double(8,2) NOT NULL,
   `status` enum('filed','recommended','unrecommended','approved','disapproved','certified','uncertified') COLLATE utf8_unicode_ci DEFAULT 'filed',
-  `certified_by_id` int(10) unsigned DEFAULT NULL,
+  `finance_director_id` int(10) unsigned DEFAULT NULL,
   `recommending_approval_id` int(10) unsigned DEFAULT NULL,
   `approved_by_id` int(10) unsigned DEFAULT NULL,
   `file` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -3933,7 +3959,7 @@ CREATE TABLE IF NOT EXISTS `hris_users` (
   `signature_path` varchar(75) COLLATE utf8_unicode_ci DEFAULT NULL,
   `type` enum('user','admin','president') COLLATE utf8_unicode_ci NOT NULL,
   `department_id` int(10) unsigned DEFAULT NULL,
-  `status` enum('active','resigned','retired') COLLATE utf8_unicode_ci DEFAULT 'active',
+  `status` enum('active','resigned','retired','inactive') COLLATE utf8_unicode_ci DEFAULT 'active',
   `last_login` datetime DEFAULT NULL,
   `last_logout` datetime DEFAULT NULL,
   `ip_address` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -3948,7 +3974,7 @@ CREATE TABLE IF NOT EXISTS `hris_users` (
 
 INSERT INTO `hris_users` (`id`, `username`, `email`, `password`, `signature_path`, `type`, `department_id`, `status`, `last_login`, `last_logout`, `ip_address`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, '001', NULL, '$2y$10$SVjPBmcEoMZLXUdm9y3SzOMl4oHSNIcp5Rb62m4qgCzuDvL76CJVC', NULL, 'user', 8, 'active', '2015-11-27 11:06:38', '2015-11-27 11:10:26', '::1', 'cZGBI9JilgtJTYT08diFaNlL5pOEKCVKEpZqEuMWmUx0gipMBe1Xkq4J2Blu', '2015-11-27 03:04:18', '2016-01-13 08:02:45'),
-(2, '002', NULL, '$2y$10$nMELY.agcRA0Zq67ySBW.e2UreanKcZ6qutpck1xMDqq0f6JJHo8W', NULL, 'user', 11, 'retired', NULL, NULL, NULL, '26u6m7fwyHv2NzUskrbSFOkIGviIS3rjQpwI6BYeC1vkQbQzliq1omy9G4tF', '2015-11-27 03:04:18', '2016-01-13 13:34:41'),
+(2, '002', NULL, '$2y$10$nMELY.agcRA0Zq67ySBW.e2UreanKcZ6qutpck1xMDqq0f6JJHo8W', NULL, 'user', 11, 'resigned', NULL, NULL, NULL, '26u6m7fwyHv2NzUskrbSFOkIGviIS3rjQpwI6BYeC1vkQbQzliq1omy9G4tF', '2015-11-27 03:04:18', '2016-01-23 06:30:34'),
 (3, '003', NULL, '$2y$10$6Hy6G3q3aAJc7l3uXb0P.OcwoWPhMIPpwn6XmKm2C8mV2mfWHQl7a', NULL, 'user', 11, 'active', NULL, NULL, NULL, 'PfNDULXeXNZkAHSANiuYMxW0X692MLa75rl6trvXZS8Mw80N04OK2ZTdyHrf', '2015-11-27 03:04:18', '2016-01-08 13:27:35'),
 (4, '004', NULL, '$2y$10$OxrS8XFttSk7aygwEIG/iuXEPNXW1xLhTozz7sduPVUg9tzk5kbjG', NULL, 'user', NULL, 'active', NULL, NULL, NULL, NULL, '2015-11-27 03:04:19', '2015-11-27 03:04:19'),
 (5, '005', NULL, '$2y$10$0tHDuzRTqyK9FubUe8As4.0KTC3UZTqeuLR17lCta1HDvqlhd9oCO', NULL, 'user', 11, 'active', NULL, NULL, NULL, 'Ti7kiTdMwknrJBQQ5k0EpWP7pAeYwe8B9g7ASvOcxdDCYvD0y9DSxACddWMS', '2015-11-27 03:04:19', '2016-01-12 06:21:56'),
@@ -4437,6 +4463,13 @@ ALTER TABLE `hris_employee_parents`
   ADD KEY `employee_parents_employee_id_foreign` (`employee_id`);
 
 --
+-- Indexes for table `hris_employee_personnel_leave_card`
+--
+ALTER TABLE `hris_employee_personnel_leave_card`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `employee_id` (`employee_id`);
+
+--
 -- Indexes for table `hris_employee_personnel_performances`
 --
 ALTER TABLE `hris_employee_personnel_performances`
@@ -4653,7 +4686,7 @@ ALTER TABLE `hris_travel_orders`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `travel_orders_travel_order_number_unique` (`travel_order_number`),
   ADD KEY `travel_orders_employee_id_foreign` (`employee_id`),
-  ADD KEY `travel_orders_finance_director_foreign` (`certified_by_id`),
+  ADD KEY `travel_orders_finance_director_foreign` (`finance_director_id`),
   ADD KEY `travel_orders_recommending_approval_foreign` (`recommending_approval_id`),
   ADD KEY `travel_orders_approved_by_foreign` (`approved_by_id`);
 
@@ -4754,6 +4787,11 @@ ALTER TABLE `hris_employee_organizations`
 ALTER TABLE `hris_employee_parents`
   MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=219;
 --
+-- AUTO_INCREMENT for table `hris_employee_personnel_leave_card`
+--
+ALTER TABLE `hris_employee_personnel_leave_card`
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `hris_employee_personnel_performances`
 --
 ALTER TABLE `hris_employee_personnel_performances`
@@ -4817,7 +4855,7 @@ ALTER TABLE `hris_forms`
 -- AUTO_INCREMENT for table `hris_jobs`
 --
 ALTER TABLE `hris_jobs`
-  MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=146;
+  MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=147;
 --
 -- AUTO_INCREMENT for table `hris_leave_credits`
 --
@@ -4852,7 +4890,7 @@ ALTER TABLE `hris_message_informations`
 -- AUTO_INCREMENT for table `hris_notifications`
 --
 ALTER TABLE `hris_notifications`
-  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=166;
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=167;
 --
 -- AUTO_INCREMENT for table `hris_positions`
 --
@@ -5114,7 +5152,7 @@ ALTER TABLE `hris_training_participants`
 ALTER TABLE `hris_travel_orders`
   ADD CONSTRAINT `travel_orders_approved_by_foreign` FOREIGN KEY (`approved_by_id`) REFERENCES `hris_employees` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `travel_orders_employee_id_foreign` FOREIGN KEY (`employee_id`) REFERENCES `hris_employees` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `travel_orders_finance_director_foreign` FOREIGN KEY (`certified_by_id`) REFERENCES `hris_employees` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `travel_orders_finance_director_foreign` FOREIGN KEY (`finance_director_id`) REFERENCES `hris_employees` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `travel_orders_recommending_approval_foreign` FOREIGN KEY (`recommending_approval_id`) REFERENCES `hris_employees` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --

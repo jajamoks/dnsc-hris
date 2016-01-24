@@ -8,6 +8,10 @@ Route::group(['middleware' => 'web'], function () {
 
 Route::group(['middleware' => ['web', 'auth']], function () {
 
+    Route::get('test', function () {
+
+    });
+
     Route::get('lang/{locale}', 'SettingsController@changeLanguage');
 
     Route::get('/', 'DashboardController@index');

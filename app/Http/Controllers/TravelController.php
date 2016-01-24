@@ -3,6 +3,7 @@
 namespace DNSCHumanResource\Http\Controllers;
 
 use DNSCHumanResource\Events\TravelOrderApproved;
+use DNSCHumanResource\Events\TravelOrderRejected;
 use DNSCHumanResource\FormWriters\WriteTravelOrderForm;
 use DNSCHumanResource\FormWriters\WriteTravelOrderSummary;
 use DNSCHumanResource\Models\TravelOrder;
@@ -52,7 +53,7 @@ class TravelController extends Controller
     {
         if ($request->user()->employee && $request->user()->employee->canApproveTravelOrder()) {
             if ($request->user()->isFinanceDirector()) {
-                $travels = TravelOrder::approved()->get();
+                $travels = TravelOrder::recommended()->get();
             } else {
                 $travels = $request->user()->employee->travel_order_recommending_approvals->merge($request->user()->employee->travel_order_approved_by);
             }
@@ -67,9 +68,11 @@ class TravelController extends Controller
             $heirarchy = $this->user->employee->approval_heirarchy;
             $approvals = collect();
             $approvals->push($this->user->employee);
-            $approvals->push($heirarchy->recommending_approval);
-            $approvals->push($heirarchy->approved_by);
-            $approvals->push(getFinanceDirector());
+            if (!$request->user()->isFinanceDirector()) {
+                $approvals->push($heirarchy->approved_by);
+                $approvals->push(getFinanceDirector());
+            }
+            $approvals->push(getPresident());
             return view('travel-order.apply')->with(compact('approvals'));
         }
         flash()->error('You are not allowed to file a travel order!');
@@ -106,6 +109,7 @@ class TravelController extends Controller
                     break;
             }
             $travel->save();
+            event(new TravelOrderRejected($travel));
             return response()->json('Travel order rejected', 200);
         }
         abort(401);
@@ -117,8 +121,8 @@ class TravelController extends Controller
         $approvals = collect();
         $approvals->push($travel->employee);
         $approvals->push($travel->recommending_approval);
+        $approvals->push($travel->finance_director);
         $approvals->push($travel->approved_by);
-        $approvals->push($travel->certified_by);
         return view('travel-order.view')->with(compact('travel', 'approvals'));
     }
 
@@ -133,15 +137,19 @@ class TravelController extends Controller
 
                 $travel = $request->all();
 
-                if ($approvals->recommending_approval) {
-                    $travel = array_add($travel, 'recommending_approval_id', $approvals->recommending_approval->id);
+                if ($request->user()->isFinanceDirector()) {
+                    $travel = array_add($travel, 'status', 'approved');
                 } else {
-                    $travel = array_add($travel, 'status', 'recommended');
+                    if ($approvals->approved_by) {
+                        $travel = array_add($travel, 'recommending_approval_id', $approvals->approved_by->id);
+                    } else {
+                        $travel = array_add($travel, 'status', 'recommended');
+                    }
+
+                    $travel = array_add($travel, 'finance_director_id', getFinanceDirector()->id);
                 }
 
-                $travel = array_add($travel, 'approved_by_id', $approvals->approved_by->id);
-
-                $travel = array_add($travel, 'certified_by_id', getFinanceDirector()->id);
+                $travel = array_add($travel, 'approved_by_id', getPresident()->id);
 
                 $travel = auth()->user()->employee->travel_orders()->save(new TravelOrder($travel));
 

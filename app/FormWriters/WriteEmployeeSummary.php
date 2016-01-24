@@ -30,7 +30,8 @@ class WriteEmployeeSummary extends FormWriter
                     $user->username,
                     $user->display_name,
                     $user->position_title,
-                    $user->department ? $user->department->name : 'No department',
+                    $user->department ? $user->department->code : 'No department',
+                    ucfirst($user->status),
                 ]);
                 ++$index;
             }

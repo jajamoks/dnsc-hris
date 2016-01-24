@@ -54,7 +54,7 @@
 
                             <a href="/travel/{{ $travel->id }}/reject" class="reject btn btn-sm btn-default btn-icon btn-hover-danger add-tooltip" data-original-title="Reject form request"><i class="fa fa-remove"></i></a>
 
-                            <a class="btn btn-sm btn-default btn-icon btn-hover-info add-tooltip" data-original-title="View form request"><i class="fa fa-search"></i></a>
+                            <a href="/travel/{{ $travel->id }}" class="btn btn-sm btn-default btn-icon btn-hover-info add-tooltip" data-original-title="View form request"><i class="fa fa-search"></i></a>
                         </div>
                     </td>
                 </tr>

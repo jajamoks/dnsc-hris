@@ -306,14 +306,6 @@ Vue.component('employees-list', {
 
     },
 
-    watch: {
-        'users': function() {
-            this.$nextTick(function() {
-                $('table').DataTable();
-            })
-        },
-    },
-
     components: {
 
         'personnel-performance-modal': VueStrap.modal,
@@ -323,8 +315,6 @@ Vue.component('employees-list', {
         'employee-utility-modal': VueStrap.modal,
 
         'users-table': DataTables,
-
-        // 'infinite-scroll': InfiniteScroll
 
     }
 

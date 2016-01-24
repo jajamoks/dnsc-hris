@@ -34,6 +34,12 @@
 
         <script type="text/javascript" src="/bower_components/PACE/pace.min.js"></script>
 
+        <script type="text/javascript">
+
+            const USER_ID = '{{ auth()->user()->id }}';
+
+        </script>
+
     </head>
 
     <body id="hris" class="nifty-ready" v-cloak>
@@ -92,17 +98,13 @@
 
                 <button id="scroll-top" class="btn"><i class="fa fa-chevron-up"></i></button>
             </div>
-        </hris-main>
 
-        <script type="text/javascript">
-            const USER = '{{ auth()->user() }}';
-        </script>
+            <audio id="notif-alert" src="/audio/alert.mp3" preload="auto"></audio>
+        </hris-main>
 
         <script type="text/javascript" src="/js/main.min.js"></script>
 
         <script type="text/javascript" src="/bower_components/vue-strap/dist/vue-strap.min.js"></script>
-
-        <script type="text/javascript" src="/dist/js/socket.io.min.js"></script>
 
         <script type="text/javascript" src="/js/app.min.js"></script>
 

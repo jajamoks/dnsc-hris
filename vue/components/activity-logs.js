@@ -32,8 +32,13 @@ Vue.component('hris-activity-logs', {
     watch: {
 
         'logs': function() {
+            var self = this;
             this.$nextTick(function() {
                 $('.nano').nanoScroller();
+
+                $("#activity-logs-nano").bind("scrollend", function(e) {
+                    self.loadMore = true;
+                });
             })
         }
 
