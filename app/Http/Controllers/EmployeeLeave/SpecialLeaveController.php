@@ -74,7 +74,6 @@ class SpecialLeaveController extends Controller
         $employee = $this->user->employee;
         if (Gate::allows('create', new EmployeeSpecialLeave)) {
             $approvals = collect();
-            $approvals->push($this->user->employee);
             $approvals->push($employee->approval_heirarchy->recommending_approval);
             $approvals->push($employee->approval_heirarchy->approved_by);
             $approvals->push(getAdmin()->employee);
@@ -132,7 +131,6 @@ class SpecialLeaveController extends Controller
         $this->authorize('edit', $leave);
         $approvals = collect();
         $employee  = $leave->employee;
-        $approvals->push($employee);
         $approvals->push($leave->recommending_approval);
         $approvals->push($leave->approved_by);
         $approvals->push($leave->certified_by);
@@ -162,7 +160,6 @@ class SpecialLeaveController extends Controller
     {
         $leave     = EmployeeSpecialLeave::with('employee.user')->findOrFail($id);
         $approvals = collect();
-        $approvals->push($leave->employee);
         $approvals->push($leave->recommending_approval);
         $approvals->push($leave->approved_by);
         $approvals->push($leave->certified_by);

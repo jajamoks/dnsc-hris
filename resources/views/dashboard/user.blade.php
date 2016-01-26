@@ -16,10 +16,12 @@
     @if(auth()->user()->employee)
         <div class="row">
             @each('dashboard.partials.stat', $stats, 'stat')
+
+            @include('leaves.partials.leave_credits')
         </div>
         <div class="row">
             <div class="col-md-4">
-                @include('leaves.partials.leave_credits')
+
                 @include('dashboard.partials.todo')
             </div>
             <div class="col-md-8">

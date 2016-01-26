@@ -16,7 +16,15 @@ window.DataTables = Vue.extend({
     watch: {
 
         'content': function() {
-            $('table').dataTable();
+            $('table').dataTable({
+                "responsive": true,
+                "language": {
+                    "paginate": {
+                        "previous": '<i class="fa fa-angle-left"></i>',
+                        "next": '<i class="fa fa-angle-right"></i>'
+                    }
+                }
+            });
         }
 
     }

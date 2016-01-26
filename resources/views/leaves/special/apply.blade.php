@@ -13,9 +13,11 @@
 
 @section('content')
 <div class="row">
+    @include('leaves.partials.leave_credits')
+</div>
+<div class="row">
     <div class="col-md-4">
         @include('partials.approval')
-        @include('leaves.partials.leave_credits')
     </div>
     <div class="col-md-8">
         <form method="POST" action="{{ isset($leave) ? '/leave/special/'.$leave->id : '/leave/special' }}">

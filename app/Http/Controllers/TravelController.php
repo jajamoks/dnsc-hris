@@ -67,9 +67,10 @@ class TravelController extends Controller
         if ($request->user()->can('create', new TravelOrder)) {
             $heirarchy = $this->user->employee->approval_heirarchy;
             $approvals = collect();
-            $approvals->push($this->user->employee);
             if (!$request->user()->isFinanceDirector()) {
-                $approvals->push($heirarchy->approved_by);
+                if (!$heirarchy->approved_by->user->isPresident()) {
+                    $approvals->push($heirarchy->approved_by);
+                }
                 $approvals->push(getFinanceDirector());
             }
             $approvals->push(getPresident());
@@ -119,7 +120,6 @@ class TravelController extends Controller
     {
         $travel    = TravelOrder::findOrFail($id);
         $approvals = collect();
-        $approvals->push($travel->employee);
         $approvals->push($travel->recommending_approval);
         $approvals->push($travel->finance_director);
         $approvals->push($travel->approved_by);
@@ -140,7 +140,7 @@ class TravelController extends Controller
                 if ($request->user()->isFinanceDirector()) {
                     $travel = array_add($travel, 'status', 'approved');
                 } else {
-                    if ($approvals->approved_by) {
+                    if ($approvals->approved_by && !$approvals->approved_by->user->isPresident()) {
                         $travel = array_add($travel, 'recommending_approval_id', $approvals->approved_by->id);
                     } else {
                         $travel = array_add($travel, 'status', 'recommended');

@@ -37,15 +37,15 @@
             <table class="table table-hover table-striped table-vcenter mar-top" cellspacing="0" width="100%">
                 <thead>
                     <tr>
-                        <th class="min-w-td nosort"></th>
-                        <th>Employee ID</th>
+                        <th></th>
+                        <th class="min-tablet">Employee ID</th>
                         <th>{{ trans('system.name') }}</th>
-                        <th>{{ trans('system.institute-department') }}</th>
+                        <th class="min-desktop">{{ trans('system.institute-department') }}</th>
                         <th>{{ trans('system.position') }}</th>
-                        <th>Account type</th>
-                        <th>Status</th>
-                        <th>Member since</th>
-                        <th class="nosort"></th>
+                        <th class="min-tablet">Account type</th>
+                        <th class="min-desktop">Status</th>
+                        <th class="min-tablet">Member since</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>

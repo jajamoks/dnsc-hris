@@ -116,16 +116,9 @@ return [
         'cluster' => false,
 
         'default' => [
-            'host'     => env('REDIS_HOST', 'localhost'),
+            'host'     => '127.0.0.1',
             'password' => env('REDIS_PASSWORD', null),
             'port'     => env('REDIS_PORT', 6379),
-            'database' => 0,
-        ],
-
-        'wifi'    => [
-            'host'     => '192.168.8.100',
-            'password' => null,
-            'port'     => 6379,
             'database' => 0,
         ],
 

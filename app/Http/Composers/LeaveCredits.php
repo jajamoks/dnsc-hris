@@ -24,42 +24,41 @@ class LeaveCredits
     {
         $employee = $view->getData()['employee'];
 
-        $credit      = $employee->leave_credit;
+        $credit = $employee->leave_credit;
+
         $accumulated = $employee->accumulated_leave;
 
-        $leaveCredits     = collect();
-        $accumulatedLeave = collect();
+        $credits = collect();
 
-        $leaveCredits->push([
-            'title' => 'Force Leave',
+        $credits->push([
+            'title' => 'Force leave',
             'icon'  => 'envelope',
             'color' => 'warning',
             'count' => $credit->force_leave,
         ]);
-        $leaveCredits->push([
-            'title' => 'Special Leave',
+
+        $credits->push([
+            'title' => 'Special leave',
             'icon'  => 'star',
             'color' => 'primary',
             'count' => $credit->special_leave,
         ]);
 
-        $accumulatedLeave->push([
-            'title' => 'Vacation Leave',
+        $credits->push([
+            'title' => 'Vacation leave',
             'icon'  => 'plane',
+            'color' => 'primary',
             'count' => $accumulated->vacation_leave,
         ]);
-        $accumulatedLeave->push([
-            'title' => 'Sick Leave',
+
+        $credits->push([
+            'title' => 'Sick leave',
             'icon'  => 'hospital-o',
+            'color' => 'danger',
             'count' => $accumulated->sick_leave,
         ]);
-        $accumulatedLeave->push([
-            'title' => 'Total Accumulated Leave',
-            'icon'  => 'plus',
-            'count' => $accumulated->total(),
-        ]);
 
-        $view->with(compact('leaveCredits', 'accumulatedLeave'));
+        $view->with(compact('credits'));
     }
 
 }

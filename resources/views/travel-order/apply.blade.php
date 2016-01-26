@@ -13,6 +13,9 @@
 
 @section('content')
 <div class="row">
+	<div class="col-md-4">
+		@include('partials.approval')
+	</div>
 	<div class="col-md-8">
 		<form action="/travel" method="POST">
 			<div class="panel">
@@ -63,9 +66,6 @@
 				</div>
 			</div>
 		</form>
-	</div>
-	<div class="col-md-4">
-		@include('partials.approval')
 	</div>
 </div>
 @stop

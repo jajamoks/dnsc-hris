@@ -68,12 +68,12 @@ if (!function_exists('itexmo')) {
 
     function itexmo($number, $message)
     {
-        $url    = 'https://www.itexmo.com/php_api/api.php';
+        $url = 'https://www.itexmo.com/php_api/api.php';
         $itexmo = ['1' => $number, '2' => $message, '3' => config('hris.itexmo.api')];
-        $param  = [
+        $param = [
             'http' => [
-                'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
-                'method'  => 'POST',
+                'header' => "Content-type: application/x-www-form-urlencoded\r\n",
+                'method' => 'POST',
                 'content' => http_build_query($itexmo),
             ],
         ];
@@ -87,12 +87,12 @@ if (!function_exists('itexmo_balance')) {
 
     function itexmo_balance()
     {
-        $url    = 'https://www.itexmo.com/php_api/api.php';
+        $url = 'https://www.itexmo.com/php_api/api.php';
         $itexmo = ['4' => config('hris.itexmo.api')];
-        $param  = [
+        $param = [
             'http' => [
-                'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
-                'method'  => 'POST',
+                'header' => "Content-type: application/x-www-form-urlencoded\r\n",
+                'method' => 'POST',
                 'content' => http_build_query($itexmo),
             ],
         ];

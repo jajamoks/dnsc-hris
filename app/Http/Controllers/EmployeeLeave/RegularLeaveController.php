@@ -66,7 +66,6 @@ class RegularLeaveController extends Controller
         if ($this->user->can('create', new EmployeeLeave)) {
             $employee  = $this->user->employee;
             $approvals = collect();
-            $approvals->push($employee);
             $approvals->push($employee->approval_heirarchy->recommending_approval);
             $approvals->push($employee->approval_heirarchy->approved_by);
             $approvals->push(getAdmin()->employee);
@@ -84,7 +83,6 @@ class RegularLeaveController extends Controller
         $leave = $this->regularLeave->get($id);
         if ($request->user()->can('show', $leave)) {
             $approvals = collect();
-            $approvals->push($leave->employee);
             $approvals->push($leave->recommending_approval);
             $approvals->push($leave->approved_by);
             $approvals->push($leave->certified_by);
@@ -138,7 +136,6 @@ class RegularLeaveController extends Controller
         $this->authorize('edit', $leave);
         $employee  = $leave->employee;
         $approvals = collect();
-        $approvals->push($employee);
         $approvals->push($leave->recommending_approval);
         $approvals->push($leave->approved_by);
         $approvals->push($leave->certified_by);

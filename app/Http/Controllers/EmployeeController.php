@@ -123,7 +123,7 @@ class EmployeeController extends Controller
 
             return view('employee.' . config('hris.profile-design'))->with(compact('user', 'employee', 'rating', 'qce', 'approvals', 'trainings'));
         }
-        flash()->error('The requested profile is not available!');
+        flash()->error('You are not allowed to view the requested profile!');
         return redirect()->back();
     }
 

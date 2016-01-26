@@ -15,6 +15,9 @@
 @section('content')
 <show-employee inline-template>
     <div class="row">
+        @include('leaves.partials.leave_credits')
+    </div>
+    <div class="row">
         <div class="col-md-8">
             <div class="panel">
                 <div class="panel-body bg-success text-center">
@@ -43,7 +46,6 @@
             </div>
         </div>
         <div class="col-md-4">
-            @include('leaves.partials.leave_credits')
             @include('personnel-performance.employee')
             @include('personnel-performance.employee-qce')
         </div>
