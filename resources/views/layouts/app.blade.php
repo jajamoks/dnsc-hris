@@ -26,6 +26,9 @@
 
         <title>@yield('title', config('hris.site-title'))</title>
 
+        <!--Open Sans Font [ OPTIONAL ] -->
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=latin" rel="stylesheet">
+
         <link rel="stylesheet" type="text/css" href="/css/all.min.css">
 
         @yield('stylesheet')

@@ -26,6 +26,9 @@
 
         <title>@yield('title', 'DNSC Human Resource Information System') </title>
 
+        <!--Open Sans Font [ OPTIONAL ] -->
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=latin" rel="stylesheet">
+
         <link href="/css/all.min.css" rel="stylesheet">
 
         <style type="text/css">
