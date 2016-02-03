@@ -4,7 +4,7 @@ require('vue-resource');
 
 // Set true if you want to show the error message while on dev
 
-Vue.config.debug = true;
+Vue.config.debug = false;
 
 // Fetch token in the meta tag in order to process token based request
 

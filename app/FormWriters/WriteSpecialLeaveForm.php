@@ -33,12 +33,12 @@ class WriteSpecialLeaveForm extends FormWriter
 
     protected function writeForm($leave)
     {
-        $employee  = $leave->employee;
+        $employee = $leave->employee;
         $not_found = false;
-        $path      = 'files/SpecialLeaveForms/' . $leave->file;
+        $path = 'files/SpecialLeaveForms/' . $leave->file;
 
         if (!file_exists($path) || null === $leave->file) {
-            $path      = storage_path('app/templates/SpecialLeaveForm.xlsx');
+            $path = storage_path('app/templates/SpecialLeaveForm.xlsx');
             $not_found = true;
         }
         $leave_form = Excel::load($path, function ($reader) use ($leave, $employee, $not_found) {
@@ -54,7 +54,7 @@ class WriteSpecialLeaveForm extends FormWriter
 
             if (!$leave->file_path) {
                 $reader->file = $leave->fileName() . '.xlsx';
-                $leave->file  = $reader->file;
+                $leave->file = $reader->file;
                 $leave->save();
 
                 $sheet->setCellValue('I8', date('M d Y', strtotime($leave->created_at)));
@@ -95,33 +95,33 @@ class WriteSpecialLeaveForm extends FormWriter
 
                 if ($leave->isStatus('certified')) {
                     excel_attach_image([
-                        'name'        => $leave->employee->full_name,
-                        'path'        => public_path('img/signature.png'),
+                        'name' => $leave->employee->full_name,
+                        'path' => $leave->employee->user->signature_path,
                         'coordinates' => 'I21',
-                        'worksheet'   => $reader->sheet('Sheet1'),
+                        'worksheet' => $reader->sheet('Sheet1'),
                     ]);
-                    if ($leave->recommending_approval && $leave->recommending_approval->user->signature) {
+                    if ($leave->recommending_approval && $leave->recommending_approval->user->signature_path) {
                         excel_attach_image([
-                            'name'        => $leave->recommending_approval->full_name,
-                            'path'        => $leave->recommending_approval->user->signature,
+                            'name' => $leave->recommending_approval->full_name,
+                            'path' => $leave->recommending_approval->user->signature_path,
                             'coordinates' => 'I25',
-                            'worksheet'   => $reader->sheet('Sheet1'),
+                            'worksheet' => $reader->sheet('Sheet1'),
                         ]);
                     }
-                    if ($leave->approved_by && $leave->approved_by->user->signature) {
+                    if ($leave->approved_by && $leave->approved_by->user->signature_path) {
                         excel_attach_image([
-                            'name'        => $leave->approved_by->full_name,
-                            'path'        => $leave->approved_by->user->signature,
+                            'name' => $leave->approved_by->full_name,
+                            'path' => $leave->approved_by->user->signature_path,
                             'coordinates' => 'E35',
-                            'worksheet'   => $reader->sheet('Sheet1'),
+                            'worksheet' => $reader->sheet('Sheet1'),
                         ]);
                     }
-                    if ($leave->certified_by && $leave->certified_by->user->signature) {
+                    if ($leave->certified_by && $leave->certified_by->user->signature_path) {
                         excel_attach_image([
-                            'name'        => $leave->certified_by->full_name,
-                            'path'        => $leave->certified_by->user->signature,
+                            'name' => $leave->certified_by->full_name,
+                            'path' => $leave->certified_by->user->signature_path,
                             'coordinates' => 'F25',
-                            'worksheet'   => $reader->sheet('Sheet1'),
+                            'worksheet' => $reader->sheet('Sheet1'),
                         ]);
                     }
                 }

@@ -33,7 +33,7 @@ class WriteRegularLeaveForm extends FormWriter
 
     protected function writeRegularLeaveForm()
     {
-        $leave    = $this->leave;
+        $leave = $this->leave;
         $employee = $this->leave->employee;
 
         $path = $leave->file_path;
@@ -46,13 +46,13 @@ class WriteRegularLeaveForm extends FormWriter
             $sheet->protect('password');
 
             if (!$this->leave->file_path) {
-                $reader->file      = $this->leave->fileName() . '.xlsx';
+                $reader->file = $this->leave->fileName() . '.xlsx';
                 $this->leave->file = $reader->file;
                 $this->leave->save();
 
                 $sheet->setCellValue('D5', $employee->fullName());
                 $sheet->setCellValue('D7', $employee->user->positions->first()->name);
-                $sheet->setCellValue('D9', 33000);
+                $sheet->setCellValue('D9', $this->leave->salary);
                 $sheet->setCellValue('D11', $employee->user->department->code);
                 $sheet->setCellValue('D13', date('M d, Y', strtotime($this->leave->created_at)));
                 $sheet->setCellValue('E15', $this->leave->working_days_applied . ' days');
@@ -120,28 +120,28 @@ class WriteRegularLeaveForm extends FormWriter
     public function attachSignature($reader)
     {
         if ($this->leave->isStatus('certified')) {
-            if ($this->leave->recommending_approval && $this->leave->recommending_approval->user->signature) {
+            if ($this->leave->recommending_approval && $this->leave->recommending_approval->user->signature_path) {
                 excel_attach_image([
-                    'name'        => $this->leave->recommending_approval->full_name,
-                    'path'        => $this->leave->recommending_approval->user->signature,
+                    'name' => $this->leave->recommending_approval->full_name,
+                    'path' => $this->leave->recommending_approval->user->signature_path,
                     'coordinates' => 'J25',
-                    'worksheet'   => $reader->sheet('Sheet1'),
+                    'worksheet' => $reader->sheet('Sheet1'),
                 ]);
             }
-            if ($this->leave->approved_by && $this->leave->approved_by->user->signature) {
+            if ($this->leave->approved_by && $this->leave->approved_by->user->signature_path) {
                 excel_attach_image([
-                    'name'        => $this->leave->approved_by->full_name,
-                    'path'        => $this->leave->approved_by->user->signature,
+                    'name' => $this->leave->approved_by->full_name,
+                    'path' => $this->leave->approved_by->user->signature_path,
                     'coordinates' => 'J33',
-                    'worksheet'   => $reader->sheet('Sheet1'),
+                    'worksheet' => $reader->sheet('Sheet1'),
                 ]);
             }
-            if ($this->leave->certified_by && $this->leave->certified_by->user->signature) {
+            if ($this->leave->certified_by && $this->leave->certified_by->user->signature_path) {
                 excel_attach_image([
-                    'name'        => $this->leave->certified_by->full_name,
-                    'path'        => $this->leave->certified_by->user->signature,
+                    'name' => $this->leave->certified_by->full_name,
+                    'path' => $this->leave->certified_by->user->signature_path,
                     'coordinates' => 'A33',
-                    'worksheet'   => $reader->sheet('Sheet1'),
+                    'worksheet' => $reader->sheet('Sheet1'),
                 ]);
             }
             return true;

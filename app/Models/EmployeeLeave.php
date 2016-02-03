@@ -11,7 +11,7 @@ class EmployeeLeave extends Model
 {
     use Notificationable;
 
-    protected $fillable = ['working_days_applied', 'start_date', 'end_date', 'commutation', 'leave_type', 'additional_info', 'status', 'recommending_approval_id', 'approved_by_id', 'certified_by_id', 'file'];
+    protected $fillable = ['salary', 'working_days_applied', 'start_date', 'end_date', 'commutation', 'leave_type', 'additional_info', 'status', 'recommending_approval_id', 'approved_by_id', 'certified_by_id', 'file'];
 
     protected $notification = ['url' => '/leave/regular/', 'findBy' => 'id'];
 

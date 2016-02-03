@@ -21,9 +21,9 @@ Vue.component('hris-activity-logs', {
 
         getActivityLogs: function() {
             this.$http.get('/api/system/logs')
-                .success(function(res) {
-                    this.paginator = res;
-                    this.logs = res.data;
+                .then(function(res) {
+                    this.paginator = res.data;
+                    this.logs = res.data.data;
                 });
         },
 

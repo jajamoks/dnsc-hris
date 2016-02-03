@@ -85,8 +85,8 @@ Vue.component('employees-list', {
 
         fetchAllUsers: function() {
             this.$http.get('/api/employees')
-                .success(function(users) {
-                    this.users = users;
+                .then(function(response) {
+                    this.users = response.data;
                 }).error(function() {
                     $.niftyNoty({
                         type: 'danger',

@@ -144,6 +144,7 @@ if (!function_exists('excel_attach_image')) {
     function excel_attach_image($array)
     {
         $drawing = new \PHPExcel_Worksheet_Drawing();
+        // dd($drawing);
         foreach ($array as $key => $value) {
             $drawing->{'set' . ucfirst($key)}($value);
         }

@@ -6,7 +6,6 @@ elixir.config.assetsDir = 'public';
 
 elixir(function(mix) {
     mix.styles([
-            // 'dist/css/font.css',
             'bower_components/bootstrap/dist/css/bootstrap.css',
             'bower_components/font-awesome/css/font-awesome.css',
             'bower_components/animate.css/animate.css',

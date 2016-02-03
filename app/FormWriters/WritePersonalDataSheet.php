@@ -40,7 +40,7 @@ class WritePersonalDataSheet extends FormWriter
         $path = storage_path('app/templates/PersonalDataSheet.xlsx');
 
         $pds_file = Excel::load($path, function ($reader) {
-            $reader->file         = studly_case($this->employee->fullName()) . '.xlsx';
+            $reader->file = studly_case($this->employee->fullName()) . '.xlsx';
             $this->employee->file = $reader->file;
             $this->employee->save();
 
@@ -200,20 +200,20 @@ class WritePersonalDataSheet extends FormWriter
 
             $sheet->setCellValue('D54', date('M d, Y', strtotime($this->employee->created_at)));
 
-            if ($this->employee->user->signature) {
+            if ($this->employee->user->signature_path) {
                 excel_attach_image([
-                    'path'        => $this->employee->user->signature,
+                    'path' => $this->employee->user->signature_path,
                     'coordinates' => 'D48',
-                    'worksheet'   => $reader->sheet('C4'),
+                    'worksheet' => $reader->sheet('C4'),
                 ]);
             }
 
             if (!$this->employee->noPhoto()) {
                 excel_attach_image([
-                    'path'        => public_path('uploads/' . $this->employee->photo),
+                    'path' => public_path('uploads/' . $this->employee->photo),
                     'coordinates' => 'G40',
-                    'worksheet'   => $reader->sheet('C4'),
-                    'width'       => 160,
+                    'worksheet' => $reader->sheet('C4'),
+                    'width' => 160,
                 ]);
             }
 

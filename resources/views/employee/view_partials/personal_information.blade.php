@@ -168,6 +168,17 @@
                     <td>TIN number</td>
                     <td class="text-bold">{{ $employee->tin }}</td>
                 </tr>
+                <tr>
+                    <td>
+
+                    </td>
+                    <td>Signature</td>
+                    <td class="text-bold">
+                        <img src="{{ $employee->user->signature }}">
+                    </td>
+                </tr>
+
+
             </tbody>
         </table>
     </div>

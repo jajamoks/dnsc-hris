@@ -1,3 +1,5 @@
+import notify from '../services/notify';
+
 Vue.component('hris-main', {
 
     ready: function() {
@@ -46,14 +48,8 @@ Vue.component('hris-main', {
             socket.on('notification:' + USER_ID, function(notification) {
                 var notification = notification.data.notification;
 
-                $.niftyNoty({
-                    type: 'dark',
-                    icon: 'fa fa-' + notification.icon,
-                    title: notification.subject,
-                    message: notification.message,
-                    container: 'floating',
-                    timer: 5000
-                });
+                notify.show(notification);
+
                 document.getElementById('notif-alert').play();
                 self.$broadcast('newNotification', notification);
 

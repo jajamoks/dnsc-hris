@@ -22,8 +22,6 @@
 
 @section('content')
 <employees-list inline-template>
-
-    {{-- <infinite-scroll :fetch-data="fetch"></infinite-scroll> --}}
     <div class="panel">
         <div class="panel-heading">
             <div class="panel-control">

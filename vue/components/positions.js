@@ -20,8 +20,8 @@ Vue.component('hris-positions', {
 
         getPositions: function() {
             this.$http.get('/api/positions')
-                .success(function(data) {
-                    this.positions = data;
+                .then(function(response) {
+                    this.positions = response.data;
                 }).error(function() {
                     $.niftyNoty({
                         type: 'danger',

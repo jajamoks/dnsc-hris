@@ -11,13 +11,13 @@ class User extends Authenticatable
 
     use Notificationable;
 
-    protected $fillable = ['username', 'email', 'password', 'department_id', 'position', 'type', 'status', 'signature_path'];
+    protected $fillable = ['username', 'email', 'password', 'department_id', 'position', 'type', 'status', 'signature'];
 
     protected $hidden = ['password', 'remember_token'];
 
     protected $notification = ['url' => '/employee/', 'findBy' => 'username'];
 
-    protected $appends = ['is_faculty', 'photo', 'display_name', 'position_title', 'signature'];
+    protected $appends = ['is_faculty', 'photo', 'display_name', 'position_title', 'signature_path'];
 
     public static function boot()
     {
@@ -170,17 +170,7 @@ class User extends Authenticatable
         if ($this->employee) {
             return Avatar::create(studly_case($this->employee->first_name) . ' ' . $this->employee->middle_name . ' ' . $this->employee->surname)->toBase64()->encoded;
         }
-        // return '/imagecache/small/default.png';
         return Avatar::create($this->username)->toBase64()->encoded;
-    }
-
-    public function getSignatureAttribute()
-    {
-        $path = public_path('files/signatures/' . $this->username . '.png');
-        if (file_exists($path) && is_file($path)) {
-            return $path;
-        }
-        return null;
     }
 
     public function getDisplayNameAttribute()
@@ -194,6 +184,15 @@ class User extends Authenticatable
             return 'No assigned position';
         }
         return (String) $this->positions->first()->name;
+    }
+
+    public function getSignaturePathAttribute()
+    {
+        $path = public_path('files/signatures/' . $this->username . '.png');
+        if (file_exists($path) && is_file($path)) {
+            return $path;
+        }
+        return null;
     }
 
     public function getRouteKeyName()

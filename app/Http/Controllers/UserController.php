@@ -36,10 +36,10 @@ class UserController extends Controller
     public function edit(User $user)
     {
         if ($user) {
-            $president   = HumanResource::president();
-            $positions   = Position::all();
+            $president = HumanResource::president();
+            $positions = Position::all();
             $departments = Department::department()->get();
-            $institutes  = Department::institute()->get();
+            $institutes = Department::institute()->get();
             return view('user.api.edit')->with(compact('user', 'president', 'positions', 'departments', 'institutes'));
         } else {
             return false;
@@ -84,7 +84,7 @@ class UserController extends Controller
 
         if ($request->hasFile('signature')) {
             $this->validate($request, ['signature' => 'mimes:png']);
-            $user->signature_path = $this->getSignature($request);
+            $user->signature = $this->getSignature($request);
         }
 
         $user->save();
@@ -108,7 +108,10 @@ class UserController extends Controller
 
         $signature->save($path);
 
-        return $name;
+        return (string) $signature->encode('data-url');
+        // $signature->save($path);
+
+        // return $name;
     }
 
 }
