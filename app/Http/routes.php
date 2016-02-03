@@ -176,6 +176,8 @@ Route::group(['middleware' => ['web', 'auth']], function () {
 
         Route::get('{id}/download', 'TravelController@download');
 
+        Route::get('{user}/summary', 'TravelController@employeeSummary');
+
     });
 
     Route::group(['prefix' => 'notifications'], function () {

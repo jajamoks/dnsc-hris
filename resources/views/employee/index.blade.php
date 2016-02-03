@@ -85,6 +85,9 @@
                                         <li>
                                             <a @click="downloadPersonalDataSheet" href="/employee/@{{ user.username }}/export"> Download PDS</a>
                                         </li>
+                                        <li>
+                                            <a href="/travel/@{{ user.username }}/summary"> Download travel orders</a>
+                                        </li>
                                     </template>
                                 </ul>
                             </div>

@@ -118,7 +118,7 @@ class TravelController extends Controller
 
     public function show($id)
     {
-        $travel    = TravelOrder::findOrFail($id);
+        $travel = TravelOrder::findOrFail($id);
         $approvals = collect();
         $approvals->push($travel->recommending_approval);
         $approvals->push($travel->finance_director);
@@ -179,6 +179,19 @@ class TravelController extends Controller
             write_form(new WriteTravelOrderSummary($travels));
         }
         abort(401);
+    }
+
+    public function employeeSummary(Request $request, User $user)
+    {
+        $employee = $user->employee;
+        if ($employee) {
+            $travels = $employee->travel_orders()->certified()->get();
+            if ($travels->isEmpty()) {
+                flash()->warning('This employee has no travel orders listed.');
+                return redirect()->back();
+            }
+            write_form(new WriteTravelOrderSummary($travels));
+        }
     }
 
     protected function validator($data)
