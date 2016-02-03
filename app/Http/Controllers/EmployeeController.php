@@ -39,7 +39,7 @@ class EmployeeController extends Controller
         $this->middleware('employee', ['except' => ['index', 'create', 'store']]);
         $this->middleware('admin', ['only' => 'index']);
         $this->employeeRepository = $employeeRepository;
-        $this->employeeService    = $employeeService;
+        $this->employeeService = $employeeService;
     }
 
     /**
@@ -92,8 +92,8 @@ class EmployeeController extends Controller
     public function index()
     {
         $departments = Department::department()->get();
-        $institutes  = Department::institute()->get();
-        $positions   = Position::all();
+        $institutes = Department::institute()->get();
+        $positions = Position::all();
         return view('employee.index')->with(compact('departments', 'institutes', 'positions'));
     }
 
@@ -194,7 +194,7 @@ class EmployeeController extends Controller
      */
     public function update(PDSFormRequest $request, User $user)
     {
-        $employee       = $user->employee;
+        $employee = $user->employee;
         $this->employee = $employee;
 
         if ($request->user()->cannot('update', $employee)) {

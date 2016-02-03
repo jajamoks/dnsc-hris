@@ -46,11 +46,12 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
-        'auth'       => \DNSCHumanResource\Http\Middleware\Authenticate::class,
+        'auth' => \DNSCHumanResource\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
-        'guest'      => \DNSCHumanResource\Http\Middleware\RedirectIfAuthenticated::class,
-        'throttle'   => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'admin'      => \DNSCHumanResource\Http\Middleware\AdminMiddleware::class,
-        'employee'   => \DNSCHumanResource\Http\Middleware\EmployeeMiddleware::class,
+        'guest' => \DNSCHumanResource\Http\Middleware\RedirectIfAuthenticated::class,
+        'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'admin' => \DNSCHumanResource\Http\Middleware\AdminMiddleware::class,
+        'employee' => \DNSCHumanResource\Http\Middleware\EmployeeMiddleware::class,
+        'role' => \DNSCHumanResource\Http\Middleware\RoleMiddleware::class,
     ];
 }

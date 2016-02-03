@@ -173,12 +173,14 @@
 
                     </td>
                     <td>Signature</td>
-                    <td class="text-bold">
+                    <td>
+                        @if($employee->user->signature)
                         <img src="{{ $employee->user->signature }}">
+                        @else
+                        <i class="text-danger">No signature</i>
+                        @endif
                     </td>
                 </tr>
-
-
             </tbody>
         </table>
     </div>

@@ -34,8 +34,9 @@
         <label class="col-sm-3 control-label no-padding-right"> Signature </label>
 
         <div class="col-sm-4">
-                <input class="form-control" name="signature" type="file">
+            <input class="form-control" name="signature" type="file">
             <small class="help-block text-danger text-bold">Attach employee signature</small>
+            <img src="{{ auth()->user()->signature }}"/>
         </div>
 
     </div>
