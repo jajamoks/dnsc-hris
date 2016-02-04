@@ -36,7 +36,7 @@
 
                                 <div class="col-md-5">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-usd"></i></span>
+                                        <span class="input-group-addon">&#8369;</span>
                                         <input type="text" name="salary" class="form-control" placeholder="Salary" value="{{ old('salary') }}" />
                                     </div>
                                 </div> <!-- /.col -->

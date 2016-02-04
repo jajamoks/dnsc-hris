@@ -6,7 +6,6 @@ use Carbon\Carbon as Carbon;
 use DNSCHumanResource\Http\Controllers\Controller;
 use DNSCHumanResource\Models\Department;
 use DNSCHumanResource\Models\DepartmentHead;
-use DNSCHumanResource\Models\User;
 use Illuminate\Http\Request;
 use Validator;
 
@@ -51,8 +50,8 @@ class DepartmentController extends Controller
      */
     public function edit(Department $department)
     {
-        $users = User::has('employee')->with('employee')->where('department_id', $department->id)->get();
-        return view('department.api.edit')->with(compact('department', 'users'));
+        $employees = $department->employees;
+        return view('department.api.edit')->with(compact('department', 'employees'));
     }
 
     /**
@@ -62,7 +61,7 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        $page        = 'departments';
+        $page = 'departments';
         $departments = Department::all();
         return view('department.all')->with(compact('page', 'departments'));
     }
@@ -117,9 +116,9 @@ class DepartmentController extends Controller
         if ($request->employee_id != null) {
             $department_head = DepartmentHead::create([
                 'department_id' => $department->id,
-                'employee_id'   => $request->employee_id,
-                'date_from'     => Carbon::today(),
-                'date_to'       => null,
+                'employee_id' => $request->employee_id,
+                'date_from' => Carbon::today(),
+                'date_to' => null,
             ]);
         }
         flash()->success($department->name . ' successfully updated!');

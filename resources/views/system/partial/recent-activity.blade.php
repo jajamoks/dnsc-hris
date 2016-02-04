@@ -10,6 +10,22 @@
             </div>
             <div class="panel-title">{{ trans('system.recent-activities') }}</div>
         </div>
+        <div v-if="!logs.length" class="panel-alert">
+            <div class="alert-wrap in">
+                <div class="alert alert-danger" role="alert">
+                    <button class="close" type="button"><i class="fa fa-times-circle"></i></button>
+                    <div class="media-left">
+                        <span class="icon-wrap icon-wrap-xs icon-circle alert-icon">
+                            <i class="fa fa-trash fa-lg"></i>
+                        </span>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="alert-title">No activity logs</h4>
+                        <p class="alert-message">There are no activity on your system yet.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div id="recent-activities" class="collapse in">
             <div class="table-responsive">
                 <div id="activity-logs-nano" class="nano" style="height:400px">

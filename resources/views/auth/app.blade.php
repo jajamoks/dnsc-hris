@@ -27,9 +27,19 @@
         <title>@yield('title', 'DNSC Human Resource Information System') </title>
 
         <!--Open Sans Font [ OPTIONAL ] -->
+
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=latin" rel="stylesheet">
 
-        <link href="/css/all.min.css" rel="stylesheet">
+        <!-- <link href="/css/all.min.css" rel="stylesheet"> -->
+
+        <link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="/bower_components/font-awesome/css/font-awesome.css">
+        <link rel="stylesheet" type="text/css" href="/bower_components/animate.css/animate.css">
+        <link rel="stylesheet" type="text/css" href="/bower_components/sweetalert/dist/sweetalert.css">
+        <link rel="stylesheet" type="text/css" href="/bower_components/sweetalert/themes/facebook/facebook.css">
+        <link rel="stylesheet" type="text/css" href="/dist/css/style-v2.css">
+        <link rel="stylesheet" type="text/css" href="/dist/css/theme.css">
+        <link rel="stylesheet" type="text/css" href="/bower_components/ladda/dist/ladda-themeless.min.css">
 
         <style type="text/css">
             .background-image {

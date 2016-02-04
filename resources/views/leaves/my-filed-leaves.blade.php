@@ -21,7 +21,7 @@
                 <button class="btn btn-default" type="button" data-toggle="collapse" data-target="#regular-leave"><i class="fa fa-chevron-down"></i></button>
             </div>
         </div>
-        <h3 class="panel-title">Regular leaves</h3>
+        <h3 class="panel-title">Regular leave</h3>
     </div>
     <div id="regular-leave" class="panel-body collapse in">
         @include('leaves.regular.filed-personal-leaves')
@@ -36,7 +36,7 @@
                 <button class="btn btn-default" type="button" data-toggle="collapse" data-target="#special-leave"><i class="fa fa-chevron-down"></i></button>
             </div>
         </div>
-        <h3 class="panel-title">Special leaves</h3>
+        <h3 class="panel-title">Special leave</h3>
     </div>
     <div id="special-leave" class="panel-body collapse in">
         @include('leaves.special.filed-personal-leaves')

@@ -35,12 +35,24 @@
             </div>
 
             <div class="form-group">
-                <label class="col-sm-3 control-label no-padding-right"> Assign Department Head </label>
+                <label class="col-sm-3 control-label no-padding-right"> Department Head </label>
 
                 <div class="col-sm-8">
-                    <select id="employees" class="form-control" data-placeholder="Choose new head..." name="employee_id" tabindex="2">
-                        @foreach($users as $user)
-                        <option value="{{ $user->employee->id }}" selected="{{ $department->department_heads->first()->employee->id === $user->employee->id }}">{{ $user->employee->fullName() }}</option>
+                    <select class="form-control chosen" data-placeholder="Choose new head..." name="employee_id" tabindex="2">
+                        @foreach($employees as $employee)
+                        <option value="{{ $employee->id }}" {{ $department->head() && $department->head()->employee->id == $employee->id ? 'selected' : null }}>{{ $employee->full_name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right"> Chairperson </label>
+
+                <div class="col-sm-8">
+                    <select class="form-control chosen" data-placeholder="Choose new head..." name="chairperson_id" tabindex="2">
+                        @foreach($employees as $employee)
+                        <option value="{{ $employee->id }}" {{ $department->head() && $department->head()->employee->id == $employee->id ? 'selected' : null }}>{{ $employee->full_name }}</option>
                         @endforeach
                     </select>
                 </div>

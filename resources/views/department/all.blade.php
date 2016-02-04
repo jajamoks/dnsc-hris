@@ -73,7 +73,7 @@ function updateDepartment(department)
             title: department.name,
             message: data
         }).bind('mousemove', function() {
-            $('#employees').chosen({width: '100%'});
+            $('.chosen').chosen({width: '100%'});
         });
     });
 }

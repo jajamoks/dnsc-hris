@@ -1,13 +1,18 @@
+import infiniteScroll from '../mixins/infinite-scroll';
+
 Vue.component('hris-show-department', {
 
     ready: function() {
         this.showDepartment(DEPARTMENT_CODE);
     },
 
+    mixins: [infiniteScroll],
+
     data: function() {
         return {
             department: [],
-            searchEmployee: ''
+            searchEmployee: '',
+            items: []
         }
     },
 
@@ -16,6 +21,7 @@ Vue.component('hris-show-department', {
             this.$http.get('/api/departments/' + code)
                 .success(function(data) {
                     this.department = data;
+                    this.items = this.department.employees;
                 }).error(function() {
                     $.niftyNoty({
                         type: 'danger',

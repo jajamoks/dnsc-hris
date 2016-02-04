@@ -38,7 +38,10 @@ class Department extends Model
 
     public function head()
     {
-        return $this->department_heads->last();
+        if ($this->department_heads) {
+            return $this->department_heads->last();
+        }
+        return null;
     }
 
     public function getRouteKeyName()

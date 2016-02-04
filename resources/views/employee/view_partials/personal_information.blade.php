@@ -173,7 +173,7 @@
 
                     </td>
                     <td>Signature</td>
-                    <td>
+                    <td class="unselectable">
                         @if($employee->user->signature)
                         <img src="{{ $employee->user->signature }}">
                         @else

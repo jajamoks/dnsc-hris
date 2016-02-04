@@ -80,6 +80,7 @@
         @unless ($employee->employee_parents->isEmpty())
         <table class="table mbn tc-icon-1 tc-med-2 tc-bold-last">
             <tbody>
+                @if ($employee->employee_parents()->father() instanceof \DNSCHumanResource\Models\EmployeeParent)
                 <tr>
                     <td>
                         <span class="fa fa-male"></span>
@@ -87,6 +88,9 @@
                     <td>{{ trans('pds.father') }}</td>
                     <td class="text-bold">{{ !is_null($employee->employee_parents()->father()) ? $employee->employee_parents()->father()->fullName() : null }}</td>
                 </tr>
+                @endif
+
+                @if ($employee->employee_parents()->mother() instanceof \DNSCHumanResource\Models\EmployeeParent)
                 <tr>
                     <td>
                         <span class="fa fa-female"></span>
@@ -94,6 +98,7 @@
                     <td>{{ trans('pds.mother') }}</td>
                     <td class="text-bold">{{ !is_null($employee->employee_parents()->mother()) ? $employee->employee_parents()->mother()->fullName() : null }}</td>
                 </tr>
+                @endif
             </tbody>
         </table>
         @else
