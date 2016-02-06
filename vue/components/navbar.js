@@ -1,11 +1,11 @@
 window.Navbar = Vue.extend({
 
-    ready: function() {
+    ready() {
         this.getMessages();
         this.getNotifications();
     },
 
-    data: function() {
+    data() {
         return {
             auth: null,
             messages: [],
@@ -15,40 +15,40 @@ window.Navbar = Vue.extend({
     },
 
     events: {
-        messagesUpdated: function() {
+        messagesUpdated() {
             this.getMessages();
         },
 
-        notificationsUpdated: function() {
+        notificationsUpdated() {
             this.getNotifications();
         },
 
-        newMessage: function(message) {
+        newMessage(message) {
             this.getMessages();
         },
 
-        newNotification: function(notification) {
+        newNotification(notification) {
             this.notifications.push(notification);
         }
     },
 
     methods: {
 
-        getMessages: function() {
+        getMessages() {
             this.$http.get('/api/messages/unread')
                 .success(function(data) {
                     this.messages = data;
                 });
         },
 
-        getNotifications: function() {
+        getNotifications() {
             this.$http.get('/api/notifications')
                 .success(function(response) {
                     this.notifications = response.data;
                 });
         },
 
-        readNotification: function(notification) {
+        readNotification(notification) {
             this.$http.put('/api/notifications/' + notification.id + '/mark-read');
         }
     },

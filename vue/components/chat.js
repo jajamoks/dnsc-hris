@@ -1,12 +1,12 @@
 Vue.component('chat-component', {
 
-    ready: function() {
+    ready() {
 
         this.getMessageThreads();
 
     },
 
-    data: function() {
+    data() {
         return {
             messageGroup: null,
             threads: [],
@@ -21,17 +21,17 @@ Vue.component('chat-component', {
     },
 
     events: {
-        threadsUpdated: function() {
+        threadsUpdated() {
             this.getMessageThreads();
             // this.getThread(this.messageGroup);
         },
 
-        threadUpdated: function() {
+        threadUpdated() {
             this.messageGroup = null;
             this.getThread(this.messageGroup);
         },
 
-        newMessage: function(message) {
+        newMessage(message) {
             if (message.sender_id != USER_ID) {
                 if (this.messageGroup.id === message.message_group_id) {
                     message.is_sender = false;
@@ -45,7 +45,7 @@ Vue.component('chat-component', {
 
     methods: {
 
-        updateParticipants: function(messageGroup) {
+        updateParticipants(messageGroup) {
             this.$http.get('/message-group/' + messageGroup.id + '/edit-participants')
                 .success(function(markup) {
                     bootbox.dialog({
@@ -59,7 +59,7 @@ Vue.component('chat-component', {
                 });
         },
 
-        deleteAllMessage: function() {
+        deleteAllMessage() {
             var that = this;
 
             swal({
@@ -81,14 +81,14 @@ Vue.component('chat-component', {
             });
         },
 
-        loadThread: function(messageGroup) {
+        loadThread(messageGroup) {
             var el = $('.refresh').niftyOverlay();
             el.niftyOverlay('hide');
             el.niftyOverlay('show');
             this.getThread(messageGroup, el);
         },
 
-        sendNewMessage: function() {
+        sendNewMessage() {
             this.$http.get('/messages/create')
                 .success(function(view) {
                     bootbox.dialog({
@@ -102,7 +102,7 @@ Vue.component('chat-component', {
                 });
         },
 
-        getThread: function(messageGroup, el = null) {
+        getThread(messageGroup, el = null) {
             this.$http.get('/api/messages/' + messageGroup.id)
                 .success(function(data) {
                     this.messageGroup = messageGroup;
@@ -112,7 +112,7 @@ Vue.component('chat-component', {
                 });
         },
 
-        getMessageThreads: function() {
+        getMessageThreads() {
             this.$http.get('/api/messages')
                 .success(function(data) {
                     this.threads = data;
@@ -127,7 +127,7 @@ Vue.component('chat-component', {
                 });;
         },
 
-        sendMessage: function() {
+        sendMessage() {
             if (this.newMessage.message) {
                 this.$http.post('/api/messages', {
                         'message_group_id': this.messageGroup.id,
@@ -143,7 +143,7 @@ Vue.component('chat-component', {
             }
         },
 
-        markAllRead: function() {
+        markAllRead() {
             this.$http.put('/api/messages')
                 .success(function() {
                     $.niftyNoty({
@@ -160,7 +160,7 @@ Vue.component('chat-component', {
                 });
         },
 
-        deleteMessageGroup: function(messageGroup) {
+        deleteMessageGroup(messageGroup) {
             var self = this;
             swal({
                 title: "Delete conversation",
@@ -182,7 +182,7 @@ Vue.component('chat-component', {
             });
         },
 
-        renameThread: function(messageGroup) {
+        renameThread(messageGroup) {
             var self = this;
             if (messageGroup.is_group && messageGroup.is_group_owner) {
                 bootbox.prompt('Rename group', function(groupName) {
@@ -210,7 +210,7 @@ Vue.component('chat-component', {
 
     watch: {
 
-        'messages': function() {
+        messages() {
             this.$nextTick(function() {
                 // var panel = document.getElementById('chat-body');
                 // var height = panel.offsetHeight;
@@ -221,13 +221,13 @@ Vue.component('chat-component', {
             });
         },
 
-        'searchThread': function() {
+        searchThread() {
             this.$nextTick(function() {
                 $('.nano').nanoScroller();
             });
         },
 
-        'showParticipantsModal': function() {
+        showParticipantsModal() {
             if (this.showParticipantsModal) {
                 $('#thread-participants').modal('show');
                 this.showParticipantsModal = false;

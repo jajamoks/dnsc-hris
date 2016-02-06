@@ -7,7 +7,7 @@
 @stop
 
 @section('stylesheet')
-<link rel="stylesheet" type="text/css" href="/bower_components/summernote/dist/summernote.css">
+<link rel="stylesheet" type="text/css" href="/dist/plugins/summernote/summernote.min.css">
 @stop
 
 @section('content')
@@ -93,7 +93,7 @@
 @stop
 
 @section('script')
-<script type="text/javascript" src="/bower_components/summernote/dist/summernote.min.js"></script>
+<script type="text/javascript" src="/dist/plugins/summernote/summernote.min.js"></script>
 <script type="text/javascript">
 
 	$('#compose-mail').summernote({

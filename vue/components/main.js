@@ -2,7 +2,7 @@ import notify from '../services/notify';
 
 Vue.component('hris-main', {
 
-    ready: function() {
+    ready() {
 
         this.messageListener();
 
@@ -12,19 +12,19 @@ Vue.component('hris-main', {
 
     events: {
 
-        threadsUpdated: function() {
+        threadsUpdated() {
             this.$broadcast('threadsUpdated');
         },
 
-        messagesUpdated: function() {
+        messagesUpdated() {
             this.$broadcast('messagesUpdated');
         },
 
-        notificationsUpdated: function() {
+        notificationsUpdated() {
             this.$broadcast('notificationsUpdated');
         },
 
-        positionsUpdated: function() {
+        positionsUpdated() {
             this.$broadcast('positionsUpdated');
         },
 
@@ -32,7 +32,7 @@ Vue.component('hris-main', {
 
     methods: {
 
-        messageListener: function() {
+        messageListener() {
             var self = this;
 
             socket.on('message', function(data) {
@@ -42,7 +42,7 @@ Vue.component('hris-main', {
             });
         },
 
-        notificationListener: function() {
+        notificationListener() {
             var self = this;
 
             socket.on('notification:' + USER_ID, function(notification) {

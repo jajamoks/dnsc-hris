@@ -1,12 +1,12 @@
 window.qce = Vue.component('hris-qce', {
 
-    ready: function() {
+    ready() {
 
         console.log('hello qce');
 
     },
 
-    data: function() {
+    data() {
         return {
             sample: 'hello'
         }

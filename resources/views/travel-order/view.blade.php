@@ -48,7 +48,7 @@
 
 						<!-- Question -->
 						<div class="text-semibold pad-hor text-lg pull-right">
-								<a>Date of filing:</a> <span>{{ date('M d, Y', strtotime($travel->created_at)) }}</span>
+							<a>Date of filing:</a> <span>{{ date('M d, Y', strtotime($travel->created_at)) }}</span>
 						</div>
 						<br>
 					</div>
@@ -101,6 +101,19 @@
 						</div>
 					</div>
 
+					<div class="bord-no pad-top">
+
+						<!-- Question -->
+						<div class="text-semibold pad-hor text-lg">
+							<span>Travel details and attachments: </span>
+						</div>
+
+						<div class="pad-all">
+							<div class="well">
+								{!! $travel->details !!}
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

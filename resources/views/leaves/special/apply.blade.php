@@ -37,53 +37,65 @@
 
                                 <div class="col-md-9">
                                     <div class="control-group form-block">
-                                        <label class="form-checkbox form-icon active form-text">
-                                            <input type="checkbox" name="type" value="personal milestone" {{ isset($leave) ? $leave->isLeaveType('personal milestone') ? 'checked' : null : null }}>
-                                            <b>Personal Milestone</b>
-                                            <span class="help-block">
-                                                {{ Lang::get('leave_special_privileges.personal_milestone') }}
-                                            </span>
-                                        </label>
+                                        <div class="radio">
+                                            <label class="form-radio form-icon active">
+                                                <input type="radio" name="type" value="personal milestone" {{ isset($leave) ? $leave->isLeaveType('personal milestone') ? 'checked' : null : null }}>
+                                                <b>Personal Milestone</b>
+                                                <span class="help-block">
+                                                    {{ Lang::get('leave_special_privileges.personal_milestone') }}
+                                                </span>
+                                            </label>
+                                        </div>
 
-                                        <label class="form-checkbox form-icon active form-text">
-                                            <input type="checkbox" name="type" value="filial obligation" {{ isset($leave) ? $leave->isLeaveType('filial obligation') ? 'checked' : null : null }}>
-                                            <b>Filial Obligation</b>
-                                            <span class="help-block">
-                                                {{ Lang::get('leave_special_privileges.filial_obligation') }}
-                                            </span>
-                                        </label>
+                                        <div class="radio">
+                                            <label class="form-radio form-icon active">
+                                                <input type="radio" name="type" value="filial obligation" {{ isset($leave) ? $leave->isLeaveType('filial obligation') ? 'checked' : null : null }}>
+                                                <b>Filial Obligation</b>
+                                                <span class="help-block">
+                                                    {{ Lang::get('leave_special_privileges.filial_obligation') }}
+                                                </span>
+                                            </label>
+                                        </div>
 
-                                        <label class="form-checkbox form-icon active form-text">
-                                            <input type="checkbox" name="type" value="personal transaction" {{ isset($leave) ? $leave->isLeaveType('personal transaction') ? 'checked' : null : null }}>
-                                            <b>Personal Transaction</b>
-                                            <span class="help-block">
-                                                {{ Lang::get('leave_special_privileges.personal_transaction') }}
-                                            </span>
-                                        </label>
+                                        <div class="radio">
+                                            <label class="form-radio form-icon active">
+                                                <input type="radio" name="type" value="personal transaction" {{ isset($leave) ? $leave->isLeaveType('personal transaction') ? 'checked' : null : null }}>
+                                                <b>Personal Transaction</b>
+                                                <span class="help-block">
+                                                    {{ Lang::get('leave_special_privileges.personal_transaction') }}
+                                                </span>
+                                            </label>
+                                        </div>
 
-                                        <label class="form-checkbox form-icon active form-text">
-                                            <input type="checkbox" name="type" value="parental obligation" {{ isset($leave) ? $leave->isLeaveType('parental obligation') ? 'checked' : null : null }}>
-                                            <b>Parental Obligations</b>
-                                            <span class="help-block">
-                                                {{ Lang::get('leave_special_privileges.parental_obligations') }}
-                                            </span>
-                                        </label>
+                                        <div class="radio">
+                                            <label class="form-radio form-icon active">
+                                                <input type="radio" name="type" value="parental obligation" {{ isset($leave) ? $leave->isLeaveType('parental obligation') ? 'checked' : null : null }}>
+                                                <b>Parental obligation</b>
+                                                <span class="help-block">
+                                                    {{ Lang::get('leave_special_privileges.parental_obligations') }}
+                                                </span>
+                                            </label>
+                                        </div>
 
-                                        <label class="form-checkbox form-icon active form-text">
-                                            <input type="checkbox" name="type" value="domestic emergencies" {{ isset($leave) ? $leave->isLeaveType('domestic emergencies') ? 'checked' : null : null }}>
-                                            <b>Domestic Emergencies</b>
-                                            <span class="help-block">
-                                                {{ Lang::get('leave_special_privileges.domestic_emergencies') }}
-                                            </span>
-                                        </label>
+                                        <div class="radio">
+                                            <label class="form-radio form-icon active">
+                                                <input type="radio" name="type" value="domestic emergencies" {{ isset($leave) ? $leave->isLeaveType('domestic emergencies') ? 'checked' : null : null }}>
+                                                <b>Domestic Emergencies</b>
+                                                <span class="help-block">
+                                                    {{ Lang::get('leave_special_privileges.domestic_emergencies') }}
+                                                </span>
+                                            </label>
+                                        </div>
 
-                                        <label class="form-checkbox form-icon active form-text">
-                                            <input type="checkbox" name="type" value="calamity" {{ isset($leave) ? $leave->isLeaveType('calamity') ? 'checked' : null : null }}>
-                                            <b>Calamity, Accident, Hospitalization leave</b>
-                                            <span class="help-block">
-                                                {{ Lang::get('leave_special_privileges.calamity') }}
-                                            </span>
-                                        </label>
+                                        <div class="radio">
+                                            <label class="form-radio form-icon active">
+                                                <input type="radio" name="type" value="calamity" {{ isset($leave) ? $leave->isLeaveType('calamity') ? 'checked' : null : null }}>
+                                                <b>Calamity, Accident, Hospitalization leave</b>
+                                                <span class="help-block">
+                                                    {{ Lang::get('leave_special_privileges.calamity') }}
+                                                </span>
+                                            </label>
+                                        </div>
                                     </div>
                                 </div> <!-- /.col -->
 

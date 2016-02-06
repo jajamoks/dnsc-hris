@@ -1,6 +1,8 @@
+import htmlTemplate from './template.html';
+
 window.VuePaginator = Vue.extend({
 
-    template: require('./template.html'),
+    template: htmlTemplate,
 
     props: {
 

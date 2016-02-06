@@ -8,7 +8,7 @@
 
 @section('stylesheet')
 <!--Bootstrap Table [ OPTIONAL ]-->
-<link href="/bower_components/datatables/media/css/datatables.bootstrap.min.css" rel="stylesheet">
+<link href="/bower_components/datatables/media/css/dataTables.bootstrap.min.css" rel="stylesheet">
 <link href="/bower_components/datatables-responsive/css/responsive.bootstrap.scss" rel="stylesheet">
 @stop
 
@@ -17,6 +17,8 @@
     <div class="panel-heading">
         <div class="panel-control">
             <div class="btn-group">
+                <a href="/travel/{{ auth()->user()->employee->id }}/download-summary" class="btn btn-default add-tooltip" data-original-title="Download summary" type="button"><i class="fa fa-download"></i></a>
+                <a href="/travel/apply" class="btn btn-default add-tooltip" data-original-title="{{ trans('system.apply') }}" type="button"><i class="fa fa-plus"></i></a>
                 <button class="btn btn-default" type="button" data-toggle="collapse" data-target="#regular-leave"><i class="fa fa-chevron-down"></i></button>
             </div>
         </div>

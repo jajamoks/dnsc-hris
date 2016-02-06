@@ -1,12 +1,12 @@
 Vue.component('notification-list', {
 
-    ready: function() {
+    ready() {
 
         this.getNotifications();
 
     },
 
-    data: function() {
+    data() {
         return {
 
             notifications: [],
@@ -21,7 +21,7 @@ Vue.component('notification-list', {
 
     events: {
 
-        newNotification: function(notification) {
+        newNotification(notification) {
             this.notifications.push(notification);
         }
 
@@ -29,11 +29,11 @@ Vue.component('notification-list', {
 
     methods: {
 
-        readNotification: function(notification) {
+        readNotification(notification) {
             this.$http.put('/api/notifications/' + notification.id + '/mark-read');
         },
 
-        getNotifications: function() {
+        getNotifications() {
             this.$http.get('/api/notifications')
                 .success(function(response) {
                     this.paginator = response;
@@ -49,7 +49,7 @@ Vue.component('notification-list', {
                 });;
         },
 
-        markAllRead: function() {
+        markAllRead() {
             var that = this;
             swal({
                 title: "Clear notifications",
@@ -75,7 +75,7 @@ Vue.component('notification-list', {
 
     watch: {
 
-        'notifications': function() {
+        notifications() {
             var self = this;
             this.$nextTick(function() {
                 $('.nano').nanoScroller();

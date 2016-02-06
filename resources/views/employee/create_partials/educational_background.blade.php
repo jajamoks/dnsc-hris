@@ -48,7 +48,7 @@
             <div class="form-group">
                 <label class="col-sm-3 control-label">Inclusive Dates</label>
                 <div class="form-group col-sm-4">
-                    <div class="input-group input-daterange">
+                    <div class="input-group">
                         <input type="text" class="form-control" name="education_start[]" placeholder="Date started" value="{{ NULL }}"/>
                         <span class="input-group-addon">to</span>
                         <input type="text" class="form-control" name="education_end[]" placeholder="Date ended" value="{{ NULL }}"/>

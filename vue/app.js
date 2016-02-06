@@ -10,6 +10,8 @@ Vue.config.debug = false;
 
 Vue.http.headers.common['X-CSRF-TOKEN'] = $('meta[name="csrf-token"]').attr('content');
 
+window._ = require('underscore');
+
 // Load ladda button loading state spinner
 
 window.Ladda = require('ladda');

@@ -6,8 +6,10 @@ use DNSCHumanResource\Events\TravelOrderApproved;
 use DNSCHumanResource\Events\TravelOrderRejected;
 use DNSCHumanResource\FormWriters\WriteTravelOrderForm;
 use DNSCHumanResource\FormWriters\WriteTravelOrderSummary;
+use DNSCHumanResource\Models\Employee;
 use DNSCHumanResource\Models\TravelOrder;
 use DNSCHumanResource\Models\User;
+use DNSCHumanResource\Services\TravelOrderService;
 use Illuminate\Http\Request;
 use Validator;
 
@@ -16,29 +18,34 @@ class TravelController extends Controller
 
     protected $user;
 
-    public function __construct()
+    protected $travelService;
+
+    public function __construct(TravelOrderService $travel)
     {
         $this->user = auth()->user();
+
+        $this->travelService = $travel;
     }
 
     public function approve($id)
     {
         $travel = TravelOrder::findOrFail($id);
 
-        switch ($travel->status) {
-            case 'filed':
-                $travel->status = 'recommended';
-                break;
-            case 'recommended':
-                $travel->status = 'approved';
-                break;
-            case 'approved':
-                $travel->status = 'certified';
+        $travel = $travelService->approve($travel);
 
-                $travel->travel_order_number = $travel->getTravelOrderNumber();
-                break;
-        }
-        $travel->save();
+        // switch ($travel->status) {
+        //     case 'filed':
+        //         $travel->status = 'recommended';
+        //         break;
+        //     case 'recommended':
+        //         $travel->status = 'approved';
+        //         break;
+        //     case 'approved':
+        //         $travel->status = 'certified';
+        //         $travel->travel_order_number = $travel->getTravelOrderNumber();
+        //         break;
+        // }
+        // $travel->save();
         event(new TravelOrderApproved($travel));
         return response()->json('Travel order approved', 200);
     }
@@ -129,9 +136,9 @@ class TravelController extends Controller
     public function store(Request $request)
     {
         if ($request->user()->can('create', new TravelOrder)) {
-            if ($this->validator($request->all())->fails()) {
-                flash()->error('Please review the input fields');
-                return redirect()->back()->withInput();
+            $validator = $this->validator($request->all());
+            if ($validator->fails()) {
+                return redirect()->back()->withInput()->withErrors($validator);
             } else {
                 $approvals = $request->user()->employee->approval_heirarchy;
 
@@ -181,6 +188,16 @@ class TravelController extends Controller
         abort(401);
     }
 
+    public function downloadSummaryPerEmployee(Request $request, Employee $employee)
+    {
+        $travels = $employee->travel_orders()->certified()->get();
+        if ($travels->isEmpty()) {
+            flash()->warning('You have no certified travel orders yet.');
+            return redirect()->back();
+        }
+        write_form(new \DNSCHumanResource\FormWriters\WriteEmployeeTravelOrderSummary($travels));
+    }
+
     public function employeeSummary(Request $request, User $user)
     {
         $employee = $user->employee;
@@ -197,7 +214,11 @@ class TravelController extends Controller
     protected function validator($data)
     {
         return Validator::make($data, [
-            'recipient' => 'required', 'destination' => 'required', 'purpose' => 'required', 'date_from' => 'required', 'date_to' => 'required',
+            'recipient' => 'required',
+            'destination' => 'required',
+            'purpose' => 'required',
+            'date_from' => 'required',
+            'date_to' => 'required',
         ]);
     }
 }

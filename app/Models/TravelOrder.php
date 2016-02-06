@@ -19,6 +19,7 @@ class TravelOrder extends Model
         'date_from',
         'date_to',
         'expenses',
+        'details',
         'status',
         'finance_director_id',
         'recommending_approval_id',

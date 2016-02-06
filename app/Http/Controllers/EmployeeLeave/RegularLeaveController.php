@@ -29,7 +29,7 @@ class RegularLeaveController extends Controller
 
     public function __construct(RegularLeave $regularLeave, RegularLeaveService $leaveService)
     {
-        $this->user         = auth()->user();
+        $this->user = auth()->user();
         $this->regularLeave = $regularLeave;
         $this->leaveService = $leaveService;
     }
@@ -61,10 +61,20 @@ class RegularLeaveController extends Controller
         write_form(new WriteRegularLeaveSummary($leaves));
     }
 
+    public function downloadSummaryPerEmployee(Employee $employee)
+    {
+        $leaves = $employee->employee_leaves()->certified()->orderBy('start_date', 'desc')->get();
+        if ($leaves->isEmpty()) {
+            flash()->warning('Employee has no regular leave yet.');
+            return redirect()->back();
+        }
+        write_form(new \DNSCHumanResource\FormWriters\WriteEmployeeRegularLeaveSummary($leaves));
+    }
+
     public function create()
     {
         if ($this->user->can('create', new EmployeeLeave)) {
-            $employee  = $this->user->employee;
+            $employee = $this->user->employee;
             $approvals = collect();
             $approvals->push($employee->approval_heirarchy->recommending_approval);
             $approvals->push($employee->approval_heirarchy->approved_by);
@@ -103,7 +113,7 @@ class RegularLeaveController extends Controller
             if ($validator->fails()) {
                 return redirect()->back()->withInput()->withErrors($validator);
             }
-            $employee  = $request->user()->employee;
+            $employee = $request->user()->employee;
             $approvals = $employee->approval_heirarchy;
 
             $leave = $request->all();
@@ -134,7 +144,7 @@ class RegularLeaveController extends Controller
     {
         $leave = EmployeeLeave::findOrFail($id);
         $this->authorize('edit', $leave);
-        $employee  = $leave->employee;
+        $employee = $leave->employee;
         $approvals = collect();
         $approvals->push($leave->recommending_approval);
         $approvals->push($leave->approved_by);
@@ -233,11 +243,11 @@ class RegularLeaveController extends Controller
     {
         return Validator::make($data, [
             'working_days_applied' => 'required',
-            'start_date'           => 'required',
-            'end_date'             => 'required',
-            'commutation'          => 'required',
-            'leave_type'           => 'required',
-            'additional_info'      => 'required',
+            'start_date' => 'required',
+            'end_date' => 'required',
+            'commutation' => 'required',
+            'leave_type' => 'required',
+            'additional_info' => 'required',
         ]);
     }
 

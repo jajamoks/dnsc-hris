@@ -1,12 +1,12 @@
 Vue.component('employees-list', {
 
-    ready: function() {
+    ready() {
 
         this.fetchAllUsers();
 
     },
 
-    data: function() {
+    data() {
 
         return {
 
@@ -63,12 +63,12 @@ Vue.component('employees-list', {
 
     computed: {
 
-        personnelPerformanceRating: function() {
+        personnelPerformanceRating() {
             return parseFloat(this.personnel_performance.core_function) +
                 parseFloat(this.personnel_performance.strategic_function);
         },
 
-        qceTotalPoints: function() {
+        qceTotalPoints() {
             return parseFloat(this.employee_qce.instruction) +
                 parseFloat(this.employee_qce.self) +
                 parseFloat(this.employee_qce.supervisor) +
@@ -83,7 +83,7 @@ Vue.component('employees-list', {
 
     methods: {
 
-        fetchAllUsers: function() {
+        fetchAllUsers() {
             this.$http.get('/api/employees')
                 .then(function(response) {
                     this.users = response.data;
@@ -98,7 +98,7 @@ Vue.component('employees-list', {
                 });
         },
 
-        employeeLeaveCredits: function(employee) {
+        employeeLeaveCredits(employee) {
             if (employee) {
                 this.employee = employee;
                 this.showEmployeeLeaveCreditsModal = true;
@@ -114,7 +114,7 @@ Vue.component('employees-list', {
             }
         },
 
-        personnelPerformanceAndEmployeeQCE: function(user) {
+        personnelPerformanceAndEmployeeQCE(user) {
             this.user = user;
             var employee = user.employee;
             if (employee) {
@@ -150,7 +150,7 @@ Vue.component('employees-list', {
             }
         },
 
-        saveEmployeeLeaveCredits: function(employee) {
+        saveEmployeeLeaveCredits(employee) {
             var vm = this;
             swal({
                 title: "Are you sure?",
@@ -176,7 +176,7 @@ Vue.component('employees-list', {
             });
         },
 
-        savePersonnelPerformance: function(personnel_performance) {
+        savePersonnelPerformance(personnel_performance) {
             if (personnel_performance) {
                 var vm = this;
                 swal({
@@ -212,7 +212,7 @@ Vue.component('employees-list', {
         },
 
 
-        saveEmployeeQCE: function(employee_qce) {
+        saveEmployeeQCE(employee_qce) {
             if (employee_qce && this.qceTotalPoints <= 100) {
                 this.$http.post('/qce/' + this.user.username, employee_qce)
                     .success(function(data) {
@@ -229,7 +229,7 @@ Vue.component('employees-list', {
             }
         },
 
-        updateUser: function(user) {
+        updateUser(user) {
             this.$http.get('/user/' + user.username + '/edit')
                 .success(function(markup) {
                     bootbox.dialog({
@@ -243,13 +243,13 @@ Vue.component('employees-list', {
                 });
         },
 
-        employeeUtility: function(employee) {
+        employeeUtility(employee) {
             this.showEmployeeUtilityModal = true;
             this.employee = employee;
             this.utility = employee.utility;
         },
 
-        saveEmployeeUtility: function(employee) {
+        saveEmployeeUtility(employee) {
             this.$http.put('/api/employees/' + employee.id + '/utility', {
                     utility: this.utility
                 })
@@ -265,7 +265,7 @@ Vue.component('employees-list', {
                 });
         },
 
-        employeeLeaveApprovalHeirarchy: function(employee) {
+        employeeLeaveApprovalHeirarchy(employee) {
             console.log(JSON.stringify(employee.approval_heirarchy));
             if (employee.approval_heirarchy) {
                 this.$http.get('/employee/approval-heirarchy/' + employee.id + '/edit')
@@ -294,7 +294,7 @@ Vue.component('employees-list', {
             }
         },
 
-        downloadPersonalDataSheet: function() {
+        downloadPersonalDataSheet() {
             $.niftyNoty({
                 type: 'success',
                 container: 'page',

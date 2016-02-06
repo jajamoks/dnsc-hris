@@ -1,10 +1,10 @@
 Vue.component('hris-activity-logs', {
 
-    ready: function() {
+    ready() {
         this.getActivityLogs();
     },
 
-    data: function() {
+    data() {
         return {
 
             logs: [],
@@ -19,7 +19,7 @@ Vue.component('hris-activity-logs', {
 
     methods: {
 
-        getActivityLogs: function() {
+        getActivityLogs() {
             this.$http.get('/api/system/logs')
                 .then(function(res) {
                     this.paginator = res.data;
@@ -31,7 +31,7 @@ Vue.component('hris-activity-logs', {
 
     watch: {
 
-        'logs': function() {
+        logs() {
             var self = this;
             this.$nextTick(function() {
                 $('.nano').nanoScroller();

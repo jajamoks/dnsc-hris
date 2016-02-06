@@ -17,6 +17,7 @@
     <div class="panel-heading">
         <div class="panel-control">
             <div class="btn-group">
+                <a href="/leave/regular/{{ auth()->user()->employee->id }}/download-summary" class="btn btn-default add-tooltip" data-original-title="Download summary" type="button"><i class="fa fa-download"></i></a>
                 <a href="/leave/regular/apply" class="btn btn-default add-tooltip" data-original-title="{{ trans('system.apply') }}" type="button"><i class="fa fa-plus"></i></a>
                 <button class="btn btn-default" type="button" data-toggle="collapse" data-target="#regular-leave"><i class="fa fa-chevron-down"></i></button>
             </div>
@@ -32,6 +33,7 @@
     <div class="panel-heading">
         <div class="panel-control">
             <div class="btn-group">
+                <a href="/leave/special/{{ auth()->user()->employee->id }}/download-summary" class="btn btn-default add-tooltip" data-original-title="Download summary" type="button"><i class="fa fa-download"></i></a>
                 <a href="/leave/special/apply" class="btn btn-default add-tooltip" data-original-title="{{ trans('system.apply') }}" type="button"><i class="fa fa-plus"></i></a>
                 <button class="btn btn-default" type="button" data-toggle="collapse" data-target="#special-leave"><i class="fa fa-chevron-down"></i></button>
             </div>

@@ -28,7 +28,7 @@
 
         <!--Open Sans Font [ OPTIONAL ] -->
 
-        <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=latin" rel="stylesheet">
+        <!-- <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=latin" rel="stylesheet"> -->
 
         <link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.css">
         <link rel="stylesheet" type="text/css" href="/bower_components/font-awesome/css/font-awesome.css">

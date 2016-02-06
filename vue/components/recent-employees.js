@@ -1,13 +1,13 @@
 Vue.component('hris-recent-employees', {
 
 
-    ready: function() {
+    ready() {
 
         this.getEmployees();
 
     },
 
-    data: function() {
+    data() {
 
         return {
 
@@ -23,7 +23,7 @@ Vue.component('hris-recent-employees', {
 
     methods: {
 
-        getEmployees: function() {
+        getEmployees() {
             this.$http.get('/api/employees/recent-employees/')
                 .success(function(response) {
                     this.paginator = response;
@@ -42,7 +42,7 @@ Vue.component('hris-recent-employees', {
 
     watch: {
 
-        'employees': function() {
+        employees() {
             var self = this;
             this.$nextTick(function() {
                 $('.nano').nanoScroller();

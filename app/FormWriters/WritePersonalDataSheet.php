@@ -52,7 +52,7 @@ class WritePersonalDataSheet extends FormWriter
             $sheet->setCellValue('C8', strtoupper($this->employee->first_name));
             $sheet->setCellValue('C9', strtoupper($this->employee->middle_name));
             $sheet->setCellValue('N9', strtoupper($this->employee->name_extension));
-            $sheet->setCellValue('E10', date('M d Y', strtotime($this->employee->birthday)));
+            $sheet->setCellValue('E10', date('m/d/Y', strtotime($this->employee->birthday)));
             $sheet->setCellValue('C11', strtoupper($this->employee->birthplace));
             $sheet->setCellValue('D13', strtoupper($this->employee->civil_status));
             $sheet->setCellValue('C16', strtoupper($this->employee->citizenship));
@@ -197,6 +197,10 @@ class WritePersonalDataSheet extends FormWriter
 
             $sheet = $reader->sheet('C4');
             $sheet->protect('password');
+
+            $sheet->setCellValue('B48', $this->employee->community_tax_cert_no);
+            $sheet->setCellValue('B51', $this->employee->community_tax_issued_at);
+            $sheet->setCellValue('B54', date('m/d/Y', strtotime($this->employee->community_tax_issued_on)));
 
             $sheet->setCellValue('D54', date('M d, Y', strtotime($this->employee->created_at)));
 

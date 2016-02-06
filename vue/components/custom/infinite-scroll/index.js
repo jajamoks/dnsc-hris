@@ -8,7 +8,7 @@ window.InfiniteScroll = Vue.extend({
 
     },
 
-    ready: function() {
+    ready() {
 
         var vm = this;
 

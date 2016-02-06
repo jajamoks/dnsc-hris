@@ -1,12 +1,12 @@
 Vue.component('hris-show-training', {
 
-    ready: function() {
+    ready() {
 
         this.getTraining();
 
     },
 
-    data: function() {
+    data() {
 
         return {
 
@@ -30,7 +30,7 @@ Vue.component('hris-show-training', {
 
     methods: {
 
-        getTraining: function() {
+        getTraining() {
             var self = this;
             this.$http.get('/api/calendar/' + TRAINING_ID)
                 .success(function(res) {
@@ -40,11 +40,11 @@ Vue.component('hris-show-training', {
                 });
         },
 
-        editTraining: function() {
+        editTraining() {
             this.showUpdateTrainingModal = true;
         },
 
-        updateTraining: function(training) {
+        updateTraining(training) {
             this.$http.put('/api/calendar/' + training.id, {
                     training: training,
                     participants: this.participants
@@ -55,7 +55,7 @@ Vue.component('hris-show-training', {
                 });
         },
 
-        deleteTraining: function(training) {
+        deleteTraining(training) {
             var self = this;
             swal({
                 title: "Are you sure?",
@@ -88,7 +88,7 @@ Vue.component('hris-show-training', {
     },
 
     watch: {
-        'training': function() {
+        training() {
             this.$nextTick(function() {
                 $('.input-daterange').datepicker({
                     format: "yyyy-mm-dd",
@@ -99,7 +99,7 @@ Vue.component('hris-show-training', {
             })
         },
 
-        'participants': function() {
+        participants() {
             $('#participants').chosen({
                 width: '100%'
             });

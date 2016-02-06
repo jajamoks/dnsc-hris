@@ -15,6 +15,15 @@ use Validator;
 class CalendarController extends Controller
 {
 
+    public $employee;
+
+    public function __construct()
+    {
+        $this->middleware('admin', ['only' => 'index']);
+
+        $this->employee = auth()->user()->employee;
+    }
+
     public function download()
     {
         $events = Training::orderBy('start')->get();
@@ -107,17 +116,23 @@ class CalendarController extends Controller
         return redirect()->back();
     }
 
+    public function getInvitations()
+    {
+        return view('events.invitations');
+    }
+
     /**
      * @param $data
      */
+
     protected function validator($data)
     {
         return Validator::make($data, [
-            'title'       => 'required',
+            'title' => 'required',
             'description' => 'required',
-            'venue'       => 'required',
-            'start'       => 'required',
-            'end'         => 'required',
+            'venue' => 'required',
+            'start' => 'required',
+            'end' => 'required',
         ]);
     }
 }

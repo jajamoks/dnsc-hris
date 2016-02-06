@@ -1,14 +1,16 @@
+import htmlTemplate from './template.html';
+
 window.EmployeeBirthdays = Vue.extend({
 
-    template: require('./template.html'),
+    template: htmlTemplate,
 
-    ready: function() {
+    ready() {
 
         this.getBirthdays();
 
     },
 
-    data: function() {
+    data() {
         return {
             employees: []
         }
@@ -23,7 +25,7 @@ window.EmployeeBirthdays = Vue.extend({
     },
 
     methods: {
-        getBirthdays: function() {
+        getBirthdays() {
             this.$http.get('/api/employees/birthdays')
                 .success(function(employees) {
                     this.employees = employees;

@@ -51,7 +51,7 @@
         </div>
     </div>
 
-    @include('events.partials.employee-events')
+    @include('events.modal.employee-events-modal')
 </show-employee>
 @stop
 

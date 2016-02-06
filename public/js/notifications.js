@@ -1,1 +1,28 @@
-!function(){"use strict";$.get("/api/auth",function(i){var t=new Pusher("84cb96c4004fd7ebf124",{encrypted:!0}),n=t.subscribe("user."+i.id);n.bind("DNSCHumanResource\\Events\\NotificationCreated",function(i){var t=$("span.notification").html();$("span.notification").text(++t),$.niftyNoty({type:"dark",icon:"fa fa-"+i.notification.icon,title:i.notification.subject,message:i.notification.message,container:"floating",timer:8e3}),$("#notificationSound")[0].play()})})}();
+(function() {
+
+    'use strict'
+
+    $.get('/api/auth', function(user) {
+        // Pusher API
+        var pusher = new Pusher('84cb96c4004fd7ebf124', {
+            encrypted: true
+        });
+
+        var channel = pusher.subscribe('user.' + user.id);
+
+        channel.bind('DNSCHumanResource\\Events\\NotificationCreated', function(data) {
+            // Increment if incoming notification arrive
+            var notificationCount = $('span.notification').html();
+            $('span.notification').text(++notificationCount);
+            $.niftyNoty({
+                type: 'dark',
+                icon: 'fa fa-' + data.notification.icon,
+                title: data.notification.subject,
+                message: data.notification.message,
+                container: 'floating',
+                timer: 8000
+            });
+            $('#notificationSound')[0].play();
+        });
+    });
+})();

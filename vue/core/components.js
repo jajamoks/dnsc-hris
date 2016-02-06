@@ -20,6 +20,7 @@ require('./../components/forms')
 require('./../components/show-training')
 require('./../components/activity-logs')
 require('./../components/recent-employees')
+require('./../components/event-invitations')
 
 // REST Apis
 

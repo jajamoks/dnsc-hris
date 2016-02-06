@@ -45,7 +45,7 @@
 
                             <div class="form-group">
 
-                                <label class="control-label col-md-3">No. of working days applied for</label>
+                                <label class="control-label col-md-3">No. of working days applied for <span class="text-danger">*</span></label>
 
                                 <div class="col-md-5">
                                     <input type="number" min='1' name="working_days_applied" class="form-control" value="{{ $leave->working_days_applied or old('working_days_applied') }}"/>
@@ -55,7 +55,7 @@
 
                             <div class="form-group">
 
-                                <label class="control-label col-md-3">Inclusive dates (mm/dd/yyyy)</label>
+                                <label class="control-label col-md-3">Inclusive dates (mm/dd/yyyy) <span class="text-danger">*</span></label>
 
                                 <div class="col-md-8">
                                     <div class="input-daterange input-group">
@@ -68,7 +68,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="control-label col-md-3">Commutation</label>
+                                <label class="control-label col-md-3">Commutation <span class="text-danger">*</span></label>
 
                                 <div class='col-md-9'>
                                     <div class="control-group">
@@ -89,7 +89,7 @@
                             <div class="hr dotted"></div>
 
                             <div class="form-group">
-                                <label class="control-label col-md-3">Type of Leave</label>
+                                <label class="control-label col-md-3">Type of Leave <span class="text-danger">*</span></label>
 
                                 <div class='col-md-9'>
                                     <div class="control-group">
@@ -124,7 +124,7 @@
                             </div>
 
                             <div id="additionalInformation" class="form-group" {{ isset($leave) ? '' : 'hidden' }}>
-                                <label class="control-label col-md-3">Additional Information</label>
+                                <label class="control-label col-md-3">Additional Information <span class="text-danger">*</span></label>
                                 <div class="col-md-9">
                                     <div class="control-group">
                                         <div id="vacation" {{ isset($leave) && $leave->isLeaveType('vacation') ? '' : 'hidden' }}>

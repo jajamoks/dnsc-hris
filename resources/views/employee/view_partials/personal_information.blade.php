@@ -170,6 +170,27 @@
                 </tr>
                 <tr>
                     <td>
+                        <span class="fa fa-credit-card"></span>
+                    </td>
+                    <td>Community Tax Number</td>
+                    <td class="text-bold">{{ $employee->community_tax_cert_no }}</td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="fa fa-map-marker"></span>
+                    </td>
+                    <td>Issued at</td>
+                    <td class="text-bold">{{ $employee->community_tax_issued_at }}</td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="fa fa-calendar-o"></span>
+                    </td>
+                    <td>Issued on</td>
+                    <td class="text-bold">{{ $employee->community_tax_issued_on }}</td>
+                </tr>
+                <tr>
+                    <td>
 
                     </td>
                     <td>Signature</td>

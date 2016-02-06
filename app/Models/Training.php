@@ -21,7 +21,7 @@ class Training extends Model
 
     public function employees()
     {
-        return $this->belongsToMany(Employee::class, 'training_participants', 'training_id', 'employee_id')->withPivot('include_in_pds');
+        return $this->belongsToMany(Employee::class, 'training_participants', 'training_id', 'employee_id')->withPivot('include_in_pds', 'rvsp');
     }
 
     public function scopeFinishedTrainings($query)
@@ -29,9 +29,24 @@ class Training extends Model
         return $query->where('end', '<', Carbon::today());
     }
 
+    public function scopeUnfinished($query)
+    {
+        return $query->where('end', '>', Carbon::today());
+    }
+
     public function scopeIncludedInPds($query)
     {
         return $query->where('training_participants.include_in_pds', 1);
+    }
+
+    public function scopeGoing()
+    {
+        return $query->where('training_participants.rvsp', 'going');
+    }
+
+    public function scopeNotGoing()
+    {
+        return $query->where('training_participants.rvsp', 'not going');
     }
 
     public function isDone()

@@ -1,4 +1,4 @@
-<show-position-modal :show.sync="showPositionModal" :title="position.name" :effect="'zoom'" >
+<show-position-modal :show.sync="showPositionModal" :title="position.name + ' (' + position.users.length + ')'" :effect="'zoom'" >
     <div slot="modal-body">
         <div class="modal-body">
             <template v-if="position">

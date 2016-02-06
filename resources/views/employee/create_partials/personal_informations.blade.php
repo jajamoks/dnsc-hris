@@ -273,5 +273,37 @@
                 </div>
             </div>
         </div>
+
+        <hr class="alt"/>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="control-label">Community Tax Certificate No.</label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
+                        <input type="text" class="form-control " name="community_tax_cert_no" placeholder="" value="{{ $employee->community_tax_cert_no or null }}" required/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="control-label">Issued at</label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+                        <input class="form-control" name="community_tax_issued_at" value="{{ $employee->community_tax_issued_at or null }}" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="control-label">Issued on</label>
+                    <div class="input-group date">
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                        <input type="text" class="form-control " name="community_tax_issued_on" value="{{ $employee->community_tax_issued_on or NULL }}">
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

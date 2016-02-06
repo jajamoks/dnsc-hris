@@ -40,13 +40,15 @@
         <div class="col-md-8 col-lg-9">
             <div class="panel">
                 <div class="panel-heading">
+                    @if (auth()->user()->isAdmin())
                     <div class="panel-control">
                         <div class="btn-group mar-rgt">
-                            <button @click="editTraining(training)" class="btn btn-primary btn-active-purple"><i class="fa fa-user-plus"></i>&nbsp;Update participant</button>
-                            <button @click="deleteTraining(training)" class="btn btn-danger btn-active-purple"><i class="fa fa-remove"></i>&nbsp;Delete</button>
-                            <a class="btn btn-success btn-active-purple"><i class="fa fa-download"></i>Download</a>
+                            <button @click="editTraining(training)" class="btn btn-default"><i class="fa fa-user-plus"></i></button>
+                            <button @click="deleteTraining(training)" class="btn btn-default"><i class="fa fa-remove"></i></button>
+                            <a class="btn btn-default"><i class="fa fa-download"></i></a>
                         </div>
                     </div>
+                    @endif
                     <h3 class="panel-title"><i class="fa fa-users"></i>&nbsp;Participants</h3>
                 </div>
                 <div class="panel-body">

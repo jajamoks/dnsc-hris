@@ -9,7 +9,7 @@ Route::group(['middleware' => 'web'], function () {
 Route::group(['middleware' => ['web', 'auth']], function () {
 
     Route::get('test', function () {
-
+        dd(auth()->user()->employee->employee_parents()->mother());
     });
 
     Route::get('lang/{locale}', 'SettingsController@changeLanguage');
@@ -120,6 +120,8 @@ Route::group(['middleware' => ['web', 'auth']], function () {
 
             Route::get('download/summary', 'EmployeeLeave\RegularLeaveController@downloadSummary');
 
+            Route::get('{employee}/download-summary', 'EmployeeLeave\RegularLeaveController@downloadSummaryPerEmployee');
+
         });
 
         Route::group(['prefix' => 'special'], function () {
@@ -137,6 +139,8 @@ Route::group(['middleware' => ['web', 'auth']], function () {
             Route::get('{id}/edit', 'EmployeeLeave\SpecialLeaveController@edit');
 
             Route::get('summary/download', 'EmployeeLeave\SpecialLeaveController@downloadSummary');
+
+            Route::get('{employee}/download-summary', 'EmployeeLeave\SpecialLeaveController@downloadSummaryPerEmployee');
 
             Route::get('{id}/download', 'EmployeeLeave\SpecialLeaveController@download');
 
@@ -178,6 +182,8 @@ Route::group(['middleware' => ['web', 'auth']], function () {
 
         Route::get('{user}/summary', 'TravelController@employeeSummary');
 
+        Route::get('{employee}/download-summary', 'TravelController@downloadSummaryPerEmployee');
+
     });
 
     Route::group(['prefix' => 'notifications'], function () {
@@ -197,6 +203,8 @@ Route::group(['middleware' => ['web', 'auth']], function () {
         Route::post('/', 'CalendarController@store');
 
         Route::get('create', 'CalendarController@create');
+
+        Route::get('invitations', 'CalendarController@getInvitations');
 
         Route::get('download', 'CalendarController@download');
 
@@ -360,9 +368,13 @@ Route::group(['middleware' => ['web', 'auth']], function () {
 
             Route::get('/', 'CalendarController@index');
 
+            Route::get('invitations', 'CalendarController@getInvitations');
+
             Route::get('{id}', 'CalendarController@show');
 
             Route::put('{id}', 'CalendarController@update');
+
+            Route::put('{id}/rvsp', 'CalendarController@rvsp');
 
             Route::post('{id}', 'CalendarController@destroy');
 

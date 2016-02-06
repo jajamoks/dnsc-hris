@@ -1,12 +1,12 @@
 Vue.component('show-employee', {
 
-    ready: function() {
+    ready() {
 
         this.username = USERNAME;
 
     },
 
-    data: function() {
+    data() {
 
         return {
 
@@ -22,42 +22,34 @@ Vue.component('show-employee', {
 
     methods: {
 
-        getEmployeeEvents: function(username) {
+        getEmployeeEvents(username) {
             this.$http.get('/employee/' + username + '/trainings')
-                .success(function(data) {
-                    this.trainings = data;
+                .then(function(response) {
+                    this.trainings = response.data;
                     this.showEmployeeEvents = true;
                 });
         },
 
-        toggleIncludeInPds: function(training) {
-            if (training) {
-                this.$http.put('/api/calendar/' + training.id + '/toggle-include-in-pds')
-                    .success(function(data) {
-                        training = data;
-                        $.niftyNoty({
-                            type: 'dark',
-                            container: '.modal-dialog',
-                            icon: 'fa fa-edit',
-                            message: 'Training successfully updated!',
-                            focus: false,
-                            timer: 3000
-                        });
+        toggleIncludeInPds(training) {
+            this.$http.put('/api/calendar/' + training.id + '/toggle-include-in-pds')
+                .success(function(data) {
+                    training = data;
+                    // this.getEmployeeEvents(USERNAME);
+                    $.niftyNoty({
+                        type: 'dark',
+                        container: '.modal-dialog',
+                        icon: 'fa fa-edit',
+                        message: 'Training successfully updated!',
+                        focus: false,
+                        timer: 3000
                     });
-            }
+                });
         }
 
     },
 
-    watch: {
-
-        'showEmployeeEvents': function() {
-            if (this.showEmployeeEvents) {
-                $('#employee-events').modal('show');
-                this.showEmployeeEvents = false;
-            }
-        }
-
+    components: {
+        'employee-events-modal': VueStrap.modal
     }
 
 });

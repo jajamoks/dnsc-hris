@@ -8,7 +8,7 @@
 
 @section('stylesheet')
 <!--Bootstrap Table [ OPTIONAL ]-->
-<link href="/bower_components/datatables/media/css/datatables.bootstrap.min.css" rel="stylesheet">
+<link href="/bower_components/datatables/media/css/dataTables.bootstrap.min.css" rel="stylesheet">
 <link href="/bower_components/datatables-responsive/css/responsive.bootstrap.scss" rel="stylesheet">
 @stop
 
@@ -63,10 +63,9 @@
 @stop
 
 @section('script')
-<script src="/bower_components/datatables/media/js/jquery.datatables.min.js"></script>
-<script src="/bower_components/datatables/media/js/datatables.bootstrap.min.js"></script>
-<script src="/bower_components/datatables-responsive/js/datatables.responsive.js"></script>
-
+<script type="text/javascript" src="/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="/bower_components/datatables/media/js/dataTables.bootstrap.min.js"></script>
+<script type="text/javascript" src="/bower_components/datatables-responsive/js/dataTables.responsive.js"></script>
 <script type="text/javascript" src="/dist/js/controllers/LeaveController.js"></script>
 <script>
     $.fn.DataTable.ext.pager.numbers_length = 5;

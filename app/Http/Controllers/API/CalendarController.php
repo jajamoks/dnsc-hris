@@ -34,7 +34,7 @@ class CalendarController extends Controller
         $employees = Employee::all()->map(function ($value) {
             return [
                 'value' => $value->id,
-                'text'  => $value->full_name,
+                'text' => $value->full_name,
             ];
         });
 
@@ -54,7 +54,7 @@ class CalendarController extends Controller
         return response()->json($training, 200);
     }
 
-    public function toggleIncludeInPds($id)
+    public function toggleIncludeInPds(Request $request, $id)
     {
         $training = $this->authUser->employee->trainings()->findOrFail($id);
 
@@ -62,6 +62,21 @@ class CalendarController extends Controller
             'include_in_pds' => $training->pivot->include_in_pds === 1 ? 0 : 1,
         ]);
 
+        return $training;
+    }
+
+    public function getInvitations()
+    {
+        $employee = $this->authUser->employee;
+        if ($employee) {
+            return response()->json($employee->trainings()->unfinished()->get(), 200);
+        }
+    }
+
+    public function rvsp(Request $request, $id)
+    {
+        $training = $this->authUser->employee->trainings()->find($id);
+        $training->pivot->update($request->all());
         return $training;
     }
 

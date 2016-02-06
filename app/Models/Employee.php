@@ -32,6 +32,9 @@ class Employee extends Model
         'agency_employee_number',
         'tin',
         'photo',
+        'community_tax_cert_no',
+        'community_tax_issued_at',
+        'community_tax_issued_on',
     ];
 
     protected $appends = ['full_name'];
@@ -52,8 +55,8 @@ class Employee extends Model
                 'sent_by' => $employee->user->id,
                 'subject' => 'Personal Data Sheet',
                 'message' => trans('notification.employee-created', ['name' => $employee->fullName()]),
-                'icon'    => 'user',
-                'color'   => 'purple',
+                'icon' => 'user',
+                'color' => 'purple',
             ]);
         });
 
@@ -63,8 +66,8 @@ class Employee extends Model
                 'sent_by' => $employee->user->id,
                 'subject' => 'Personal Data Sheet',
                 'message' => trans('notification.employee-updated', ['name' => $employee->fullName()]),
-                'icon'    => 'user',
-                'color'   => 'purple',
+                'icon' => 'user',
+                'color' => 'purple',
             ]);
         });
     }

@@ -1,26 +1,26 @@
 <table class="table table-hover table-striped table-vcenter mar-top" cellspacing="0" width="100%">
     <thead>
         <tr>
-            <th></th>
             <th>{{ trans('system.filing-date') }}</th>
             <th>{{ trans('system.working-days-applied') }}</th>
             <th>Commutation</th>
             <th>Start date</th>
             <th>End date</th>
             <th>{{ trans('system.leave-type') }}</th>
+            <th>Status</th>
             <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach($regular_leaves as $leave)
         <tr>
-            <td class="text-capitalize"><span class="label label-table label-{{ $leave->status }}">{{ $leave->status }}</span></td>
             <td>{{ $leave->created_at->diffForHumans() }}</td>
             <td>{{ $leave->working_days_applied }}</td>
             <td class="text-capitalize">{{ $leave->commutation }}</td>
             <td>{{ date('M d Y', strtotime($leave->start_date)) }}</td>
             <td>{{ date('M d Y', strtotime($leave->end_date)) }}</td>
             <td class="text-capitalize">{{ ucfirst($leave->leave_type) }}</td>
+            <td class="text-capitalize"><span class="label label-table label-{{ $leave->status }}">{{ $leave->status }}</span></td>
             <td>
                 <div class="btn-group">
                     <button class="btn btn-default btn-sm">{{ trans('system.choose-action') }}</button>

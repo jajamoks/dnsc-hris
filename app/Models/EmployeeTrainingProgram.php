@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class EmployeeTrainingProgram extends Model
 {
 
-    protected $fillable = ['title', 'date_from', 'date_to', 'number_of_hours', 'sponsored_by'];
+    protected $fillable = ['title', 'start', 'end', 'number_of_hours', 'sponsored_by'];
 
     public function employee()
     {

@@ -1,12 +1,12 @@
 Vue.component('hris-forms', {
 
-    ready: function() {
+    ready() {
 
         this.getForms();
 
     },
 
-    data: function() {
+    data() {
         return {
 
             forms: []
@@ -16,7 +16,7 @@ Vue.component('hris-forms', {
 
     methods: {
 
-        getForms: function() {
+        getForms() {
             this.$http.get('/api/forms')
                 .success(function(data) {
                     this.forms = data;
@@ -31,7 +31,7 @@ Vue.component('hris-forms', {
                 });;
         },
 
-        deleteForm: function(index, form) {
+        deleteForm(index, form) {
             var self = this;
             if (form.restricted) {
                 $.niftyNoty({

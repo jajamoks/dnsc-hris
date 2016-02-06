@@ -1,10 +1,10 @@
 Vue.component('hris-positions', {
 
-    ready: function() {
+    ready() {
         this.getPositions();
     },
 
-    data: function() {
+    data() {
         return {
             positions: [],
             position: {
@@ -18,7 +18,7 @@ Vue.component('hris-positions', {
 
     methods: {
 
-        getPositions: function() {
+        getPositions() {
             this.$http.get('/api/positions')
                 .then(function(response) {
                     this.positions = response.data;
@@ -33,18 +33,18 @@ Vue.component('hris-positions', {
                 });
         },
 
-        showPosition: function(position) {
+        showPosition(position) {
             this.position = position;
             this.showPositionModal = true;
         },
 
-        editPosition: function(position) {
+        editPosition(position) {
             this.editing = true;
             this.position = position;
             this.showAddUpdatePositionModal = true;
         },
 
-        updatePosition: function(position) {
+        updatePosition(position) {
             if (position.name) {
                 var self = this;
                 this.$http.put('/positions/' + position.id, position)
@@ -62,7 +62,7 @@ Vue.component('hris-positions', {
             }
         },
 
-        deletePosition: function(position) {
+        deletePosition(position) {
             if (position.users.length) {
                 $.niftyNoty({
                     type: 'dark',
@@ -101,7 +101,7 @@ Vue.component('hris-positions', {
             }
         },
 
-        savePosition: function(position) {
+        savePosition(position) {
             var self = this;
             this.$http.post('/api/positions', position)
                 .success(function(data) {
@@ -121,14 +121,14 @@ Vue.component('hris-positions', {
 
     watch: {
 
-        'positions': function() {
+        positions() {
             this.$nextTick(function() {
                 console.log("Datatable here...");
                 $('table').dataTable();
             });
         },
 
-        'editing': function() {
+        editing() {
             if (!this.editing) {
                 this.position = {
                     name: ''

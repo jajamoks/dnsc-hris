@@ -15,7 +15,7 @@ window.DataTables = Vue.extend({
 
     watch: {
 
-        'content': function() {
+        content() {
             $('table').dataTable({
                 "responsive": true,
                 "language": {

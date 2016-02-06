@@ -8,6 +8,7 @@ use DNSCHumanResource\FormWriters\WriteSpecialLeaveForm;
 use DNSCHumanResource\Http\Controllers\Controller;
 use DNSCHumanResource\HumanResource\Repositories\SpecialLeaveRepository;
 use DNSCHumanResource\HumanResource\Services\SpecialLeaveService;
+use DNSCHumanResource\Models\Employee;
 use DNSCHumanResource\Models\EmployeeSpecialLeave;
 use DNSCHumanResource\Models\User;
 use Gate;
@@ -40,8 +41,8 @@ class SpecialLeaveController extends Controller
      */
     public function __construct(SpecialLeaveRepository $leave, SpecialLeaveService $specialLeaveService)
     {
-        $this->user                = auth()->user();
-        $this->leave               = $leave;
+        $this->user = auth()->user();
+        $this->leave = $leave;
         $this->specialLeaveService = $specialLeaveService;
     }
 
@@ -130,7 +131,7 @@ class SpecialLeaveController extends Controller
         $leave = EmployeeSpecialLeave::findOrFail($id);
         $this->authorize('edit', $leave);
         $approvals = collect();
-        $employee  = $leave->employee;
+        $employee = $leave->employee;
         $approvals->push($leave->recommending_approval);
         $approvals->push($leave->approved_by);
         $approvals->push($leave->certified_by);
@@ -158,7 +159,7 @@ class SpecialLeaveController extends Controller
      */
     public function show($id)
     {
-        $leave     = EmployeeSpecialLeave::with('employee.user')->findOrFail($id);
+        $leave = EmployeeSpecialLeave::with('employee.user')->findOrFail($id);
         $approvals = collect();
         $approvals->push($leave->recommending_approval);
         $approvals->push($leave->approved_by);
@@ -244,6 +245,16 @@ class SpecialLeaveController extends Controller
         write_form(new \DNSCHumanResource\FormWriters\WriteSpecialLeaveSummary($leaves));
     }
 
+    public function downloadSummaryPerEmployee(Employee $employee)
+    {
+        $leaves = $employee->employee_special_leaves()->certified()->orderBy('date_from', 'desc')->get();
+        if ($leaves->isEmpty()) {
+            flash()->warning('Special leave summary is empty.');
+            return redirect()->back();
+        }
+        write_form(new \DNSCHumanResource\FormWriters\WriteEmployeeSpecialLeaveSummary($leaves));
+    }
+
     /**
      * Validates the user special leave request
      *
@@ -252,9 +263,9 @@ class SpecialLeaveController extends Controller
     protected function validator($data)
     {
         return Validator::make($data, [
-            'type'      => 'required',
+            'type' => 'required',
             'date_from' => 'required',
-            'date_to'   => 'required',
+            'date_to' => 'required',
         ]);
     }
 }

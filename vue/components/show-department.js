@@ -2,13 +2,13 @@ import infiniteScroll from '../mixins/infinite-scroll';
 
 Vue.component('hris-show-department', {
 
-    ready: function() {
+    ready() {
         this.showDepartment(DEPARTMENT_CODE);
     },
 
     mixins: [infiniteScroll],
 
-    data: function() {
+    data() {
         return {
             department: [],
             searchEmployee: '',
@@ -17,7 +17,7 @@ Vue.component('hris-show-department', {
     },
 
     methods: {
-        showDepartment: function(code) {
+        showDepartment(code) {
             this.$http.get('/api/departments/' + code)
                 .success(function(data) {
                     this.department = data;

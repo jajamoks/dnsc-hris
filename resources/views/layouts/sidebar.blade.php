@@ -106,7 +106,11 @@
                             <span class="menu-title">
                                 <strong>{{ trans('system.travel-order') }}</strong>
                             </span>
+                            @if (isset($travelOrderCount) && $travelOrderCount > 0)
+                            <span class="label label-danger pull-right">{{ $travelOrderCount }}</span>
+                            @else
                             <i class="arrow"></i>
+                            @endif
                         </a>
 
                         <!--Submenu-->
@@ -127,6 +131,15 @@
                                 <li><a href="/travel/approved">{{ trans('system.approved-travel-orders') }}</a></li>
                             @endif
                         </ul>
+                    </li>
+
+                    <li class="">
+                        <a href="/calendar/invitations">
+                            <i class="fa fa-calendar-o"></i>
+                            <span class="menu-title">
+                                <strong>Trainings and Seminars</strong>
+                            </span>
+                        </a>
                     </li>
                     @endif
 
