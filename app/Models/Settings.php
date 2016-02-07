@@ -13,8 +13,8 @@ class Settings extends Model
 
     protected $casts = [
         'notify_via_system' => 'boolean',
-        'notify_via_email'  => 'boolean',
-        'notify_via_sms'    => 'boolean',
+        'notify_via_email' => 'boolean',
+        'notify_via_sms' => 'boolean',
     ];
 
     public $timestamps = false;

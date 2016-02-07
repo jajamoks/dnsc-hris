@@ -25,9 +25,8 @@
     <div class="panel">
         <div class="panel-heading">
             <div class="panel-control">
-                <a class="btn btn-sm btn-danger btn-labeled fa fa-download" data-toggle="modal" href='#filter-report'>Download List</a>
-
-                <button data-toggle="modal" data-target="#newUser" class="btn btn-sm btn-success btn-labeled fa fa-user-plus">{{ trans('system.add-user') }}</button>
+                <a class="btn btn-sm btn-default btn-labeled fa fa-download" data-toggle="modal" href='#filter-report'>Download List</a>
+                <button data-toggle="modal" data-target="#newUser" class="btn btn-sm btn-default btn-labeled fa fa-user-plus">{{ trans('system.add-user') }}</button>
             </div>
             <h3 class="panel-title">{{ trans('system.employee-list') }} (@{{ users.length }})</h3>
         </div>

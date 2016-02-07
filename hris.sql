@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 06, 2016 at 06:56 AM
+-- Generation Time: Feb 06, 2016 at 10:40 PM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -1292,7 +1292,7 @@ CREATE TABLE IF NOT EXISTS `hris_employee_leaves` (
   `commutation` enum('requested','not requested') COLLATE utf8_unicode_ci NOT NULL,
   `leave_type` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `additional_info` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `status` enum('filed','recommended','unrecommended','approved','disapproved','certified') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'filed',
+  `status` enum('filed','recommended','unrecommended','approved','disapproved','certified','uncertified') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'filed',
   `remarks` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `recommending_approval_id` int(10) unsigned DEFAULT NULL,
   `approved_by_id` int(10) unsigned NOT NULL,
@@ -2152,8 +2152,8 @@ CREATE TABLE IF NOT EXISTS `hris_employee_training_programs` (
 `id` int(10) unsigned NOT NULL,
   `employee_id` int(10) unsigned NOT NULL,
   `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `date_from` date NOT NULL,
-  `date_to` date NOT NULL,
+  `start` date NOT NULL,
+  `end` date NOT NULL,
   `number_of_hours` int(10) unsigned NOT NULL,
   `sponsored_by` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
@@ -2164,7 +2164,7 @@ CREATE TABLE IF NOT EXISTS `hris_employee_training_programs` (
 -- Dumping data for table `hris_employee_training_programs`
 --
 
-INSERT INTO `hris_employee_training_programs` (`id`, `employee_id`, `title`, `date_from`, `date_to`, `number_of_hours`, `sponsored_by`, `created_at`, `updated_at`) VALUES
+INSERT INTO `hris_employee_training_programs` (`id`, `employee_id`, `title`, `start`, `end`, `number_of_hours`, `sponsored_by`, `created_at`, `updated_at`) VALUES
 (1, 70, 'Seminar - Workshop on Understanding Food Fortification', '0000-00-00', '0000-00-00', 16, 'DOST in Collaboration with the Local Government Unit of Tagum City', '2016-01-11 06:17:45', '2016-01-11 06:17:45'),
 (2, 70, 'Symposium on Organizational Management and Curriculum Development Towards Competent and Qualify Service', '0000-00-00', '0000-00-00', 8, 'DNSC Graduate School and Graduate School Society', '2016-01-11 06:17:45', '2016-01-11 06:17:45'),
 (3, 70, '1st Faculty - Sponsored Re-echo Seminar', '0000-00-00', '0000-00-00', 8, 'DNSC Faculty Association', '2016-01-11 06:17:45', '2016-01-11 06:17:45'),
@@ -2714,23 +2714,6 @@ CREATE TABLE IF NOT EXISTS `hris_jobs` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `hris_leave_credits`
---
-
-CREATE TABLE IF NOT EXISTS `hris_leave_credits` (
-`id` int(10) unsigned NOT NULL,
-  `employee_id` int(10) unsigned NOT NULL,
-  `regular_leave` double(8,2) NOT NULL DEFAULT '25.00',
-  `force_leave` double(8,2) NOT NULL DEFAULT '5.00',
-  `special_leave` double(8,2) NOT NULL DEFAULT '3.00',
-  `accumulated_leave` double(8,2) NOT NULL DEFAULT '0.00',
-  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `hris_logs`
 --
 
@@ -2906,22 +2889,6 @@ CREATE TABLE IF NOT EXISTS `hris_password_resets` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `hris_phpdebugbar`
---
-
-CREATE TABLE IF NOT EXISTS `hris_phpdebugbar` (
-  `id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `data` longtext COLLATE utf8_unicode_ci NOT NULL,
-  `meta_utime` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `meta_datetime` datetime NOT NULL,
-  `meta_uri` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `meta_ip` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `meta_method` varchar(255) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `hris_positions`
 --
 
@@ -2982,19 +2949,6 @@ INSERT INTO `hris_positions` (`id`, `name`, `created_at`, `updated_at`) VALUES
 (43, 'Asso. Prof III', '2016-01-02 18:34:41', '2016-01-02 18:34:41'),
 (44, 'Asso. Prof V', '2016-01-02 18:41:50', '2016-01-02 18:41:50'),
 (45, 'Asso. Prof I', '2016-01-02 18:47:07', '2016-01-02 18:47:07');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `hris_salary`
---
-
-CREATE TABLE IF NOT EXISTS `hris_salary` (
-`id` int(10) unsigned NOT NULL,
-  `salary_grade` varchar(2) COLLATE utf8_unicode_ci NOT NULL,
-  `step` varchar(2) COLLATE utf8_unicode_ci NOT NULL,
-  `salary` double(10,2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -4290,12 +4244,6 @@ ALTER TABLE `hris_jobs`
  ADD PRIMARY KEY (`id`), ADD KEY `jobs_queue_reserved_reserved_at_index` (`queue`,`reserved`,`reserved_at`);
 
 --
--- Indexes for table `hris_leave_credits`
---
-ALTER TABLE `hris_leave_credits`
- ADD PRIMARY KEY (`id`), ADD KEY `leave_credits_employee_id_foreign` (`employee_id`);
-
---
 -- Indexes for table `hris_logs`
 --
 ALTER TABLE `hris_logs`
@@ -4338,22 +4286,10 @@ ALTER TABLE `hris_password_resets`
  ADD KEY `password_resets_email_index` (`email`), ADD KEY `password_resets_token_index` (`token`);
 
 --
--- Indexes for table `hris_phpdebugbar`
---
-ALTER TABLE `hris_phpdebugbar`
- ADD PRIMARY KEY (`id`), ADD KEY `phpdebugbar_meta_utime_index` (`meta_utime`), ADD KEY `phpdebugbar_meta_datetime_index` (`meta_datetime`), ADD KEY `phpdebugbar_meta_uri_index` (`meta_uri`), ADD KEY `phpdebugbar_meta_ip_index` (`meta_ip`), ADD KEY `phpdebugbar_meta_method_index` (`meta_method`);
-
---
 -- Indexes for table `hris_positions`
 --
 ALTER TABLE `hris_positions`
  ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `positions_name_unique` (`name`);
-
---
--- Indexes for table `hris_salary`
---
-ALTER TABLE `hris_salary`
- ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `salary_salary_grade_unique` (`salary_grade`);
 
 --
 -- Indexes for table `hris_sessions`
@@ -4553,11 +4489,6 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 ALTER TABLE `hris_jobs`
 MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `hris_leave_credits`
---
-ALTER TABLE `hris_leave_credits`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
---
 -- AUTO_INCREMENT for table `hris_logs`
 --
 ALTER TABLE `hris_logs`
@@ -4592,11 +4523,6 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
 --
 ALTER TABLE `hris_positions`
 MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=46;
---
--- AUTO_INCREMENT for table `hris_salary`
---
-ALTER TABLE `hris_salary`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `hris_settings`
 --
@@ -4782,12 +4708,6 @@ ADD CONSTRAINT `employee_voluntary_works_employee_id_foreign` FOREIGN KEY (`empl
 --
 ALTER TABLE `hris_employee_work_experiences`
 ADD CONSTRAINT `employee_work_experiences_employee_id_foreign` FOREIGN KEY (`employee_id`) REFERENCES `hris_employees` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `hris_leave_credits`
---
-ALTER TABLE `hris_leave_credits`
-ADD CONSTRAINT `leave_credits_employee_id_foreign` FOREIGN KEY (`employee_id`) REFERENCES `hris_employees` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `hris_messages`

@@ -62,9 +62,9 @@
                     <label class="col-sm-3 control-label">Inclusive Dates</label>
                     <div class="form-group col-sm-4">
                         <div class="input-group input-daterange">
-                            <input type="text" class="form-control" data-date-format="yyyy-mm-dd" data-provide="datepicker" name="training_start_date[]" placeholder="Date started" value="{{ $training_program->date_from or NULL }}"/>
+                            <input type="text" class="form-control" data-date-format="yyyy-mm-dd" data-provide="datepicker" name="training_start_date[]" placeholder="Date started" value="{{ $training_program->start or NULL }}"/>
                             <span class="input-group-addon">to</span>
-                            <input type="text" class="form-control" data-date-format="yyyy-mm-dd" data-provide="datepicker" name="training_end_date[]" placeholder="Date ended" value="{{ $training_program->date_to or NULL }}"/>
+                            <input type="text" class="form-control" data-date-format="yyyy-mm-dd" data-provide="datepicker" name="training_end_date[]" placeholder="Date ended" value="{{ $training_program->end or NULL }}"/>
                         </div>
                     </div>
                 </div>

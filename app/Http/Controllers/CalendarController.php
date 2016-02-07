@@ -42,7 +42,7 @@ class CalendarController extends Controller
     {
         $employee = $user->employee;
         if ($request->wantsJson() && $employee) {
-            return $employee->trainings;
+            return $employee->trainings()->finishedTrainings()->paginate(10);
         }
     }
 
@@ -67,7 +67,7 @@ class CalendarController extends Controller
      */
     public function show(Request $request, $training_id)
     {
-        $training = Training::with('employees.user')->where('id', $training_id)->first();
+        $training = Training::with('employees.user')->where('id', $training_id)->firstOrFail();
 
         return view('events.show')->with(compact('training'));
     }

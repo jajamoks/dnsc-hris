@@ -11,7 +11,7 @@
 	<div class="panel">
 		<div class="panel-heading">
 			<div v-if="notifications.length" class="panel-control">
-	            <a @click="markAllRead" class="btn btn-success"><i class="fa fa-check"></i> Mark all as read</a>
+	            <a @click="markAllRead" class="btn btn-default"><i class="fa fa-check"></i> Mark all as read</a>
 	        </div>
 			<h3 class="panel-title">{{ trans('system.notifications') }}</h3>
 		</div>

@@ -63,6 +63,8 @@ class SpecialLeavePolicy
             return true;
         } elseif ($leave->isStatus('recommended') && ($leave->approved_by->id === $employee->id)) {
             return true;
+        } elseif ($leave->isStatus('approved') && !$leave->approved_by->user->isPresident()) {
+            return true;
         }
         return false;
     }

@@ -10,7 +10,7 @@ Vue.component('hris-todo', {
             todo: {
                 todo: ''
             },
-            filterTodoBy: 'all',
+            filterTodoBy: '',
             editing: false,
             filteredTodos: []
         }

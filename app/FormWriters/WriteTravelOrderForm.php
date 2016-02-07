@@ -23,7 +23,7 @@ class WriteTravelOrderForm extends FormWriter
     }
 
     /**
-     * Execute the job.
+     * Write data to Form.
      *
      * @return void
      */
@@ -50,7 +50,7 @@ class WriteTravelOrderForm extends FormWriter
                 $sheet->setCellValue('A22', $travel->purpose);
                 $sheet->setCellValue('C26', $travel->date_from);
                 $sheet->setCellValue('F26', $travel->date_to);
-                $sheet->setCellValue('D28', to_currency($travel->expenses));
+                $sheet->setCellValue('D28', $travel->expenses);
                 $sheet->setCellValue('B34', $travel->finance_director ? strtoupper($travel->finance_director->full_name) : null);
                 $sheet->setCellValue('H34', $travel->recommending_approval ? strtoupper($travel->recommending_approval->full_name) : null);
                 $sheet->setCellValue('A41', strtoupper($travel->approved_by->full_name));

@@ -282,7 +282,7 @@
                     <label class="control-label">Community Tax Certificate No.</label>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
-                        <input type="text" class="form-control " name="community_tax_cert_no" placeholder="" value="{{ $employee->community_tax_cert_no or null }}" required/>
+                        <input type="text" class="form-control " name="community_tax_cert_no" placeholder="" value="{{ $employee->community_tax_cert_no or null }}" />
                     </div>
                 </div>
             </div>

@@ -25,8 +25,6 @@ class User extends Authenticatable
 
         static::created(function ($user) {
             $user->settings()->save(new Settings);
-            $path = public_path('uploads/' . $user->username);
-            file_exists($path) ? true : mkdir($path);
         });
     }
 

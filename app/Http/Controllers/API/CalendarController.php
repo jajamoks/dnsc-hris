@@ -69,7 +69,8 @@ class CalendarController extends Controller
     {
         $employee = $this->authUser->employee;
         if ($employee) {
-            return response()->json($employee->trainings()->unfinished()->get(), 200);
+            $paginator = $employee->trainings()->unfinished()->paginate(10)->jsonSerialize();
+            return response()->json($paginator, 200);
         }
     }
 

@@ -22,9 +22,22 @@ class TravelOrderService
         return $travel;
     }
 
-    public function disapprove()
+    public function reject($travel)
     {
-
+        switch ($travel->status) {
+            case 'filed':
+                $travel->status = 'unrecommended';
+                break;
+            case 'recommended':
+                $travel->status = 'disapproved';
+                break;
+            case 'approved':
+                $travel->status = 'uncertified';
+                break;
+        }
+        $travel->save();
+		
+        return $travel;
     }
 
 }

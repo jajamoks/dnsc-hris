@@ -8,6 +8,9 @@
             </div>
             <form class="form-horizontal" role="form" action="/register" method="POST">
                 <div class="modal-body">
+                    <div class="alert alert-info">
+                        After adding the user filled up his / her Personal Data Sheet. Make sure to update if they can file leave and update their leave credits.
+                    </div>
                     {!! csrf_field() !!}
                     <div class="form-group">
                         <label class="col-sm-3 control-label no-padding-right"> Employee ID</label>

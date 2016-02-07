@@ -17,10 +17,10 @@ use DNSCHumanResource\Models\EmployeeOrganization;
 use DNSCHumanResource\Models\EmployeeParent;
 use DNSCHumanResource\Models\EmployeeSkill;
 use DNSCHumanResource\Models\EmployeeSpouse;
+use DNSCHumanResource\Models\EmployeeTrainingProgram;
 use DNSCHumanResource\Models\EmployeeVoluntaryWork;
 use DNSCHumanResource\Models\EmployeeWorkExperience;
 use DNSCHumanResource\Models\Position;
-use DNSCHumanResource\Models\Training;
 use DNSCHumanResource\Models\User;
 use DNSCHumanResource\Repositories\EmployeeRepository;
 use DNSCHumanResource\Repositories\TrainingRepository;
@@ -170,7 +170,7 @@ class EmployeeController extends Controller
             $this->employee->employee_voluntary_works()->save(new EmployeeVoluntaryWork($voluntary_work));
         }
         foreach ($this->employeeService->getEmployeeTrainingPrograms($request) as $training_program) {
-            $this->employee->trainings()->save(new Training($training_program));
+            $this->employee->employee_training_programs()->save(new EmployeeTrainingProgram($training_program));
         }
         foreach ($this->employeeService->getEmployeeSkill($request) as $skill) {
             $this->employee->employee_skills()->save(new EmployeeSkill($skill));
@@ -236,7 +236,7 @@ class EmployeeController extends Controller
         $this->saveModelData(new EmployeeCivilService, 'employee_civil_services', $this->employeeService->getEmployeeCivilService($request));
         $this->saveModelData(new EmployeeWorkExperience, 'employee_work_experiences', $this->employeeService->getEmployeeWorkExperience($request));
         $this->saveModelData(new EmployeeVoluntaryWork, 'employee_voluntary_works', $this->employeeService->getEmployeeVoluntaryWork($request));
-        $this->saveModelData(new Training, 'trainings', $this->employeeService->getEmployeeTrainingPrograms($request));
+        $this->saveModelData(new EmployeeTrainingProgram, 'employee_training_programs', $this->employeeService->getEmployeeTrainingPrograms($request));
         $this->saveModelData(new EmployeeSkill, 'employee_skills', $this->employeeService->getEmployeeSkill($request));
         $this->saveModelData(new EmployeeNonAcademic, 'employee_non_academics', $this->employeeService->getEmployeeNonAcademic($request));
         $this->saveModelData(new EmployeeOrganization, 'employee_organizations', $this->employeeService->getEmployeeOrganization($request));

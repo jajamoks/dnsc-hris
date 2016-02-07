@@ -48,8 +48,4 @@ Vue.component('show-employee', {
 
     },
 
-    components: {
-        'employee-events-modal': VueStrap.modal
-    }
-
 });

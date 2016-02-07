@@ -21,6 +21,7 @@ require('./../components/show-training')
 require('./../components/activity-logs')
 require('./../components/recent-employees')
 require('./../components/event-invitations')
+require('./../components/notification-settings')
 
 // REST Apis
 

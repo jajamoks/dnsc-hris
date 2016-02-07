@@ -134,7 +134,7 @@
                     </li>
 
                     <li class="">
-                        <a href="/calendar/invitations">
+                        <a href="/calendar/listings">
                             <i class="fa fa-calendar-o"></i>
                             <span class="menu-title">
                                 <strong>Trainings and Seminars</strong>

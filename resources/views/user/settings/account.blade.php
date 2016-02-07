@@ -16,24 +16,9 @@
     </div>
 
     <div class="form-group">
-        <label class="col-sm-3 control-label no-padding-right"> Employee ID </label>
-
-        <div class="col-sm-4">
-            <div class="input-group">
-                <span class="input-group-addon">
-                    @
-                </span>
-                <input class="form-control" name="username" type="text" value="{{ Auth::user()->username }}" placeholder="Username" readonly>
-            </div>
-            <small class="help-block text-danger text-bold">Employee ID cannot be change unless the admin will change it.</small>
-        </div>
-
-    </div>
-
-    <div class="form-group">
         <label class="col-sm-3 control-label no-padding-right"> Signature </label>
 
-        <div class="col-sm-4">
+        <div class="col-sm-6">
             <input class="form-control" name="signature" type="file">
             <small class="help-block text-danger text-bold">Attach employee signature</small>
             <img src="{{ auth()->user()->signature }}"/>
@@ -44,7 +29,7 @@
     <div class="form-group">
         <label class="col-sm-3 control-label no-padding-right"> Old Password </label>
 
-        <div class="col-sm-4">
+        <div class="col-sm-6">
             <div class="input-group">
                 <span class="input-group-addon">
                     <i class="fa fa-lock"></i>
@@ -60,7 +45,7 @@
     <div class="form-group">
         <label class="col-sm-3 control-label no-padding-right"> Password </label>
 
-        <div class="col-sm-4">
+        <div class="col-sm-6">
             <div class="input-group">
                 <span class="input-group-addon">
                     <i class="fa fa-lock"></i>
@@ -73,7 +58,7 @@
     <div class="form-group">
         <label class="col-sm-3 control-label no-padding-right"> Retype Password </label>
 
-        <div class="col-sm-4">
+        <div class="col-sm-6">
             <div class="input-group">
                 <span class="input-group-addon">
                     <i class="fa fa-unlock-alt"></i>
@@ -84,5 +69,5 @@
     </div>
 
     <hr>
-    <button type="submit" class="btn btn-mint pull-right"><i class="fa fa-edit"></i> {{ trans('system.update') }}</button>
+    <button type="submit" class="btn btn-default pull-right"><i class="fa fa-edit"></i>&nbsp;Save settings</button>
 </form>

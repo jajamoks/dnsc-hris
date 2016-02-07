@@ -81,7 +81,7 @@ class RegularLeaveController extends Controller
             $approvals->push(getAdmin()->employee);
             return view('leaves.regular.apply')->with(compact('employee', 'approvals'));
         }
-        flash()->error('Ooopps! Your are not allowed to apply a regular leave.');
+        flash()->error('Ooopps! Your are not yet allowed to apply a regular leave.');
         return redirect()->back();
     }
 

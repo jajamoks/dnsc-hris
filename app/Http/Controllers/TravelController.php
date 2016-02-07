@@ -31,21 +31,8 @@ class TravelController extends Controller
     {
         $travel = TravelOrder::findOrFail($id);
 
-        $travel = $travelService->approve($travel);
+        $travel = $this->travelService->approve($travel);
 
-        // switch ($travel->status) {
-        //     case 'filed':
-        //         $travel->status = 'recommended';
-        //         break;
-        //     case 'recommended':
-        //         $travel->status = 'approved';
-        //         break;
-        //     case 'approved':
-        //         $travel->status = 'certified';
-        //         $travel->travel_order_number = $travel->getTravelOrderNumber();
-        //         break;
-        // }
-        // $travel->save();
         event(new TravelOrderApproved($travel));
         return response()->json('Travel order approved', 200);
     }
@@ -104,19 +91,7 @@ class TravelController extends Controller
         $travel = TravelOrder::findOrFail($id);
 
         if ($request->user()->can('approve', $travel)) {
-
-            switch ($travel->status) {
-                case 'filed':
-                    $travel->status = 'unrecommended';
-                    break;
-                case 'recommended':
-                    $travel->status = 'disapproved';
-                    break;
-                case 'approved':
-                    $travel->status = 'uncertified';
-                    break;
-            }
-            $travel->save();
+            $this->travelService->reject($travel);
             event(new TravelOrderRejected($travel));
             return response()->json('Travel order rejected', 200);
         }

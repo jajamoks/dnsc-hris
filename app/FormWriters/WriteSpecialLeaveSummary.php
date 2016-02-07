@@ -29,7 +29,7 @@ class WriteSpecialLeaveSummary extends FormWriter
     {
         $file = storage_path('app/templates/SpecialLeaveSummary.xlsx');
 
-        if (file_exists($file)) {
+        if (file_exists($file) && is_file($file)) {
             $leaves = $this->leaves;
 
             $summary = Excel::load($file, function ($excel) use ($leaves) {

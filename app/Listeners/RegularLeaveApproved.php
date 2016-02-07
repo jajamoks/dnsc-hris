@@ -34,9 +34,20 @@ class RegularLeaveApproved
             'sent_by' => auth()->user()->id,
             'subject' => 'Leave request',
             'message' => 'Your leave request has been ' . $leave->status . ' by ' . auth()->user()->employee->full_name,
-            'icon'    => 'thumbs-up',
-            'color'   => 'danger',
+            'icon' => 'thumbs-up',
+            'color' => 'danger',
         ]);
+
+        // if ($leave->isStatus('approved')) {
+        //     $employee->personnel_leave_card()->create([
+        //         'particulars' => 'Filed regular leave',
+        //         'vl_earned' => $incrementedVacationLeave,
+        //         'vl_balance' => $employee->accumulated_leave->vacation_leave,
+        //         'sl_earned' => $incrementedSickLeave,
+        //         'sl_balance' => $employee->accumulated_leave->sick_leave,
+        //         'remarks' => 'Increment leave credits',
+        //     ]);
+        // }
 
         $recipient = $this->checkStatus($leave);
 
@@ -46,8 +57,8 @@ class RegularLeaveApproved
                 'sent_by' => $leave->employee->user->id,
                 'subject' => 'Leave request',
                 'message' => 'Leave request of ' . $leave->employee->full_name . ' is awaiting for your approval.',
-                'icon'    => 'thumbs-up',
-                'color'   => 'danger',
+                'icon' => 'thumbs-up',
+                'color' => 'danger',
             ]);
         }
 

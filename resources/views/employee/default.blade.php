@@ -33,10 +33,6 @@
                         @if (auth()->user()->employee->id != $employee->id)
                         <a onclick="sendMessage({{ $employee->user }})" class="btn btn-icon fa fa-envelope icon-lg add-tooltip" href="javascript:void(0)" title="Send message"></a>
                         @endif
-
-                        @if (auth()->user()->employee->id === $employee->id)
-                        <a @click="getEmployeeEvents(username)" class="btn btn-icon fa fa-calendar icon-lg add-tooltip" href="javascript:void(0)" title="Events"></a>
-                        @endif
                     </div>
                 </div>
 
@@ -50,8 +46,6 @@
             @include('personnel-performance.employee-qce')
         </div>
     </div>
-
-    @include('events.modal.employee-events-modal')
 </show-employee>
 @stop
 

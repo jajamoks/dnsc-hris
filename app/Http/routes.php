@@ -204,7 +204,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
 
         Route::get('create', 'CalendarController@create');
 
-        Route::get('invitations', 'CalendarController@getInvitations');
+        Route::get('listings', 'CalendarController@getInvitations');
 
         Route::get('download', 'CalendarController@download');
 
@@ -397,6 +397,14 @@ Route::group(['middleware' => ['web', 'auth']], function () {
         Route::group(['prefix' => 'system'], function () {
 
             Route::get('logs', 'SystemController@getActivityLogs');
+
+        });
+
+        Route::group(['prefix' => 'settings'], function () {
+
+            Route::get('/', 'SettingsController@getSettings');
+
+            Route::put('/', 'SettingsController@updateSettings');
 
         });
 

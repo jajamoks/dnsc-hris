@@ -24,18 +24,9 @@ class SettingsController extends Controller
     {
         $setting = $this->auth->user()->settings()->first();
 
-        $setting->notify_via_system = $request->input('notify_via_system') or 'off';
-        $setting->notify_via_email  = $request->input('notify_via_email') or 'off';
-        $setting->notify_via_sms    = $request->input('notify_via_sms') or 'off';
+        $setting->update($request->all());
 
-        if ($setting->save()) {
-            flash()->success('Settings successfully saved.');
-            return redirect()->back();
-        } else {
-            flash()->error('Settings not saved.');
-            return redirect()->back();
-        }
-
+        return response()->json('Settings updated!', 200);
     }
 
     public function changeLanguage($locale)

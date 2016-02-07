@@ -41,6 +41,8 @@ class RegularLeaveService
             case 'recommended':
                 $leave->status = 'disapproved';
                 break;
+            case 'approved':
+                $leave->status = 'uncertified';
         }
         $leave->remarks = $request->remarks;
         $leave->save();

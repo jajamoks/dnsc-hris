@@ -840,6 +840,10 @@ a:focus {
     background-color: #ebaa4b
 }
 
+.label-uncertified {
+    background-color: #4d5257
+}
+
 
 /* Custom alerts */
 
@@ -909,4 +913,16 @@ a:focus {
 .btn-link {
     border-color: transparent;
     color: #10965a;
+}
+
+.timeline-footer {
+    /*background-color: #fff;*/
+    border-radius: 0;
+    margin-left: 90px;
+    padding: 10px;
+    position: relative;
+    min-height: 50px;
+    border-right: 1px solid #e9e9e9;
+    border-left: 1px solid #e9e9e9;
+    border-bottom: 1px solid #e9e9e9;
 }

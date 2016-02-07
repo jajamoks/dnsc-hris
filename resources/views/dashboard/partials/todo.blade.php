@@ -6,7 +6,7 @@
 				<div class="btn-group">
 					<button class="dropdown-toggle btn" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-gear"></i></button>
 					<ul class="dropdown-menu dropdown-menu-right">
-						<li><a href="javascript:void(0)" v-on:click="filterTodoBy = 'all'">{{ trans('system.show-all') }}</a></li>
+						<li><a href="javascript:void(0)" v-on:click="filterTodoBy = ''">{{ trans('system.show-all') }}</a></li>
 						<li><a href="javascript:void(0)" v-on:click="filterTodoBy = true">{{ trans('system.show-done') }}</a></li>
 						<li><a href="javascript:void(0)" v-on:click="filterTodoBy = false">{{ trans('system.show-undone') }}</a></li>
 						<li class="divider"></li>
@@ -23,7 +23,7 @@
 				<div class="nano" style="height:320px">
 					<div class="nano-content pad-no">
 						<ul class="list-group bg-trans list-todo mar-no">
-							<template v-for="todo in todos | filterTodo | orderBy 'created_at' -1">
+							<template v-for="todo in todos | filterBy filterTodoBy 'is_done' | orderBy 'created_at' -1">
 								<li class="list-group-item">
 									<label class="form-checkbox form-icon">
 										<input @click="toggleDone(todo)" type="checkbox" :checked="todo.is_done" :disabled="editing">

@@ -174,7 +174,7 @@ class Employee extends Model
 
     public function trainings()
     {
-        return $this->belongsToMany(Training::class, 'training_participants', 'employee_id', 'training_id')->withPivot('include_in_pds');
+        return $this->belongsToMany(Training::class, 'training_participants', 'employee_id', 'training_id')->withPivot('include_in_pds', 'rvsp');
     }
 
     public function training_participants()
