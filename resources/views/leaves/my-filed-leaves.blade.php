@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'My Filed Leaves')
+@section('title', 'My Filed Leave')
 
 @section('breadcrumbs')
     {!! Breadcrumbs::render('filed-leaves') !!}

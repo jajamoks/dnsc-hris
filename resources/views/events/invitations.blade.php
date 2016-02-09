@@ -66,7 +66,8 @@
                                             <a :href="'/calendar/' + training.id" class="text-danger">@{{ training.title }}</a>
                                             <small>@{{ training.description }}</small>
                                         </h4>
-                                        <h5 class="pad-btm">@{{ training.start | date 'MMMM D, Y' }} to @{{ training.end | date 'MMMM D, Y' }}</h5>
+                                        <h5>@{{ training.start | date 'MMMM D, Y' }} to @{{ training.end | date 'MMMM D, Y' }}</h5>
+                                        <h5 class="pad-btm"><i class="fa fa-map-marker"></i>&nbsp;@{{ training.venue }}</h5>
                                         <p class="text-bold">Participants (<span class="text-info">@{{ training.employees.length }}</span>): </p>
                                         <a :href="'/employee/' + employee.user.username"
                                             v-for="employee in training.employees | limitBy 10 | orderBy 'first_name'">
@@ -140,7 +141,8 @@
                                             <a :href="'/calendar/' + invitation.id" class="text-danger">@{{ invitation.title }}</a>
                                             <small>@{{ invitation.description }}</small>
                                         </h4>
-                                        <h5 class="pad-btm">@{{ invitation.start | date 'MMMM D, Y' }} to @{{ invitation.end | date 'MMMM D, Y' }}</h5>
+                                        <h5>@{{ invitation.start | date 'MMMM D, Y' }} to @{{ invitation.end | date 'MMMM D, Y' }}</h5>
+                                        <h5 class="pad-btm"><i class="fa fa-map-marker"></i>&nbsp;@{{ invitation.venue }}</h5>
                                         <div>
                                             <p class="text-bold">Participants (<span class="text-info">@{{ invitation.employees.length }}</span>): </p>
                                             <a :href="'/employee/' + employee.user.username"

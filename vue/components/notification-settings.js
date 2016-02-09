@@ -10,7 +10,8 @@ Vue.component('notification-settings', {
 		return {
 			form: {
 				notify_via_sms: false,
-				notify_via_email: false
+				notify_via_email: false,
+				notify_via_system: false
 			}
 		}
 	},

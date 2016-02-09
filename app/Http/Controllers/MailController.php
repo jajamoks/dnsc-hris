@@ -32,14 +32,13 @@ class MailController extends Controller
         }
         if ($this->user->email) {
             $employee = $this->user->employee;
-            $sender   = [
+            $sender = [
                 'email' => $this->user->email,
-                'name'  => $employee ? $employee->fullName() : $this->user->username,
+                'name' => $employee ? $employee->fullName() : $this->user->username,
             ];
             $recipient = $request->recipient;
 
             $message = Mail::raw($request->content, function ($msg) use ($request, $sender) {
-                // dd($sender);
                 $msg->from($sender['email'], $sender['name']);
                 $msg->to($request->recipient);
                 $msg->subject($request->subject);
@@ -47,7 +46,6 @@ class MailController extends Controller
                 $request->bcc ? $message->cc($request->bcc) : null;
             });
         }
-        dd();
 
         if ($message) {
             flash()->success('Message successfully sent!');
@@ -61,7 +59,7 @@ class MailController extends Controller
     {
         return Validator::make($data, [
             'recipient' => 'required',
-            'content'   => 'required',
+            'content' => 'required',
         ]);
     }
 }

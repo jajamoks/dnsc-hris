@@ -26,7 +26,7 @@
                 </div>
             </div>
         </div>
-        <div id="recent-activities" class="collapse in">
+        <div v-else id="recent-activities" class="collapse in">
             <div class="table-responsive">
                 <div id="activity-logs-nano" class="nano" style="height:400px">
                     <div class="nano-content pad-no">

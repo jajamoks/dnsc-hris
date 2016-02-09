@@ -28,7 +28,7 @@
 
         <!--Open Sans Font [ OPTIONAL ] -->
 
-        <!-- <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=latin" rel="stylesheet"> -->
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=latin" rel="stylesheet">
 
         <link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.css">
         <link rel="stylesheet" type="text/css" href="/bower_components/font-awesome/css/font-awesome.css">
@@ -124,20 +124,20 @@
         <script type="text/javascript" src="/js/all.min.js"></script>
 
         <script>
-            // (function(i, s, o, g, r, a, m) {
-            //     i['GoogleAnalyticsObject'] = r;
-            //     i[r] = i[r] || function() {
-            //         (i[r].q = i[r].q || []).push(arguments)
-            //     }, i[r].l = 1 * new Date();
-            //     a = s.createElement(o),
-            //         m = s.getElementsByTagName(o)[0];
-            //     a.async = 1;
-            //     a.src = g;
-            //     m.parentNode.insertBefore(a, m)
-            // })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+            (function(i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r;
+                i[r] = i[r] || function() {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+                a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0];
+                a.async = 1;
+                a.src = g;
+                m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
-            // ga('create', 'UA-71607545-1', 'auto');
-            // ga('send', 'pageview');
+            ga('create', 'UA-71607545-1', 'auto');
+            ga('send', 'pageview');
         </script>
 
     </body>

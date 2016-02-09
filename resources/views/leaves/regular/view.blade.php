@@ -11,7 +11,7 @@
 					@can ('cancel', $leave)
 						<a class="btn" onclick="cancelRegularLeave({{ $leave }})"><i class="fa fa-trash"></i> Cancel</a>
 					@endcan
-					@can ('reject', $leave)
+					@can ('approve', $leave)
 						<a class="btn" onclick="rejectLeave({{ $leave }})"><i class="fa fa-remove"></i> Reject</a>
 					@endcan
 					@can ('approve', $leave)
@@ -72,8 +72,8 @@
 
 	                            <div class="col-md-5">
 	                                <div class="input-group">
-	                                    <span class="input-group-addon"><i class="fa fa-usd"></i></span>
-	                                    <input type="text" class="form-control" required />
+	                                    <span class="input-group-addon">&#8369;</span>
+	                                    <input type="text" class="form-control" value="{{ to_currency($leave->salary, ' ') }}" required />
 	                                </div>
 	                            </div> <!-- /.col -->
 

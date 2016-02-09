@@ -94,12 +94,14 @@ class WriteSpecialLeaveForm extends FormWriter
                 }
 
                 if ($leave->isStatus('certified')) {
-                    excel_attach_image([
-                        'name' => $leave->employee->full_name,
-                        'path' => $leave->employee->user->signature_path,
-                        'coordinates' => 'I21',
-                        'worksheet' => $reader->sheet('Sheet1'),
-                    ]);
+                    if ($leave->employee->user->signature_path) {
+                        excel_attach_image([
+                            'name' => $leave->employee->full_name,
+                            'path' => $leave->employee->user->signature_path,
+                            'coordinates' => 'I21',
+                            'worksheet' => $reader->sheet('Sheet1'),
+                        ]);
+                    }
                     if ($leave->recommending_approval && $leave->recommending_approval->user->signature_path) {
                         excel_attach_image([
                             'name' => $leave->recommending_approval->full_name,

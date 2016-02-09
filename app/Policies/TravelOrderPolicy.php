@@ -24,9 +24,9 @@ class TravelOrderPolicy
     public function approve(User $user, TravelOrder $travel)
     {
         $employee = $user->employee;
-        if ($travel->isStatus('filed') && ($travel->recommending_approval_id === $employee->id)) {
+        if ($travel->isStatus('filed') && ($travel->recommending_approval_id == $employee->id)) {
             return true;
-        } elseif ($travel->isStatus('recommended') && ($travel->finance_director_id === $employee->id)) {
+        } elseif ($travel->isStatus('recommended') && ($travel->finance_director_id == $employee->id)) {
             return true;
         } elseif ($travel->isStatus('approved') && $employee->user->isPresident()) {
             return true;

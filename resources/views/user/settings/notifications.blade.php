@@ -30,6 +30,21 @@
 			</div>
 		</div>
 
+		<div class="form-group">
+			<label class="col-sm-3 control-label" for="">Notify via system</label>
+			<div class="col-sm-6">
+				<div class="input-group mar-btm">
+					<span class="input-group-addon">
+						<label class="form-checkbox form-icon" :class="{'active': form.notify_via_system}">
+							<input type="checkbox" v-model="form.notify_via_system">
+						</label>
+					</span>
+					<input type="text" class="form-control" value="Receive notification" readonly="true">
+				</div>
+				<span class="text-danger"><span class="text-bold">Warning:</span> Turning this off will disable notification in the system. You will not be notified for any incoming notifications.</span>
+			</div>
+		</div>
+
 		<hr class="alt" />
 
 		<button type="submit" class="btn btn-default pull-right"><i class="fa fa-save"></i>&nbsp;Save settings</button>

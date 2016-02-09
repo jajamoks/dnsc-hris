@@ -1,4 +1,4 @@
-<div class="col-md-6 col-lg-3">
+<div class="col-sm-6 col-md-3">
     <div class="panel panel-{{ isset($stat['class']) ? $stat['class'] : 'info' }} panel-colorful" onclick="location.href='{{ $stat['url'] }}';">
 	    <div class="pad-all media">
 	        <div class="media-left">

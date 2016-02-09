@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Employee Regular Leaves')
+@section('title', 'Employee Regular Leave')
 
 @section('breadcrumbs')
     {!! Breadcrumbs::render('approve-regular-leave') !!}

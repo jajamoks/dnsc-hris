@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Approved Employee Leaves')
+@section('title', 'Approved Travel Orders')
 
 @section('breadcrumbs')
     {!! Breadcrumbs::render('approved-travel-orders') !!}

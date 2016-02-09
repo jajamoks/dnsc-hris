@@ -9,7 +9,7 @@
         </div>
         <div class="list-group">
             <div id="new-employees" class="collapse in">
-                <div id="new-employees-nano" class="nano" style="height:350px">
+                <div v-if="employees.length" id="new-employees-nano" class="nano" style="height:350px">
                     <div class="nano-content pad-no">
                         <a v-for="employee in employees" class="list-group-item list-item-md" href="/employee/@{{ employee.user.username }}">
                             <div class="media-left">

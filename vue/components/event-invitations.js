@@ -126,10 +126,10 @@ Vue.component('hris-event-invitations', {
 
         trainingsAttended() {
             var vm = this;
-            this.$nextTick(function() {
+            this.$nextTick(() => {
                 $('.nano').nanoScroller();
 
-                $("#attending-trainings-nano").bind("scrollend", function(e) {
+                $("#attending-trainings-nano").bind("scrollend", (e) => {
                     vm.loadMoreTrainingsAttended = true;
                     console.log('Loading more data.');
                 });
@@ -138,15 +138,41 @@ Vue.component('hris-event-invitations', {
 
         invitations() {
         	var vm = this;
-            this.$nextTick(function() {
+            this.$nextTick(() => {
                 $('.nano').nanoScroller();
 
-                $("#invitations-nano").bind("scrollend", function(e) {
+                $("#invitations-nano").bind("scrollend", (e) => {
                     vm.loadMoreTrainingsAttended = true;
                     console.log('Loading more data.');
                 });
             })
-        }
+        },
+
+		filterTrainingsAttended() {
+			// this.trainingsAttended();
+			var vm = this;
+            this.$nextTick(() => {
+                $('.nano').nanoScroller();
+
+                $("#attending-trainings-nano").bind("scrollend", (e) => {
+                    vm.loadMoreTrainingsAttended = true;
+                    console.log('Loading more data.');
+                });
+            })
+		},
+
+		filterInvitations() {
+			// this.invitations();
+			var vm = this;
+            this.$nextTick(() => {
+                $('.nano').nanoScroller();
+
+                $("#invitations-nano").bind("scrollend", (e) => {
+                    vm.loadMoreTrainingsAttended = true;
+                    console.log('Loading more data.');
+                });
+            })
+		}  
 
     },
 

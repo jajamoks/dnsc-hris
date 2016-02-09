@@ -32,6 +32,13 @@ class Notification extends Model
     {
         parent::boot();
 
+        static::creating(function ($notification) {
+            if ((auth()->user()->id === $notification->sent_to)
+                or !$notification->sent_to_user->settings->notify_via_system) {
+                return false;
+            }
+        });
+
         static::created(function ($notification) {
             event(new NotificationCreated($notification));
         });
