@@ -22,9 +22,7 @@ window.laddaButton = Ladda.bind('button[type=submit]');
 
 require('./client'); // For client socket, used for real time activities
 
-require('./core/components');
-require('./core/filters');
-require('./core/directives');
+require('./core');
 
 new Vue({
 
