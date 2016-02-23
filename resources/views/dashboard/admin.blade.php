@@ -31,7 +31,3 @@
         @include('dashboard.empty')
     @endif
 @stop
-
-@section('script')
-
-@stop
