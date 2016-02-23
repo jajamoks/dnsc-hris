@@ -8,7 +8,8 @@ Davao del Norte State College Human Resoure Information System is a Management I
 - Install bower globally by running `npm install -g bower`
 - Install gulp globally by running `npm install -g gulp`
 - Download composer at (http://getcomposer.org)
-- Clone the repository
+- Install git
+- Clone the repository by running `git clone https://github.com/rosemalejohn/dnsc-hris.git`
 - cd to the root directory of the project and run `npm install` to install the node_modules needed in the project
 - cd to the public directory and run `bower install`
 - After the installation of node_modules, cd to the root directory of the project and run `gulp --production` or `gulp` to compile the required fonts, css and js files. (Make sure gulp is installed globally)
