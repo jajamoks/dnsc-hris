@@ -1,3 +1,5 @@
+import {EmployeeService} from './../services/employee';
+
 Vue.component('employees-list', {
 
     ready() {
