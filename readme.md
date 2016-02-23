@@ -19,7 +19,7 @@ Davao del Norte State College Human Resoure Information System is a Management I
 - rename the file ".env.example" in the root directory of the project to ".env"
 - run `php artisan key:generate` so that user sessions and other encrypted data will be secure
 - import the hris.sql file to your database
-- run `php artisan migrate` (WARNING: Migrations file are not updated. This might cause errors in the system. Better not run this, just import the hris.sql file only.) 
+- run `php artisan migrate` (<b><i>WARNING</i></b>: Migrations file are not updated. This might cause errors in the system. Better not run this, just import the hris.sql file only.) 
 - change the database configurations in your renamed ".env" file
 
 ## Running and serving the web application
